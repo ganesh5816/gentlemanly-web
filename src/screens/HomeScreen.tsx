@@ -137,7 +137,10 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                       </div>
 
                       {/* Bottom Button Container */}
-                      <div className="absolute bottom-8 left-0 right-0 flex items-center justify-center px-8">
+                      <Link
+                        to="/moment"
+                        className="absolute bottom-8 left-0 right-0 flex items-center justify-center px-8"
+                      >
                         <CustomButton
                           onPress={() => handleNavigate("MomentsGiftsScreen")}
                           style="w-full max-w-[341px] rounded-lg"
@@ -145,7 +148,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                         >
                           Plan an Event
                         </CustomButton>
-                      </div>
+                      </Link>
                     </div>
                   </div>
                 ))}
