@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import momentbg from "../assets/momentsbackground.jpg";
 import giftbg from "../assets/giftsbackground.jpg";
+import { Link } from "react-router-dom";
 
 // Mock navigation prop
 interface NavigationProp {
@@ -28,7 +29,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   children,
 }) => {
   const baseClasses =
-    "px-8 py-4 rounded-lg border-2 transition-all duration-200 hover:bg-white hover:bg-opacity-10";
+    "px-8 py-3 rounded-lg border-2 transition-all duration-200 hover:bg-white hover:bg-opacity-10";
   const variantClasses =
     variant === "transparent"
       ? "border-white bg-transparent"
@@ -141,20 +142,22 @@ const MomentsGiftsScreen: React.FC<Props> = ({ navigation }) => {
                 >
                   MOMENTS
                 </h1>
-                <p className="text-base text-white text-center mb-8">
+                <p className="text-base text-white text-center mb-8 font-montserra">
                   {expandedSection === "moments"
                     ? "Tap again to collapse"
                     : "Choose a moment first."}
                 </p>
                 {expandedSection === "moments" && (
-                  <CustomButton
-                    style="w-[341px] rounded-lg"
-                    variant="transparent"
-                  >
-                    <span className="text-white font-medium font-montserrat">
-                      Begin with Moments
-                    </span>
-                  </CustomButton>
+                  <Link to="/momentDetails">
+                    <CustomButton
+                      style="w-[341px] rounded-lg"
+                      variant="transparent"
+                    >
+                      <span className="text-white font-medium font-montserrat">
+                        Begin with Moments
+                      </span>
+                    </CustomButton>
+                  </Link>
                 )}
               </div>
             </div>
@@ -186,7 +189,7 @@ const MomentsGiftsScreen: React.FC<Props> = ({ navigation }) => {
                 >
                   GIFTS
                 </h1>
-                <p className="text-base text-white text-center mb-8">
+                <p className="text-base text-white text-center mb-8 font-montserra">
                   {expandedSection === "gifts"
                     ? "Tap again to collapse"
                     : "Select a gift first."}

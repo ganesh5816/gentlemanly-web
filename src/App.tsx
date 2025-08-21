@@ -5,7 +5,7 @@ import SidebarNavigation from "./screens/MenuBar";
 import MomentsGiftsScreen from "./screens/MomentandGiftScreen";
 import NotificationsScreen from "./screens/NotificationScreen";
 import MobileChatInterface from "./screens/ChatbotScreen";
-import MomentsGallery from "./screens/MomentsDetailsScrren";
+import StoriesUI from "./screens/MomentsDetailsScrren";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Route path="/menu" element={<SidebarNavigation />} />
         <Route path="/moment" element={<MomentsGiftsScreen />} />
         <Route path="/chat" element={<MobileChatInterface />} />
-        <Route path="/momentDetails" element={<MomentsGallery />} />
+        <Route path="/momentDetails" element={<StoriesUI />} />
 
         <Route path="/notification" element={<NotificationsScreen />} />
       </Routes>
