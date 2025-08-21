@@ -1,12 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import momentbg from "../assets/momentsbackground.jpg";
 import giftbg from "../assets/giftsbackground.jpg";
-
-// Mock theme object - replace with your actual theme
-const theme = {
-  whiteColor: "#ffffff",
-};
 
 // Mock navigation prop
 interface NavigationProp {

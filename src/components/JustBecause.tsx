@@ -2,12 +2,6 @@ import React from "react";
 import justbecause1 from "../assets/just-because1.jpg";
 import justbecause2 from "../assets/just-because2.jpg";
 
-// Mock theme object - replace with your actual theme
-const theme = {
-  whiteColor: "#ffffff",
-  colorBlack: "#000000",
-};
-
 // Custom Button Component
 interface CustomButtonProps {
   onPress?: () => void;

@@ -41,16 +41,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   );
 };
 
-const MvdWelcomeScreen: React.FC<Props> = ({ navigation }) => {
-  const handleNavigate = () => {
-    if (navigation) {
-      navigation.navigate("/home");
-    } else {
-      // Fallback for demo purposes
-      console.log("Navigate to HomeScreen");
-    }
-  };
-
+const MvdWelcomeScreen: React.FC<Props> = () => {
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black">
       {/* Background Image */}
@@ -92,7 +83,11 @@ const MvdWelcomeScreen: React.FC<Props> = ({ navigation }) => {
           {/* Button */}
           <div className="w-full">
             <Link to="/home">
-              <CustomButton variant="transparent" style="w-full">
+              <CustomButton
+                onPress={() => {}}
+                variant="transparent"
+                style="w-full"
+              >
                 <span className="text-white font-medium font-sans">
                   Go To My Dashboard
                 </span>

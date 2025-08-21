@@ -5,6 +5,7 @@ import aniversery from "../assets/anniversary.jpg";
 import justbecause1 from "../assets/just-because1.jpg";
 import justbecause2 from "../assets/just-because-2.jpg";
 import { Link } from "react-router-dom";
+
 // Mock theme object - replace with your actual theme
 const theme = {
   whiteColor: "#ffffff",
@@ -55,7 +56,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   children,
 }) => {
   const baseClasses =
-    "px-8 py-4 rounded-lg border-2 transition-all duration-200 hover:bg-white hover:bg-opacity-10";
+    "px-8 py-3 rounded-lg border-2 transition-all duration-200 hover:bg-white hover:bg-opacity-10";
   const variantClasses =
     variant === "transparent"
       ? "border-white bg-transparent text-white"
@@ -98,8 +99,8 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
 
       {/* Main Scroll View */}
       <div className="flex-1 overflow-y-auto">
-        {/* Container */}
-        <div className="bg-white mb-16">
+        {/* Upcoming Events Section - Takes full viewport height */}
+        <div className=" bg-white flex flex-col justify-center pt-4">
           <h1 className="text-3xl font-bold text-center mb-5 text-gray-800 font-times">
             Upcoming Events
           </h1>
@@ -126,7 +127,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                       {/* Centered Text Container */}
                       <div className="absolute inset-0 flex items-center justify-center px-5">
                         <div className="text-center">
-                          <h2 className="text-2xl font-bold text-white text-center mb-2 font-montserrat">
+                          <h2 className="text-2xl font-bold text-white text-center mb-2 font-times">
                             {item.eventName}
                           </h2>
                           <p className="text-base text-white text-center font-montserrat">
@@ -153,14 +154,15 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
           </div>
         </div>
 
-        <div className="min-h-screen bg-white">
+        {/* Just Because Section - Starts below viewport */}
+        <div className="min-h-screen bg-white mt-24">
           <div className="overflow-y-auto h-full">
             {/* Header Section */}
             <div className="px-6 pt-16 md:pt-20 pb-10 bg-gray-100 flex flex-col items-center">
               <h1 className="text-3xl font-bold text-center mb-5 text-gray-800 font-times">
                 Just Because
               </h1>
-              <p className="text-base leading-6 text-black text-center  font-normal px-5 font-montserrat">
+              <p className="text-base leading-6 text-black text-center font-normal px-5 font-montserrat">
                 Why wait for a reason? Surprise her with something special just
                 because you want to.
               </p>
@@ -183,6 +185,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                     MOMENTS
                   </h2>
                   <CustomButton
+                    onPress={() => handleNavigate("MomentsScreen")}
                     style="w-[341px] rounded-lg"
                     variant="transparent"
                   >
@@ -214,6 +217,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                     GIFTS
                   </h2>
                   <CustomButton
+                    onPress={() => handleNavigate("GiftsScreen")}
                     style="w-[341px] rounded-lg"
                     variant="transparent"
                   >
@@ -224,6 +228,8 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                 </div>
               </div>
             </div>
+
+            {/* Chat Section */}
             <div className="flex-1">
               <div className="flex-1 flex flex-col justify-center items-center px-5 py-10">
                 <h2 className="text-3xl font-normal text-gray-800 text-center leading-10 mb-10 font-times">
@@ -237,13 +243,15 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                   she can help you find them and then let GiftHer create a
                   beautiful moment around your selected gifts
                 </p>
-
-                <CustomButton
-                  style="w-[341px] rounded-lg border border-black"
-                  variant="transparent"
-                >
-                  <span className="text-black font-sans ">Chat Now</span>
-                </CustomButton>
+                <Link to="/chat">
+                  <CustomButton
+                    onPress={() => handleNavigate("ChatScreen")}
+                    style="w-[341px] rounded-lg border border-black"
+                    variant="transparent"
+                  >
+                    <span className="text-black font-sans">Chat Now</span>
+                  </CustomButton>
+                </Link>
               </div>
             </div>
           </div>
