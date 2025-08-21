@@ -238,11 +238,11 @@ const StoriesUI = () => {
     }
   };
 
-  const handleTouchStart = (e: { targetTouches: { clientX: number }[] }) => {
+  const handleTouchStart = (e: any) => {
     touchStart.current = e.targetTouches[0].clientX;
   };
 
-  const handleTouchMove = (e: { targetTouches: { clientX: number }[] }) => {
+  const handleTouchMove = (e: any) => {
     touchEnd.current = e.targetTouches[0].clientX;
   };
 
@@ -559,7 +559,7 @@ const StoriesUI = () => {
           <DotNav
             stories={stories}
             currentIndex={currentStoryIndex}
-            onSelect={(idx: unknown) => setCurrentStoryIndex(idx)}
+            onSelect={(idx: any) => setCurrentStoryIndex(idx)}
           />
         </>
       )}
