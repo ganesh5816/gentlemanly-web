@@ -38,9 +38,7 @@ const stories = [
     location: "Local pottery studio",
     priceRange: "$150.00 - $800.00",
     image: moment1video,
-    // "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=400&h=800&fit=crop",
     detailImage: moment1video,
-    // "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=400&h=800&fit=crop",
   },
   {
     id: 2,
@@ -88,57 +86,8 @@ const stories = [
     image: moment3video,
     detailImage: moment3video,
   },
-  // {
-  //   id: 4,
-  //   title: "COOKING CLASS",
-  //   subtitle: "Stir up love together",
-  //   tagline: "Create flavors and memories in the kitchen.",
-  //   description:
-  //     "Learn to cook a new cuisine while laughing over chopped onions and stolen tastes. The best ingredient? The memories you'll make along the way.",
-  //   whatsIncluded: [
-  //     "All ingredients and cooking equipment",
-  //     "Expert chef instruction",
-  //     "Recipe cards to take home",
-  //   ],
-  //   whyYoullLove: [
-  //     "Learn skills you'll use forever",
-  //     "Delicious meal to enjoy together",
-  //     "Fun, interactive date experience",
-  //   ],
-  //   duration: "3 hours",
-  //   location: "Professional kitchen studio",
-  //   priceRange: "$200.00 - $500.00",
-  //   image:
-  //     "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=800&fit=crop",
-  //   detailImage:
-  //     "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=800&fit=crop",
-  // },
-  // {
-  //   id: 5,
-  //   title: "WINE TASTING",
-  //   subtitle: "Sip and savor",
-  //   tagline: "Discover new favorites together.",
-  //   description:
-  //     "Journey through vineyards and tasting rooms, learning about wines while creating your own blend of memories. Every glass tells a story.",
-  //   whatsIncluded: [
-  //     "Guided vineyard tour",
-  //     "Premium wine selection tasting",
-  //     "Cheese and charcuterie pairing",
-  //   ],
-  //   whyYoullLove: [
-  //     "Sophisticated yet relaxed atmosphere",
-  //     "Learn about wine together",
-  //     "Beautiful vineyard scenery",
-  //   ],
-  //   duration: "4 hours",
-  //   location: "Local vineyards",
-  //   priceRange: "$180.00 - $450.00",
-  //   image:
-  //     "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=800&fit=crop",
-  //   detailImage:
-  //     "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=800&fit=crop",
-  // },
 ];
+
 const DotNav = ({ stories, currentIndex, onSelect }: any) => {
   return (
     <div className="absolute bottom-20 left-0 right-0 flex justify-center gap-2 z-20">
@@ -154,6 +103,7 @@ const DotNav = ({ stories, currentIndex, onSelect }: any) => {
     </div>
   );
 };
+
 const StoriesUI = () => {
   const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -166,6 +116,7 @@ const StoriesUI = () => {
   const touchStart = useRef(0);
   const touchEnd = useRef(0);
   const scrollRef = useRef<any>(null);
+  const videoRefs = useRef<{ [key: string]: HTMLVideoElement | null }>({});
 
   useEffect(() => {
     if (showSecondScreen && isPlaying && !showDetailScreen) {
@@ -189,16 +140,30 @@ const StoriesUI = () => {
         clearInterval(progressInterval.current);
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showSecondScreen, isPlaying, currentSlide, showDetailScreen]);
 
   useEffect(() => {
     scrollToStory(currentStoryIndex);
   }, [currentStoryIndex]);
 
+  // Handle video playback optimization
+  useEffect(() => {
+    // Play only the current video, pause others
+    Object.keys(videoRefs.current).forEach((key) => {
+      const video = videoRefs.current[key];
+      if (video) {
+        if (parseInt(key) === currentStoryIndex) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      }
+    });
+  }, [currentStoryIndex]);
+
   const scrollToStory = (index: number) => {
     if (scrollRef.current) {
-      const slideWidth = scrollRef.current.offsetWidth * 0.85; // Adjust for partial next slide visibility
+      const slideWidth = window.innerWidth * 0.85; // Responsive width based on viewport
       scrollRef.current.scrollTo({
         left: slideWidth * index,
         behavior: "smooth",
@@ -208,7 +173,7 @@ const StoriesUI = () => {
 
   const handleScroll = () => {
     if (scrollRef.current) {
-      const slideWidth = scrollRef.current.offsetWidth * 0.85; // Adjust for partial next slide
+      const slideWidth = window.innerWidth * 0.85; // Responsive width
       const scrollPosition = scrollRef.current.scrollLeft;
       const newIndex = Math.round(scrollPosition / slideWidth);
       if (
@@ -284,14 +249,24 @@ const StoriesUI = () => {
 
   const DetailScreen = () => {
     const story = stories[currentSlide];
+    const detailVideoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+      if (detailVideoRef.current) {
+        detailVideoRef.current.play().catch(() => {});
+      }
+    }, []);
 
     return (
       <div className="fixed inset-0 bg-white z-30 overflow-y-auto">
         <div className="relative">
           <video
+            ref={detailVideoRef}
             autoPlay
+            muted
+            loop
+            playsInline
             src={story.detailImage}
-            // alt={story.title}
             className="w-full h-64 object-cover"
           />
 
@@ -363,15 +338,21 @@ const StoriesUI = () => {
   };
 
   const StoryComponent = ({ story, index }: any) => (
-    <div className="relative w-full h-full m-2  overflow-hidden">
-      {/* Background Image */}
+    <div className="relative w-full h-full overflow-hidden rounded-2xl">
+      {/* Background Video - Optimized */}
       <div className="absolute inset-0">
         <video
+          ref={(el) => {
+            videoRefs.current[index] = el;
+          }}
           src={story.image}
-          autoPlay
-          // alt={story.title}
+          muted
+          loop
+          playsInline
           className="w-full h-full object-cover"
+          autoPlay={index === currentStoryIndex}
         />
+
         {/* Overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
       </div>
@@ -391,7 +372,7 @@ const StoriesUI = () => {
       </div>
 
       {/* Bottom Content */}
-      <div className="absolute bottom-20 left-0 right-0 text-center">
+      <div className="absolute bottom-8 left-0 right-0 text-center px-4">
         <h2 className="text-white font-times text-xl font-bold tracking-wide mb-2">
           {story.title}
         </h2>
@@ -402,123 +383,139 @@ const StoriesUI = () => {
     </div>
   );
 
-  const SecondScreen = () => (
-    <div
-      className="fixed inset-0 z-40 w-full h-full"
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      onClick={handleScreenClick}
-    >
-      <div className="absolute inset-0">
-        <video
-          src={stories[currentSlide].image}
-          // alt={stories[currentSlide].title}
-          autoPlay
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
-      </div>
+  const SecondScreen = () => {
+    const secondScreenVideoRef = useRef<HTMLVideoElement>(null);
 
-      {/* Progress bars at top */}
-      <div className="absolute top-4 left-4 right-4 z-20 flex gap-1">
-        {stories.map((_, index) => (
-          <div
-            key={index}
-            className="flex-1 h-0.5 bg-white/30 rounded-full overflow-hidden"
-          >
-            <div
-              className={`h-full bg-white transition-all duration-100 ${
-                index < currentSlide
-                  ? "w-full"
-                  : index === currentSlide
-                  ? ""
-                  : "w-0"
-              }`}
-              style={{
-                width: index === currentSlide ? `${progress}%` : undefined,
-              }}
-            />
-          </div>
-        ))}
-      </div>
+    useEffect(() => {
+      if (secondScreenVideoRef.current) {
+        secondScreenVideoRef.current.play().catch(() => {});
+      }
+    }, [currentSlide]);
 
-      <div className="absolute top-12 left-4 right-4 z-20 flex items-center justify-between">
-        <button
-          className="p-2 rounded-full bg-black/30 backdrop-blur-sm"
-          onClick={(e) => {
-            e.stopPropagation();
-            setShowSecondScreen(false);
-            setIsPlaying(false);
-            setProgress(0);
-          }}
-        >
-          <ChevronLeft className="w-6 h-6 text-white" />
-        </button>
+    return (
+      <div
+        className="fixed inset-0 z-40 w-full h-full"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onClick={handleScreenClick}
+      >
+        <div className="absolute inset-0">
+          <video
+            ref={secondScreenVideoRef}
+            src={stories[currentSlide].image}
+            autoPlay
+            muted={isMuted}
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+        </div>
 
-        <button
-          className="p-2 rounded-full bg-black/30 backdrop-blur-sm"
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsMuted(!isMuted);
-          }}
-        >
-          {isMuted ? (
-            <VolumeX className="w-5 h-5 text-white" />
-          ) : (
-            <Volume2 className="w-5 h-5 text-white" />
-          )}
-        </button>
-      </div>
-
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <button
-          className={`w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-opacity ${
-            isPlaying ? "opacity-0" : "opacity-100"
-          }`}
-        >
-          {isPlaying ? (
-            <Pause className="w-8 h-8 text-white" />
-          ) : (
-            <Play className="w-8 h-8 text-white ml-1" />
-          )}
-        </button>
-      </div>
-
-      <div className="absolute bottom-20 left-0 right-0 px-8">
-        <h2 className="text-white text-3xl font-bold tracking-wide uppercase">
-          {stories[currentSlide].title}
-        </h2>
-        <p className="text-white/90 text-lg mt-2">
-          {stories[currentSlide].subtitle}
-        </p>
-      </div>
-
-      <div className="absolute bottom-8 left-0 right-0">
-        <div className="flex justify-center gap-2">
+        {/* Progress bars at top */}
+        <div className="absolute top-4 left-4 right-4 z-20 flex gap-1">
           {stories.map((_, index) => (
             <div
               key={index}
-              className={`h-1 rounded-full transition-all duration-300 ${
-                index === currentSlide ? "w-8 bg-white" : "w-1 bg-white/50"
-              }`}
-            />
+              className="flex-1 h-0.5 bg-white/30 rounded-full overflow-hidden"
+            >
+              <div
+                className={`h-full bg-white transition-all duration-100 ${
+                  index < currentSlide
+                    ? "w-full"
+                    : index === currentSlide
+                    ? ""
+                    : "w-0"
+                }`}
+                style={{
+                  width: index === currentSlide ? `${progress}%` : undefined,
+                }}
+              />
+            </div>
           ))}
         </div>
+
+        <div className="absolute top-12 left-4 right-4 z-20 flex items-center justify-between">
+          <button
+            className="p-2 rounded-full bg-black/30 backdrop-blur-sm"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowSecondScreen(false);
+              setIsPlaying(false);
+              setProgress(0);
+            }}
+          >
+            <ChevronLeft className="w-6 h-6 text-white" />
+          </button>
+
+          <button
+            className="p-2 rounded-full bg-black/30 backdrop-blur-sm"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsMuted(!isMuted);
+            }}
+          >
+            {isMuted ? (
+              <VolumeX className="w-5 h-5 text-white" />
+            ) : (
+              <Volume2 className="w-5 h-5 text-white" />
+            )}
+          </button>
+        </div>
+
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <button
+            className={`w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-opacity ${
+              isPlaying ? "opacity-0" : "opacity-100"
+            }`}
+          >
+            {isPlaying ? (
+              <Pause className="w-8 h-8 text-white" />
+            ) : (
+              <Play className="w-8 h-8 text-white ml-1" />
+            )}
+          </button>
+        </div>
+
+        <div className="absolute bottom-20 left-0 right-0 px-8">
+          <h2 className="text-white text-3xl font-bold tracking-wide uppercase">
+            {stories[currentSlide].title}
+          </h2>
+          <p className="text-white/90 text-lg mt-2">
+            {stories[currentSlide].subtitle}
+          </p>
+        </div>
+
+        <div className="absolute bottom-8 left-0 right-0">
+          <div className="flex justify-center gap-2">
+            {stories.map((_, index) => (
+              <div
+                key={index}
+                className={`h-1 rounded-full transition-all duration-300 ${
+                  index === currentSlide ? "w-8 bg-white" : "w-1 bg-white/50"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
-    <div className="w-full h-screen overflow-hidden relative flex items-center justify-center">
-      <video
-        src={stories[currentStoryIndex]?.image}
-        className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-      />
+    <div className="w-full h-screen overflow-hidden relative flex items-center justify-center bg-black">
+      {/* Background video - Only play current video */}
+      {!showDetailScreen && !showSecondScreen && (
+        <video
+          src={stories[currentStoryIndex]?.image}
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+      )}
 
       <div className="absolute top-5 left-1 w-full flex items-center justify-between px-4 py-3 z-20">
         <button className="w-10 h-10 rounded-full bg-black bg-opacity-30 border border-white flex items-center justify-center hover:bg-opacity-50 transition-all duration-200">
@@ -534,8 +531,8 @@ const StoriesUI = () => {
 
       {!showDetailScreen && !showSecondScreen && (
         <>
-          {/* Centered Slider Container */}
-          <div className="relative z-10 w-full max-w-md mx-auto">
+          {/* Responsive Slider Container */}
+          <div className="relative z-10 w-full px-4">
             <div
               ref={scrollRef}
               className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
@@ -543,16 +540,18 @@ const StoriesUI = () => {
               style={{
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",
-                height: "637px",
+                WebkitOverflowScrolling: "touch", // Smooth scrolling on iOS
               }}
             >
               {stories.map((story, index) => (
                 <div
                   key={story.id}
-                  className="flex-shrink-0 snap-start"
+                  className="flex-shrink-0 snap-start px-2"
                   style={{
-                    width: "375px", // Reduced width to show portion of next slide
-                    marginRight: "20px", // Space to show next slide
+                    width: "85vw", // Responsive width based on viewport
+                    maxWidth: "375px", // Maximum width for larger screens
+                    height: "70vh", // Responsive height
+                    maxHeight: "637px", // Maximum height
                   }}
                 >
                   <StoryComponent story={story} index={index} />
