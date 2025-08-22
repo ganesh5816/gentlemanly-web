@@ -520,7 +520,7 @@ const StoriesUI = () => {
         playsInline
       />
 
-      <div className="absolute top-10 left-1 w-full flex items-center justify-between px-4 py-3 z-20">
+      <div className="absolute top-5 left-1 w-full flex items-center justify-between px-4 py-3 z-20">
         <button className="w-10 h-10 rounded-full bg-black bg-opacity-30 border border-white flex items-center justify-center hover:bg-opacity-50 transition-all duration-200">
           <ArrowLeft size={22} color="#FFFFFF" strokeWidth={2} />
         </button>
