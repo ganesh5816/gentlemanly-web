@@ -12,6 +12,10 @@ import {
   DollarSign,
   ArrowLeft,
 } from "lucide-react";
+import moment1video from "../assets/mold.mp4";
+import moment2video from "../assets/picnic.mp4";
+import moment3video from "../assets/moment3.mp4";
+
 const stories = [
   {
     id: 1,
@@ -33,10 +37,10 @@ const stories = [
     duration: "1.5 - 2 hours",
     location: "Local pottery studio",
     priceRange: "$150.00 - $800.00",
-    image:
-      "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=400&h=800&fit=crop",
-    detailImage:
-      "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=400&h=800&fit=crop",
+    image: moment1video,
+    // "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=400&h=800&fit=crop",
+    detailImage: moment1video,
+    // "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=400&h=800&fit=crop",
   },
   {
     id: 2,
@@ -58,10 +62,8 @@ const stories = [
     duration: "2 - 3 hours",
     location: "Scenic overlook points",
     priceRange: "$120.00 - $450.00",
-    image:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=800&fit=crop",
-    detailImage:
-      "https://images.unsplash.com/photo-1516589091380-5d8e87df6999?w=400&h=800&fit=crop",
+    image: moment2video,
+    detailImage: moment2video,
   },
   {
     id: 3,
@@ -83,61 +85,59 @@ const stories = [
     duration: "Overnight",
     location: "Mountain camping sites",
     priceRange: "$250.00 - $600.00",
-    image:
-      "https://images.unsplash.com/photo-1537565266759-34bbc16be345?w=400&h=800&fit=crop",
-    detailImage:
-      "https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=400&h=800&fit=crop",
+    image: moment3video,
+    detailImage: moment3video,
   },
-  {
-    id: 4,
-    title: "COOKING CLASS",
-    subtitle: "Stir up love together",
-    tagline: "Create flavors and memories in the kitchen.",
-    description:
-      "Learn to cook a new cuisine while laughing over chopped onions and stolen tastes. The best ingredient? The memories you'll make along the way.",
-    whatsIncluded: [
-      "All ingredients and cooking equipment",
-      "Expert chef instruction",
-      "Recipe cards to take home",
-    ],
-    whyYoullLove: [
-      "Learn skills you'll use forever",
-      "Delicious meal to enjoy together",
-      "Fun, interactive date experience",
-    ],
-    duration: "3 hours",
-    location: "Professional kitchen studio",
-    priceRange: "$200.00 - $500.00",
-    image:
-      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=800&fit=crop",
-    detailImage:
-      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=800&fit=crop",
-  },
-  {
-    id: 5,
-    title: "WINE TASTING",
-    subtitle: "Sip and savor",
-    tagline: "Discover new favorites together.",
-    description:
-      "Journey through vineyards and tasting rooms, learning about wines while creating your own blend of memories. Every glass tells a story.",
-    whatsIncluded: [
-      "Guided vineyard tour",
-      "Premium wine selection tasting",
-      "Cheese and charcuterie pairing",
-    ],
-    whyYoullLove: [
-      "Sophisticated yet relaxed atmosphere",
-      "Learn about wine together",
-      "Beautiful vineyard scenery",
-    ],
-    duration: "4 hours",
-    location: "Local vineyards",
-    priceRange: "$180.00 - $450.00",
-    image:
-      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=800&fit=crop",
-    detailImage:
-      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=800&fit=crop",
-  },
+  // {
+  //   id: 4,
+  //   title: "COOKING CLASS",
+  //   subtitle: "Stir up love together",
+  //   tagline: "Create flavors and memories in the kitchen.",
+  //   description:
+  //     "Learn to cook a new cuisine while laughing over chopped onions and stolen tastes. The best ingredient? The memories you'll make along the way.",
+  //   whatsIncluded: [
+  //     "All ingredients and cooking equipment",
+  //     "Expert chef instruction",
+  //     "Recipe cards to take home",
+  //   ],
+  //   whyYoullLove: [
+  //     "Learn skills you'll use forever",
+  //     "Delicious meal to enjoy together",
+  //     "Fun, interactive date experience",
+  //   ],
+  //   duration: "3 hours",
+  //   location: "Professional kitchen studio",
+  //   priceRange: "$200.00 - $500.00",
+  //   image:
+  //     "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=800&fit=crop",
+  //   detailImage:
+  //     "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=800&fit=crop",
+  // },
+  // {
+  //   id: 5,
+  //   title: "WINE TASTING",
+  //   subtitle: "Sip and savor",
+  //   tagline: "Discover new favorites together.",
+  //   description:
+  //     "Journey through vineyards and tasting rooms, learning about wines while creating your own blend of memories. Every glass tells a story.",
+  //   whatsIncluded: [
+  //     "Guided vineyard tour",
+  //     "Premium wine selection tasting",
+  //     "Cheese and charcuterie pairing",
+  //   ],
+  //   whyYoullLove: [
+  //     "Sophisticated yet relaxed atmosphere",
+  //     "Learn about wine together",
+  //     "Beautiful vineyard scenery",
+  //   ],
+  //   duration: "4 hours",
+  //   location: "Local vineyards",
+  //   priceRange: "$180.00 - $450.00",
+  //   image:
+  //     "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=800&fit=crop",
+  //   detailImage:
+  //     "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=800&fit=crop",
+  // },
 ];
 const DotNav = ({ stories, currentIndex, onSelect }: any) => {
   return (
@@ -288,9 +288,10 @@ const StoriesUI = () => {
     return (
       <div className="fixed inset-0 bg-white z-30 overflow-y-auto">
         <div className="relative">
-          <img
+          <video
+            autoPlay
             src={story.detailImage}
-            alt={story.title}
+            // alt={story.title}
             className="w-full h-64 object-cover"
           />
 
@@ -365,9 +366,10 @@ const StoriesUI = () => {
     <div className="relative w-full h-full m-2  overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img
+        <video
           src={story.image}
-          alt={story.title}
+          autoPlay
+          // alt={story.title}
           className="w-full h-full object-cover"
         />
         {/* Overlay gradient */}
@@ -409,9 +411,10 @@ const StoriesUI = () => {
       onClick={handleScreenClick}
     >
       <div className="absolute inset-0">
-        <img
+        <video
           src={stories[currentSlide].image}
-          alt={stories[currentSlide].title}
+          // alt={stories[currentSlide].title}
+          autoPlay
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
@@ -507,15 +510,16 @@ const StoriesUI = () => {
   );
 
   return (
-    <div
-      className="w-full h-screen overflow-hidden relative flex items-center justify-center"
-      style={{
-        backgroundImage: `url(${stories[currentStoryIndex]?.image})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
+    <div className="w-full h-screen overflow-hidden relative flex items-center justify-center">
+      <video
+        src={stories[currentStoryIndex]?.image}
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
+
       <div className="absolute top-10 left-1 w-full flex items-center justify-between px-4 py-3 z-20">
         <button className="w-10 h-10 rounded-full bg-black bg-opacity-30 border border-white flex items-center justify-center hover:bg-opacity-50 transition-all duration-200">
           <ArrowLeft size={22} color="#FFFFFF" strokeWidth={2} />
