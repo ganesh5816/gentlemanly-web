@@ -514,7 +514,7 @@ const StoriesUI = () => {
             setShowDetailScreen(true);
           }}
         >
-          <Play className="w-7 h-7 text-white ml-1" />
+          <Play className="w-4 h-4 text-white ml-1" />
         </button>
       </div>
 
