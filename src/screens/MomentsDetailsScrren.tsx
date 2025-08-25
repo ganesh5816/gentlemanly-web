@@ -392,7 +392,7 @@ const StoriesUI = () => {
 
         <div className="p-6 space-y-6">
           <Link to="/makeitYours">
-            <button className="w-full mt-4 bg-black text-white py-3 text-[16px]  rounded-lg font-medium text-lg font-montserrat">
+            <button className="w-full mt-4 bg-black text-white py-3 text-[16px]  rounded-lg font-medium font-montserrat">
               Make this Moment Yours
             </button>
           </Link>
