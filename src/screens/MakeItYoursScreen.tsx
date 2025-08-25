@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const OrderConfirmationScreen = () => {
   const [gifts, setGifts] = useState([]);
@@ -36,6 +35,7 @@ const OrderConfirmationScreen = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const GiftIcon = ({ gift, position }: any) => {
     return (
       <div
