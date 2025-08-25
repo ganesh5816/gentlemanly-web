@@ -507,7 +507,7 @@ const StoriesUI = () => {
       {/* Central Play Button */}
       <div className="absolute inset-0 flex items-center justify-center">
         <button
-          className="w-16 h-16 rounded-full flex items-center justify-center border-2 border-white hover:bg-white/35 transition-all duration-200"
+          className="w-10 h-10 rounded-full flex items-center justify-center border border-white hover:bg-white/35 transition-all duration-200"
           onClick={(e) => {
             e.stopPropagation();
             setCurrentSlide(index);
