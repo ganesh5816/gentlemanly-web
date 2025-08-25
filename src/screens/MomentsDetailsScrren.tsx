@@ -7,14 +7,21 @@ import {
   Volume2,
   VolumeX,
   Plus,
-  Clock,
-  MapPin,
-  DollarSign,
   ArrowLeft,
+  Minus,
 } from "lucide-react";
 import moment1video from "../assets/mold.mp4";
 import moment2video from "../assets/picnic.mp4";
 import moment3video from "../assets/moment3.mp4";
+import { Link } from "react-router-dom";
+import moment1 from "../assets/pottery.jpg";
+import moment2 from "../assets/picnic.jpg";
+import moment3 from "../assets/datenight.jpg";
+import dress from "../assets/dress.jpg";
+import bag from "../assets/brownbag.jpg";
+import shoesframe from "../assets/Frame283.png";
+import blackBag from "../assets/blackbag.jpg";
+import dinner from "../assets/dinner.jpg";
 
 const stories = [
   {
@@ -37,20 +44,37 @@ const stories = [
     duration: "1.5 - 2 hours",
     location: "Local pottery studio",
     priceRange: "$150.00 - $800.00",
-    image: moment1video,
+    image: moment1,
     detailImage: moment1video,
+    products: [
+      {
+        id: 1,
+        name: "Ankle-cuff heeled sandals",
+        price: "$45.00",
+        image: shoesframe,
+      },
+      {
+        id: 2,
+        name: "White A-line Dress",
+        price: "$25.00",
+        image: dress,
+      },
+    ],
   },
   {
     id: 2,
     title: "SUNSET PICNIC",
     subtitle: "Golden hour moments",
-    tagline: "Chase the sunset with your favorite person.",
+    tagline: "A Blissful Day Under the Open Sky",
     description:
-      "Pack a basket, find the perfect spot, and watch the sky paint itself in shades of gold. It's not about the food, it's about the moment when time seems to stop.",
+      "Relax together outdoors with a thoughtfully curated picnic experience, paired with accessories and outfits for the perfect vibe.",
     whatsIncluded: [
-      "Curated picnic basket with local delicacies",
-      "Cozy blanket and cushions",
-      "Sunset viewing guide to best spots",
+      "Picnic setup with blanket & cushions",
+      "Gourmet snacks & drinks",
+      "Fresh flower bouquet",
+      // "Soft background music",
+      // "Gift: Floral dress for her",
+      // "Gift: Matching sunhat or scarf",
     ],
     whyYoullLove: [
       "Intimate moments in nature's best light",
@@ -60,34 +84,90 @@ const stories = [
     duration: "2 - 3 hours",
     location: "Scenic overlook points",
     priceRange: "$120.00 - $450.00",
-    image: moment2video,
+    image: moment2,
     detailImage: moment2video,
+    products: [
+      {
+        id: 1,
+        name: "Ankle-cuff heeled sandals",
+        price: "$89.00",
+        image: shoesframe,
+      },
+      {
+        id: 2,
+        name: "Woven Sun Hat",
+        price: "$45.00",
+        image: dress,
+      },
+      {
+        id: 3,
+        name: "Hermes Mini Kelly",
+        price: "$125.00",
+        image: blackBag,
+      },
+      {
+        id: 4,
+        name: "Dinner Reserveation",
+        image: dinner,
+      },
+    ],
   },
   {
     id: 3,
     title: "STARLIT CAMPING",
-    subtitle: "Adventure under stars",
+    subtitle: "An Evening of Romance & Elegance",
     tagline: "Disconnect to reconnect under the stars.",
     description:
-      "Leave the city lights behind and find yourselves under a blanket of stars. Share stories by the campfire, make s'mores, and fall asleep to nature's soundtrack.",
+      "Dress up for a night of fine dining, enchanting music, and unforgettable moments, complete with stylish gifts for the evening.",
     whatsIncluded: [
-      "Premium camping gear setup",
-      "Stargazing equipment and guide",
-      "Campfire cooking experience",
+      "Candle-lit dinner reservation",
+      "Bottle of wine or champagne",
+      "Private car service (optional)",
+      // "Gift: Elegant dress or outfit for her",
+      // "Gift: High end Bag",
+      // "Gift: Luxury Brand Shoes",
     ],
     whyYoullLove: [
-      "Escape from the digital world",
-      "Bonding over campfire stories",
-      "Wake up to stunning sunrise views",
+      " Creates a glamorous",
+      "intimate atmosphere that makes her feel special while giving thoughtful gifts to enhance the experience",
     ],
-    duration: "Overnight",
-    location: "Mountain camping sites",
+    duration: "4–5 hours",
+    location: "Upscale restaurant or rooftop venue",
     priceRange: "$250.00 - $600.00",
-    image: moment3video,
+    image: moment3,
     detailImage: moment3video,
+    products: [
+      {
+        id: 1,
+        name: "Ankle-cuff Heeled Sandals",
+        price: "$5,250.00",
+        image:
+          "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=400&fit=crop&crop=center",
+      },
+      {
+        id: 2,
+        name: "White A-line Dress",
+        price: "$450.00",
+        image:
+          "https://images.unsplash.com/photo-1566479179817-f8ec83218f9e?w=400&h=400&fit=crop&crop=center",
+      },
+      {
+        id: 3,
+        name: "Designer Handbag",
+        price: "$3,400.00",
+        image:
+          "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=400&fit=crop&crop=center",
+      },
+      {
+        id: 4,
+        name: "Diamond Necklace",
+        price: "$2,100.00",
+        image:
+          "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=400&fit=crop&crop=center",
+      },
+    ],
   },
 ];
-
 const DotNav = ({ stories, currentIndex, onSelect }: any) => {
   return (
     <div className="absolute bottom-20 left-0 right-0 flex justify-center gap-2 z-20">
@@ -103,7 +183,47 @@ const DotNav = ({ stories, currentIndex, onSelect }: any) => {
     </div>
   );
 };
+const ProductSlider = ({ products }: any) => {
+  console.log("Products received:", products); // Add this line for debugging
 
+  const scrollRef = useRef(null);
+
+  return (
+    <div className="relative mt-4">
+      <div
+        ref={scrollRef}
+        className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide"
+        style={{
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+        }}
+      >
+        {products?.map(
+          (
+            product: any,
+            index: any // Add optional chaining
+          ) => (
+            <div key={product.id || index} className="flex-shrink-0 w-44 mt-4">
+              <div className="bg-gray-50 overflow-hidden mb-3 aspect-square">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-sm font-times font-medium text-gray-900 mb-1 line-clamp-2">
+                {product.name}
+              </h3>
+              <p className="text-sm text-gray-600 font-montserrat font-semibold">
+                {product.price}
+              </p>
+            </div>
+          )
+        )}
+      </div>
+    </div>
+  );
+};
 const StoriesUI = () => {
   const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -160,7 +280,7 @@ const StoriesUI = () => {
       }
     });
   }, [currentStoryIndex]);
-
+  const [isWhatsIncludedExpanded, setIsWhatsIncludedExpanded] = useState(false);
   const scrollToStory = (index: number) => {
     if (scrollRef.current) {
       const slideWidth = window.innerWidth * 0.85; // Responsive width based on viewport
@@ -269,67 +389,105 @@ const StoriesUI = () => {
             src={story.detailImage}
             className="w-full h-64 object-cover"
           />
-
-          <div className="absolute bottom-4 left-6 right-6">
-            <h1 className="text-white text-3xl font-bold tracking-wide">
-              {story.title}
-            </h1>
-          </div>
         </div>
 
         <div className="p-6 space-y-6">
+          <Link to="/makeitYours">
+            <button className="w-full mt-4 bg-black text-white py-3 text-[16px]  rounded-lg font-medium text-lg font-montserrat">
+              Make this Moment Yours
+            </button>
+          </Link>
           <div>
-            <h2 className="text-2xl font-semibold mb-3">{story.tagline}</h2>
-            <p className="text-gray-600 leading-relaxed">{story.description}</p>
+            <h2 className="text-2xl font-semibold mb-3 font-times">
+              {story.tagline}
+            </h2>
+            <p className="text-gray-600 leading-relaxed font-montserrat">
+              {story.description}
+            </p>
           </div>
 
           <div className="border-t pt-6">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-lg font-semibold">What's Included</span>
-              <button className="p-1 rounded-full border border-gray-300">
-                <Plus className="w-4 h-4" />
+            <div className="flex items-center justify-between gap-2 mb-4">
+              <span className="text-lg font-montserrat">What's Included</span>
+              <button
+                className={`p-1 rounded-full border border-gray-300 transition-transform duration-200 
+                }`}
+                onClick={() =>
+                  setIsWhatsIncludedExpanded(!isWhatsIncludedExpanded)
+                }
+              >
+                {isWhatsIncludedExpanded ? (
+                  <Minus className="w-4 h-4" />
+                ) : (
+                  <Plus className="w-4 h-4" />
+                )}
               </button>
+            </div>
+
+            {/* Expandable content */}
+            <div
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                isWhatsIncludedExpanded
+                  ? "max-h-96 opacity-100"
+                  : "max-h-0 opacity-0"
+              }`}
+            >
+              <ul className="space-y-3 pt-2">
+                {story.whatsIncluded.map((item, idx) => (
+                  <li key={idx} className="text-gray-600 flex items-start  ">
+                    {item}
+                  </li>
+                ))}
+                <ProductSlider products={story.products} />
+              </ul>
             </div>
           </div>
 
           <div className="border-t pt-6">
-            <h3 className="text-lg font-semibold mb-4">Why You'll Love It</h3>
+            <h3 className="text-lg font-semibold mb-4 font-times">
+              Why You'll Love It
+            </h3>
             <ul className="space-y-3">
               {story.whyYoullLove.map((item, idx) => (
-                <li key={idx} className="text-gray-600">
-                  • {item}
+                <li key={idx} className="text-gray-600 font-montserrat">
+                  {item}
                 </li>
               ))}
             </ul>
           </div>
 
           <div className="border-t pt-6 space-y-4">
-            <div className="flex items-center gap-3">
-              <Clock className="w-5 h-5 text-gray-400" />
-              <div className="flex-1">
-                <span className="text-gray-500 text-sm">Duration</span>
-                <p className="font-medium">{story.duration}</p>
+            <div className="flex w-full">
+              <div className="flex justify-between items-center w-full">
+                <span className="text-gray-500 text-sm font-montserrat">
+                  Duration
+                </span>
+                <p className="font-medium font-montserrat">{story.duration}</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <MapPin className="w-5 h-5 text-gray-400" />
-              <div className="flex-1">
-                <span className="text-gray-500 text-sm">Location</span>
-                <p className="font-medium">{story.location}</p>
+            <div className="flex w-full">
+              <div className="flex justify-between items-center w-full">
+                <span className="text-gray-500 text-sm font-montserrat">
+                  Location
+                </span>
+                <p className="font-medium font-montserrat">{story.location}</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <DollarSign className="w-5 h-5 text-gray-400" />
-              <div className="flex-1">
-                <span className="text-gray-500 text-sm">Price Range</span>
-                <p className="font-medium">{story.priceRange}</p>
+            <div className="flex w-full">
+              <div className="flex justify-between items-center w-full">
+                <span className="text-gray-500 text-sm font-montserrat">
+                  Duration
+                </span>
+                <p className="font-medium font-montserrat">
+                  {story.priceRange}
+                </p>
               </div>
             </div>
           </div>
 
-          <button className="w-full bg-black text-white py-4 rounded-lg font-medium text-lg">
+          <button className="w-full bg-black text-white text-[16px] py-3 rounded-lg  text-lg">
             Choose this Moment
           </button>
         </div>
@@ -338,36 +496,26 @@ const StoriesUI = () => {
   };
 
   const StoryComponent = ({ story, index }: any) => (
-    <div className="relative w-full h-full overflow-hidden rounded-2xl">
+    <div className="relative w-full h-full overflow-hidden l">
       {/* Background Video - Optimized */}
       <div className="absolute inset-0">
-        <video
-          ref={(el) => {
-            videoRefs.current[index] = el;
-          }}
-          src={story.image}
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
-          autoPlay={index === currentStoryIndex}
-        />
+        <img src={story.image} className="w-full h-full object-cover" />
 
         {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" /> */}
       </div>
 
       {/* Central Play Button */}
       <div className="absolute inset-0 flex items-center justify-center">
         <button
-          className="w-16 h-16 bg-white/25 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30 hover:bg-white/35 transition-all duration-200"
+          className="w-16 h-16 rounded-full flex items-center justify-center border-2 border-white hover:bg-white/35 transition-all duration-200"
           onClick={(e) => {
             e.stopPropagation();
             setCurrentSlide(index);
             setShowDetailScreen(true);
           }}
         >
-          <Play className="w-7 h-7 text-white ml-1" fill="white" />
+          <Play className="w-7 h-7 text-white ml-1" />
         </button>
       </div>
 
@@ -507,24 +655,21 @@ const StoriesUI = () => {
     <div className="w-full h-screen overflow-hidden relative flex items-center justify-center bg-black">
       {/* Background video - Only play current video */}
       {!showDetailScreen && !showSecondScreen && (
-        <video
+        <img
           src={stories[currentStoryIndex]?.image}
           className="absolute inset-0 w-full h-full object-cover opacity-30"
-          autoPlay
-          muted
-          loop
-          playsInline
         />
       )}
 
       <div className="absolute top-5 left-1 w-full flex items-center justify-between px-4 py-3 z-20">
-        <button className="w-10 h-10 rounded-full bg-black bg-opacity-30 border border-white flex items-center justify-center hover:bg-opacity-50 transition-all duration-200">
-          <ArrowLeft size={22} color="#FFFFFF" strokeWidth={2} />
-        </button>
+        <Link to="/moment">
+          <button className="w-10 h-10 rounded-full bg-black  border border-white flex items-center justify-center hover:bg-opacity-50 transition-all duration-200">
+            <ArrowLeft size={22} color="#FFFFFF" strokeWidth={2} />
+          </button>
+        </Link>
       </div>
 
       {/* Background overlay */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
 
       {showDetailScreen && <DetailScreen />}
       {showSecondScreen && <SecondScreen />}

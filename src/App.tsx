@@ -6,6 +6,7 @@ import MomentsGiftsScreen from "./screens/MomentandGiftScreen";
 import NotificationsScreen from "./screens/NotificationScreen";
 import MobileChatInterface from "./screens/ChatbotScreen";
 import StoriesUI from "./screens/MomentsDetailsScrren";
+import OrderConfirmationScreen from "./screens/MakeItYoursScreen";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/moment" element={<MomentsGiftsScreen />} />
         <Route path="/chat" element={<MobileChatInterface />} />
         <Route path="/momentDetails" element={<StoriesUI />} />
+        <Route path="/makeitYours" element={<OrderConfirmationScreen />} />
 
         <Route path="/notification" element={<NotificationsScreen />} />
       </Routes>

@@ -45,19 +45,11 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   );
 };
 
-const MomentsGiftsScreen: React.FC<Props> = ({ navigation }) => {
+const MomentsGiftsScreen: React.FC<Props> = () => {
   const [expandedSection, setExpandedSection] = useState<
     "moments" | "gifts" | null
   >(null);
   const [isAnimating, setIsAnimating] = useState(false);
-
-  const handleGoBack = () => {
-    if (navigation) {
-      navigation.goBack();
-    } else {
-      console.log("Go back");
-    }
-  };
 
   const handleMomentsPress = () => {
     if (isAnimating) return;
@@ -110,12 +102,12 @@ const MomentsGiftsScreen: React.FC<Props> = ({ navigation }) => {
     <div className="flex flex-col h-screen bg-black overflow-hidden">
       {/* Header with Back Button */}
       <div className="absolute top-5 left-4 right-0 z-50 px-5 pt-2.5">
-        <button
-          onClick={handleGoBack}
+        <Link
+          to="/home"
           className="w-10 h-10 rounded-full bg-black bg-opacity-30 border border-white flex items-center justify-center hover:bg-opacity-50 transition-all duration-200"
         >
           <ArrowLeft size={22} color="#FFFFFF" strokeWidth={2} />
-        </button>
+        </Link>
       </div>
 
       {/* MOMENTS Section */}
@@ -143,9 +135,7 @@ const MomentsGiftsScreen: React.FC<Props> = ({ navigation }) => {
                   MOMENTS
                 </h1>
                 <p className="text-base text-white text-center mb-8 font-montserra">
-                  {expandedSection === "moments"
-                    ? "Tap again to collapse"
-                    : "Choose a moment first."}
+                  {expandedSection === "moments" && "Choose a moment first  "}
                 </p>
                 {expandedSection === "moments" && (
                   <Link to="/momentDetails">

@@ -1,6 +1,7 @@
 import React from "react";
 import background from "../assets/welcome2.jpg";
 import { Link } from "react-router-dom";
+import Logo from "../assets/GiftHer.png";
 // Mock navigation prop - replace with your actual navigation system
 interface NavigationProp {
   navigate: (screen: string) => void;
@@ -59,9 +60,7 @@ const MvdWelcomeScreen: React.FC<Props> = () => {
       <div className="relative z-20 flex flex-col h-full">
         {/* Logo Container */}
         <div className="flex justify-center items-center pt-16 md:pt-20 pb-4">
-          <h1 className="text-white text-lg font-semibold tracking-[3px]">
-            LOGO
-          </h1>
+          <img height={19} width={107} src={Logo} />
         </div>
 
         {/* Main Content */}

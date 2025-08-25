@@ -7,6 +7,7 @@ import {
   Calendar,
   Crown,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function NotificationsScreen() {
   const notifications = [
@@ -102,17 +103,22 @@ export default function NotificationsScreen() {
     <div className="max-w-sm mx-auto bg-white min-h-screen">
       <div className="flex justify-between items-center px-4 py-2 text-sm font-medium"></div>
 
-      <div className="flex items-center justify-between px-4 py-4 border-b border-gray-100">
-        <div className="flex items-center">
-          <ArrowLeft className="w-6 h-6 text-gray-700 mr-4" />
-          <h1 className="text-xl font-semibold text-black">Notifications</h1>
+      <div className="flex items-center justify-between px-4 py-4 border-b  border-gray-100">
+        <div className="flex items-center justify-between">
+          <Link to={"/home"}>
+            <ArrowLeft className="w-6 h-6 text-gray-700 mr-4" />
+          </Link>
+          <h1 className="text-xl font-times font-semibold text-black">
+            Notifications
+          </h1>
+          <div className="h-10" />
         </div>
       </div>
 
       {/* Recent Section */}
       <div className="px-4 py-4">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-black">Recent</h2>
+          <h2 className="text-lg font-montserrat text-black">Recent</h2>
           <button className="text-sm text-gray-500">Mark all as read</button>
         </div>
 
@@ -139,20 +145,20 @@ export default function NotificationsScreen() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center space-x-2">
-                      <h3 className="text-base font-semibold text-black truncate">
+                      <h3 className="text-base font-semibold text-black truncate font-times">
                         {notification.title}
                       </h3>
                       {notification.emoji && (
                         <span className="text-sm">{notification.emoji}</span>
                       )}
                     </div>
-                    <span className="text-xs text-gray-500 flex-shrink-0 ml-2">
+                    <span className="text-xs text-gray-500 flex-shrink-0 ml-2 font-montserrat">
                       {notification.time}
                     </span>
                   </div>
 
                   {notification.description && (
-                    <p className="text-sm text-gray-600 leading-relaxed">
+                    <p className="text-sm text-gray-600 leading-relaxed font-montserrat">
                       {notification.description}
                       {notification.hasLink && (
                         <button className="text-blue-600 underline ml-1">
