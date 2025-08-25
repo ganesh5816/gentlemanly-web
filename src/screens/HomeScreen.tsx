@@ -5,6 +5,7 @@ import aniversery from "../assets/anniversary.jpg";
 import justbecause1 from "../assets/just-because1.jpg";
 import justbecause2 from "../assets/just-because-2.jpg";
 import { Link } from "react-router-dom";
+import Logo from "../assets/GiftHer.png";
 
 // Mock theme object - replace with your actual theme
 const theme = {
@@ -56,7 +57,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   children,
 }) => {
   const baseClasses =
-    "px-8 py-3 rounded-lg border-2 transition-all duration-200 hover:bg-white hover:bg-opacity-10";
+    "px-8 py-3 rounded-lg border-2 transition-all duration-200 hover:bg-white hover:bg-opacity-10 ";
   const variantClasses =
     variant === "transparent"
       ? "border-white bg-transparent text-white"
@@ -92,6 +93,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
             style={{ transform: "rotate(90deg)" }}
           />
         </Link>
+        <img height={19} width={107} src={Logo} />
         <Link to="/notification" className="p-2">
           <Bell color={theme.blackSecondary} size={24} />
         </Link>
@@ -101,7 +103,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
       <div className="flex-1 overflow-y-auto">
         {/* Upcoming Events Section - Takes full viewport height */}
         <div className=" bg-white flex flex-col justify-center pt-4">
-          <h1 className="text-3xl font-bold text-center mb-5 text-gray-800 font-times">
+          <h1 className="text-2xl font-bold text-center mb-5 text-gray-800 font-times">
             Upcoming Events
           </h1>
 
@@ -143,10 +145,10 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                       >
                         <CustomButton
                           onPress={() => handleNavigate("MomentsGiftsScreen")}
-                          style="w-full max-w-[341px] rounded-lg"
+                          style="w-full max-w-[341px] rounded-lg "
                           variant="transparent"
                         >
-                          Plan an Event
+                          <p className="font-montserrat">Plan an Event</p>
                         </CustomButton>
                       </Link>
                     </div>
