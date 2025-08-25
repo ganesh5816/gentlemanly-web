@@ -26,7 +26,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   children,
 }) => {
   const baseClasses =
-    "px-8 py-4 rounded-lg border-2 transition-all duration-200 hover:bg-white hover:bg-opacity-10";
+    "px-8 py-3 rounded-lg border-2 transition-all duration-200 hover:bg-white hover:bg-opacity-10";
   const variantClasses =
     variant === "transparent"
       ? "border-white bg-transparent"
