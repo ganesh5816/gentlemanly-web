@@ -18,7 +18,6 @@ import moment1 from "../assets/pottery.jpg";
 import moment2 from "../assets/picnic.jpg";
 import moment3 from "../assets/datenight.jpg";
 import dress from "../assets/dress.jpg";
-import bag from "../assets/brownbag.jpg";
 import shoesframe from "../assets/Frame283.png";
 import blackBag from "../assets/blackbag.jpg";
 import dinner from "../assets/dinner.jpg";

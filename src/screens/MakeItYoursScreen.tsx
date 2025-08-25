@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
 
 const OrderConfirmationScreen = () => {
@@ -28,7 +29,6 @@ const OrderConfirmationScreen = () => {
         if (newGifts.length > 8) {
           newGifts.splice(0, 2);
         }
-        newGifts.push(createGift(Date.now()));
         return newGifts;
       });
     }, 3000);
@@ -36,7 +36,7 @@ const OrderConfirmationScreen = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const GiftIcon = ({ gift, position }) => {
+  const GiftIcon = ({ gift, position }: any) => {
     return (
       <div
         className={`absolute text-4xl opacity-70 ${position}`}
@@ -61,11 +61,7 @@ const OrderConfirmationScreen = () => {
         {/* Floating Gifts - Top */}
         <div className="absolute top-16 left-0 right-0 h-32 pointer-events-none">
           {gifts.slice(0, 3).map((gift) => (
-            <GiftIcon
-              key={`top-${gift.id}`}
-              gift={gift}
-              position="top-section"
-            />
+            <GiftIcon gift={gift} position="top-section" />
           ))}
         </div>
 
@@ -97,11 +93,7 @@ const OrderConfirmationScreen = () => {
         {/* Floating Gifts - Bottom */}
         <div className="absolute bottom-16 left-0 right-0 h-32 pointer-events-none">
           {gifts.slice(3, 6).map((gift) => (
-            <GiftIcon
-              key={`bottom-${gift.id}`}
-              gift={gift}
-              position="bottom-section"
-            />
+            <GiftIcon gift={gift} position="bottom-section" />
           ))}
         </div>
 
