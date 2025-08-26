@@ -52,7 +52,7 @@ const ShoppingSwipeUI = () => {
 
   return (
     <div className="min-h-screen w-full relative flex flex-col">
-      <div className="flex absolute top-10 px-8  right-0 left-0 justify-between items-center gap-8 mt-6">
+      <div className="flex absolute top-4 px-8  right-0 left-0 justify-between items-center gap-8 mt-6">
         <button className="w-12 h-12 rounded-full border-2 border-gray-600 bg-transparent flex items-center justify-center hover:bg-gray-800 transition-colors">
           <ArrowLeft className="text-white" size={24} />
         </button>
@@ -96,7 +96,7 @@ const ShoppingSwipeUI = () => {
         </AnimatePresence>
       </div>
       {/* Action Buttons */}
-      <div className="flex absolute top-3/4  right-0 left-0 justify-center gap-8 mt-6">
+      <div className="flex absolute bottom-10 right-0 left-0 justify-center gap-8 mt-6">
         <button
           onClick={handlePrev}
           className="p-4 rounded-full bg-white shadow-md mr-20"
