@@ -285,7 +285,7 @@ const ShoppingSwipeUI = () => {
                   <img
                     src={selectedProduct.image}
                     alt={selectedProduct.name}
-                    className="w-full h-96 object-cover rounded-lg shadow-md"
+                    className="w-full h-96 object-cover"
                   />
                 </motion.div>
               </div>
