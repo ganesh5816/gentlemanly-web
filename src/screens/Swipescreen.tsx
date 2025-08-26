@@ -266,7 +266,7 @@ const ShoppingSwipeUI = () => {
               >
                 <X size={24} className="text-gray-800" />
               </button>
-              <h1 className="text-lg font-semibold text-center flex-1 mx-4">
+              <h1 className="text-lg font-semibold text-center flex-1 mx-4 font-times">
                 {selectedProduct.name}
               </h1>
               <div className="w-10 h-10"></div> {/* Spacer for centering */}
@@ -275,7 +275,7 @@ const ShoppingSwipeUI = () => {
             {/* Scrollable Content */}
             <div className="flex-1 overflow-y-auto">
               {/* Product Image */}
-              <div className="flex items-center justify-center p-4">
+              <div className="flex items-center justify-center p-4 ">
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -289,54 +289,24 @@ const ShoppingSwipeUI = () => {
                   />
                 </motion.div>
               </div>
-
-              {/* Product Details */}
               <motion.div
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="bg-white p-6 rounded-t-3xl shadow-lg mx-4 mb-4"
+                className=" p-6 rounded-t-3xl mx-4 mb-4"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm font-medium text-gray-600 uppercase tracking-wide">
+                  <span className="text-sm font-medium text-gray-600 uppercase tracking-wide font-montserrat">
                     Price
                   </span>
-                  <span className="text-2xl font-bold text-gray-900">
+                  <span className="text-sm text-gray-900 font-montserrat">
                     {selectedProduct.price}
                   </span>
                 </div>
 
                 <div className="mb-6">
-                  <h3 className="text-lg font-semibold mb-3 text-gray-900">
-                    Description
-                  </h3>
                   <p className="text-gray-700 leading-relaxed text-base">
                     {selectedProduct.description}
-                  </p>
-                </div>
-
-                {/* Additional product details can be added here */}
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold mb-3 text-gray-900">
-                    Features
-                  </h3>
-                  <ul className="text-gray-700 space-y-2">
-                    <li>• Premium quality materials</li>
-                    <li>• Handcrafted with attention to detail</li>
-                    <li>• Timeless design</li>
-                    <li>• Versatile styling options</li>
-                    <li>• Comfortable fit</li>
-                  </ul>
-                </div>
-
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold mb-3 text-gray-900">
-                    Care Instructions
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    Handle with care. Store in dust bag when not in use. Clean
-                    with appropriate products for the material type. Avoid
-                    exposure to direct sunlight for extended periods.
                   </p>
                 </div>
               </motion.div>
