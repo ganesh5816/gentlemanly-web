@@ -392,7 +392,7 @@ const StoriesUI = () => {
 
         <div className="p-6 space-y-6">
           <Link to="/makeitYours">
-            <button className="w-full mt-4 bg-black text-white py-3 text-[16px]  rounded-lg font-medium font-montserrat">
+            <button className="w-full mt-4 bg-[#E7BD79] text-white py-3 text-[16px]  rounded-lg font-medium font-montserrat">
               Make this Moment Yours
             </button>
           </Link>
@@ -486,8 +486,8 @@ const StoriesUI = () => {
             </div>
           </div>
 
-          <button className="w-full bg-black text-white text-[16px] py-3 rounded-lg  text-lg">
-            Choose this Moment
+          <button className="w-full bg-[#E7BD79] text-white text-[16px] py-3 rounded-lg  text-lg">
+            <Link to="/swipeui">Choose this Moment</Link>
           </button>
         </div>
       </div>

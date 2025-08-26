@@ -12,9 +12,11 @@ const MobileChatInterface: React.FC = () => {
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
       {/* Header */}
-      <div className="bg-white px-4 py-4 flex items-center shadow-sm">
+      <div className="bg-white px-4 py-3 flex items-center shadow-sm border-[#E7E7E7]">
         <ArrowLeft className="w-6 h-6 text-gray-600 mr-4" />
-        <h1 className="text-lg font-semibold text-black">ChatBot Name Here</h1>
+        <h1 className="text-lg font-semibold text-black font-times">
+          ChatBot Name Here
+        </h1>
       </div>
 
       {/* Chat Messages */}
@@ -54,7 +56,7 @@ const MobileChatInterface: React.FC = () => {
 
         {/* Button */}
         <div className="flex justify-center mt-4">
-          <button className="bg-white border border-gray-400 rounded-lg px-6 py-4 shadow-sm hover:bg-gray-50 transition-colors w-80">
+          <button className="bg-white border border-gray-400 rounded-lg px-6 py-3 shadow-sm hover:bg-gray-50 transition-colors w-80">
             <span className="text-gray-800 font-normal text-base">
               Show Me Shoes
             </span>

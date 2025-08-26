@@ -1,9 +1,13 @@
 import React from "react";
 import { BarChart3, Bell } from "lucide-react";
 import birthday from "../assets/birthday.jpg";
-import aniversery from "../assets/anniversary.jpg";
+import aniversery from "../assets/anniversarytwo.jpg";
 import justbecause1 from "../assets/just-because1.jpg";
 import justbecause2 from "../assets/just-because-2.jpg";
+import mothersday from "../assets/mothersday.jpg";
+import apology from "../assets/apology.jpg";
+import datenight from "../assets/datenight.jpg";
+
 import { Link } from "react-router-dom";
 import Logo from "../assets/GiftHer.png";
 
@@ -26,19 +30,27 @@ interface Props {
 const upcomimgEvents = [
   {
     image: birthday,
-    eventName: "Birthday Party",
-    date: "March 15, 2024",
+    eventName: "Her Birthday",
+    date: "September 30",
   },
   {
     image: aniversery,
-    eventName: "Anniversary Dinner",
-    date: "April 10, 2024",
+    eventName: "Anniversary",
+    date: "October 15",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    eventName: "Wedding Ceremony",
-    date: "May 20, 2024",
+    image: mothersday,
+    eventName: "Mother's Day",
+    date: "September 30th",
+  },
+  {
+    image: apology,
+    eventName: "Apology",
+  },
+  {
+    image: datenight,
+    eventName: "Date Night",
+    date: "Just Because",
   },
 ];
 
@@ -249,11 +261,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                   beautiful moment around your selected gifts
                 </p>
                 <Link to="/chat">
-                  <CustomButton
-                    onPress={() => handleNavigate("ChatScreen")}
-                    style="w-[341px] rounded-lg border border-black"
-                    variant="transparent"
-                  >
+                  <CustomButton onPress={() => handleNavigate("ChatScreen")}>
                     <span className="text-black font-sans">Chat Now</span>
                   </CustomButton>
                 </Link>
