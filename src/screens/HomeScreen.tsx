@@ -260,13 +260,16 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                   she can help you find them and then let GiftHer create a
                   beautiful moment around your selected gifts
                 </p>
-                <Link to="/chat">
-                  <CustomButton
-                    variant="transparent"
-                    onPress={() => handleNavigate("ChatScreen")}
+                <Link
+                  className="flex justify-center items-center text-center w-full px-8 py-3 rounded-lg border-2 transition-all duration-200 hover:bg-white hover:bg-opacity-10"
+                  to="/chat"
+                >
+                  <button
+                    className="flex justify-center items-center text-center"
+                    onClick={() => handleNavigate("ChatScreen")}
                   >
                     <span className="text-black font-sans">Chat Now</span>
-                  </CustomButton>
+                  </button>
                 </Link>
               </div>
             </div>
