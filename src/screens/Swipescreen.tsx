@@ -120,8 +120,8 @@ const ShoppingSwipeUI = () => {
       <div className="flex-1 bg-white"></div>
 
       {/* Stacked Product Cards */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative w-[402px] h-[500px]">
+      <div className="absolute inset-0 flex items-center justify-center p-3">
+        <div className="relative w-[402px] h-[450px] ">
           {/* Background stacked cards */}
           {getVisibleProducts()
             .slice(1)
@@ -141,7 +141,7 @@ const ShoppingSwipeUI = () => {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-[420px] object-cover"
+                  className="w-full object-cover"
                 />
                 <div className="p-4">
                   <h2 className="text-lg font-bold">{product.name}</h2>
@@ -178,7 +178,7 @@ const ShoppingSwipeUI = () => {
               <img
                 src={products[currentIndex].image}
                 alt={products[currentIndex].name}
-                className="w-full h-[420px] object-cover pointer-events-none"
+                className="w-full object-cover pointer-events-none"
               />
               <div className="p-4">
                 <h2 className="text-lg font-bold">
@@ -194,7 +194,7 @@ const ShoppingSwipeUI = () => {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex absolute bottom-10 right-0 left-0 justify-center gap-8 mt-6 z-10">
+      <div className="flex absolute bottom-8 right-0 left-0 justify-center gap-8 mt-6 z-10">
         <button
           onClick={handlePrev}
           disabled={currentIndex === 0}

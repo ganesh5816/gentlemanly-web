@@ -72,7 +72,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     "px-8 py-3 rounded-lg border-2 transition-all duration-200 hover:bg-white hover:bg-opacity-10 ";
   const variantClasses =
     variant === "transparent"
-      ? "border-white bg-transparent text-white"
+      ? "border-white bg-transparent text-white "
       : "border-white bg-white text-black";
 
   return (
@@ -261,7 +261,10 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                   beautiful moment around your selected gifts
                 </p>
                 <Link to="/chat">
-                  <CustomButton onPress={() => handleNavigate("ChatScreen")}>
+                  <CustomButton
+                    variant="transparent"
+                    onPress={() => handleNavigate("ChatScreen")}
+                  >
                     <span className="text-black font-sans">Chat Now</span>
                   </CustomButton>
                 </Link>
