@@ -1,11 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useRef } from "react";
 import { X, Check, ArrowLeft, ShoppingBag } from "lucide-react";
-import {
-  motion,
-  AnimatePresence,
-  useMotionValue,
-  useTransform,
-} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ShoppingSwipeUI = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -58,11 +54,11 @@ const ShoppingSwipeUI = () => {
   };
 
   const swipeConfidenceThreshold = 10000;
-  const swipePower = (offset, velocity) => {
+  const swipePower = (offset: number, velocity: number) => {
     return Math.abs(offset) * velocity;
   };
 
-  const handleDragEnd = (event, { offset, velocity }) => {
+  const handleDragEnd = (_event: any, { offset, velocity }: any) => {
     const swipe = swipePower(offset.x, velocity.x);
 
     if (
@@ -78,7 +74,7 @@ const ShoppingSwipeUI = () => {
   };
 
   const variants = {
-    enter: (direction) => {
+    enter: (direction: number) => {
       return {
         x: direction > 0 ? 1000 : -1000,
         opacity: 0,
@@ -89,7 +85,7 @@ const ShoppingSwipeUI = () => {
       x: 0,
       opacity: 1,
     },
-    exit: (direction) => {
+    exit: (direction: number) => {
       return {
         zIndex: 0,
         x: direction < 0 ? -1000 : 1000,
