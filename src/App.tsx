@@ -19,7 +19,6 @@ function App() {
         <Route path="/moment" element={<MomentsGiftsScreen />} />
         <Route path="/chat" element={<MobileChatInterface />} />
         <Route path="/swipeui" element={<ShoppingSwipeUI />} />
-
         <Route path="/momentDetails" element={<StoriesUI />} />
         <Route path="/makeitYours" element={<OrderConfirmationScreen />} />
         <Route path="/notification" element={<NotificationsScreen />} />
