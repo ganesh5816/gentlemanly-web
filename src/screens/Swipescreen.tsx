@@ -38,6 +38,9 @@ const ShoppingSwipeUI = () => {
         timestamp: Date.now(),
       };
       localStorage.setItem("selectedMomentProducts", JSON.stringify(cartData));
+    } else {
+      // Clear localStorage if no liked products
+      localStorage.removeItem("selectedMomentProducts");
     }
   }, [likedProducts]);
 
@@ -62,20 +65,18 @@ const ShoppingSwipeUI = () => {
     }
   };
 
-  const handleNext = () => {
-    if (currentIndex < products.length) {
-      // Right swipe (like) - add current product to liked products
-      if (products[currentIndex]) {
-        addToLikedProducts(products[currentIndex]);
-      }
-      setExitDirection(1);
-      setCurrentIndex(currentIndex + 1);
+  // FIXED: Separate function for liking a product
+  const handleLikeProduct = () => {
+    if (products[currentIndex]) {
+      addToLikedProducts(products[currentIndex]);
     }
+    setExitDirection(1);
+    setCurrentIndex(currentIndex + 1);
   };
 
+  // FIXED: Just navigate backward
   const handlePrev = () => {
     if (currentIndex > 0) {
-      // Left swipe (dislike) - don't add to cart, just move to previous
       setExitDirection(-1);
       setCurrentIndex(currentIndex - 1);
     }
@@ -196,7 +197,7 @@ const ShoppingSwipeUI = () => {
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-[320px] object-cover cursor-pointer"
+                    className="w-full h-[320px] object-fill cursor-pointer"
                     onClick={(e) => handleImageClick(product, e)}
                   />
                   <div className="p-4">
@@ -279,25 +280,17 @@ const ShoppingSwipeUI = () => {
               <div className="space-y-4">
                 <button
                   onClick={() => setCurrentIndex(0)}
-                  className="w-full bg-gray-200 hover:bg-gray-300 text-[#79756C] font-[14px] py-2 px-4 rounded-lg text-lg transition-colors duration-200 font-montserrat"
+                  className="w-full bg-gray-200 mb-4 hover:bg-gray-300 text-[#79756C] font-[14px] py-3 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat"
                 >
                   Continue Shopping
                 </button>
 
                 <Link to="/makeitYours">
-                  <button className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2  px-4 rounded-lg text-lg transition-colors duration-200 font-montserrat">
+                  <button className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2  px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat">
                     Create my Moment
                   </button>
                 </Link>
               </div>
-
-              {/* Show liked products count */}
-              {likedProducts.length > 0 && (
-                <div className="mt-4 text-sm text-gray-300">
-                  You've selected {likedProducts.length} item
-                  {likedProducts.length !== 1 ? "s" : ""} for your cart
-                </div>
-              )}
             </div>
           </motion.div>
         )}
@@ -318,7 +311,7 @@ const ShoppingSwipeUI = () => {
             <X className="text-red-500" size={28} />
           </button>
           <button
-            onClick={handleNext}
+            onClick={handleLikeProduct} // FIXED: Now uses handleLikeProduct instead of handleNext
             disabled={currentIndex === products.length}
             className={`p-4 rounded-full bg-white shadow-md transition-opacity ${
               currentIndex === products.length
@@ -404,7 +397,7 @@ const ShoppingSwipeUI = () => {
                 >
                   <X size={24} className="text-gray-800" />
                 </button>
-                <h1 className="text-lg font-semibold text-center flex-1 mx-4">
+                <h1 className="text-lg font-semibold text-center flex-1 mx-4 font-times">
                   {selectedProduct.name}
                 </h1>
                 <div className="w-10 h-10"></div> {/* Spacer for centering */}
@@ -451,7 +444,7 @@ const ShoppingSwipeUI = () => {
                   </div>
 
                   <div className="mb-6">
-                    <p className="text-gray-700 leading-relaxed text-base">
+                    <p className="text-gray-700 leading-relaxed font-montserrat text-base">
                       {selectedProduct.description}
                     </p>
                   </div>
@@ -474,7 +467,7 @@ const ShoppingSwipeUI = () => {
                     addToLikedProducts(selectedProduct);
                     closePopup();
                   }}
-                  className="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 text-lg transform hover:scale-105 active:scale-95"
+                  className="w-full bg-[#E7BD79] font-montserrat text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 text-lg transform hover:scale-105 active:scale-95"
                 >
                   Add to Cart
                 </button>

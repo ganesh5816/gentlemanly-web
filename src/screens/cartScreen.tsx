@@ -299,7 +299,7 @@ export default function ShoppingCart() {
 
               <button
                 onClick={() => setShowModal(false)}
-                className="w-full bg-gray-200 text-black py-3 rounded-2xl font-medium text-lg"
+                className="w-full bg-gray-200 text-black py-3 rounded-xl font-medium text-sm font-montserrat"
               >
                 Preview my Moment
               </button>
@@ -419,7 +419,7 @@ export default function ShoppingCart() {
             {calculateTotal()}
           </span>
         </div>
-        <button className="w-full font-montserrat bg-yellow-400 text-white py-3 rounded-xl font-medium text-lg">
+        <button className="w-full font-montserrat bg-[#E7BD79] text-white py-3 rounded-xl font-medium text-sm">
           Proceed to checkout
         </button>
       </div>

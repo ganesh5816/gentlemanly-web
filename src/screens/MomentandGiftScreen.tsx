@@ -87,14 +87,14 @@ const MomentsGiftsScreen: React.FC<Props> = () => {
 
   // Calculate heights based on expanded section
   const getMomentsHeight = () => {
-    if (expandedSection === "moments") return "h-[80vh]";
-    if (expandedSection === "gifts") return "h-[20vh]";
+    if (expandedSection === "moments") return "h-[85vh]";
+    if (expandedSection === "gifts") return "h-[15vh]";
     return "h-[50vh]";
   };
 
   const getGiftsHeight = () => {
-    if (expandedSection === "gifts") return "h-[80vh]";
-    if (expandedSection === "moments") return "h-[20vh]";
+    if (expandedSection === "gifts") return "h-[85vh]";
+    if (expandedSection === "moments") return "h-[15vh]";
     return "h-[50vh]";
   };
 
@@ -115,6 +115,7 @@ const MomentsGiftsScreen: React.FC<Props> = () => {
         className={`w-full transition-all duration-300 ease-in-out ${getMomentsHeight()}`}
       >
         <div
+          onDrag={handleMomentsPress}
           className="w-full h-full block active:opacity-90 transition-opacity duration-150"
           onClick={handleMomentsPress}
         >
@@ -164,6 +165,7 @@ const MomentsGiftsScreen: React.FC<Props> = () => {
         <div
           className="w-full h-full block active:opacity-90 transition-opacity duration-150"
           onClick={handleGiftsPress}
+          onDrag={handleGiftsPress}
         >
           <div
             className="w-full h-full bg-cover bg-center relative"

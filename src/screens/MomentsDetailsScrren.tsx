@@ -559,7 +559,7 @@ const StoriesUI = () => {
           {/* This button navigates to swipe UI without adding products to cart */}
           <button
             onClick={() => navigateToSwipeUI(story.id)}
-            className="w-full bg-[#E7BD79] text-white text-[16px] py-3 rounded-lg text-lg"
+            className="w-full bg-[#E7BD79] text-white font-montserrat text-[16px] py-3 rounded-lg text-lg"
           >
             Choose this Moment
           </button>
