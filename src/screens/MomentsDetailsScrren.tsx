@@ -13,7 +13,7 @@ import {
 import moment1video from "../assets/mold.mp4";
 import moment2video from "../assets/picnic.mp4";
 import moment3video from "../assets/moment3.mp4";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import moment1 from "../assets/pottery.jpg";
 import moment2 from "../assets/picnic.jpg";
 import moment3 from "../assets/datenight.jpg";
@@ -51,12 +51,16 @@ const stories = [
         name: "Ankle-cuff heeled sandals",
         price: "$45.00",
         image: shoesframe,
+        description:
+          "Crafted from luxurious materials, these ankle-cuff heeled sandals blend timeless elegance with everyday comfort. Perfect for your pottery date look.",
       },
       {
         id: 2,
         name: "White A-line Dress",
         price: "$25.00",
         image: dress,
+        description:
+          "A beautiful white A-line dress that's perfect for creative dates. Comfortable yet stylish, ideal for getting a little messy while staying chic.",
       },
     ],
   },
@@ -71,9 +75,6 @@ const stories = [
       "Picnic setup with blanket & cushions",
       "Gourmet snacks & drinks",
       "Fresh flower bouquet",
-      // "Soft background music",
-      // "Gift: Floral dress for her",
-      // "Gift: Matching sunhat or scarf",
     ],
     whyYoullLove: [
       "Intimate moments in nature's best light",
@@ -91,23 +92,32 @@ const stories = [
         name: "Ankle-cuff heeled sandals",
         price: "$89.00",
         image: shoesframe,
+        description:
+          "Comfortable yet elegant heeled sandals perfect for outdoor picnics. The ankle-cuff design provides stability on uneven ground while maintaining style.",
       },
       {
         id: 2,
         name: "Woven Sun Hat",
         price: "$45.00",
         image: dress,
+        description:
+          "A stylish woven sun hat that provides perfect protection during golden hour picnics while adding a chic bohemian touch to your look.",
       },
       {
         id: 3,
         name: "Hermes Mini Kelly",
         price: "$125.00",
         image: blackBag,
+        description:
+          "A luxurious mini Kelly bag that's perfect for carrying your essentials during a romantic picnic. Compact yet sophisticated.",
       },
       {
         id: 4,
-        name: "Dinner Reserveation",
+        name: "Dinner Reservation",
+        price: "Call for pricing",
         image: dinner,
+        description:
+          "Complete your perfect day with a dinner reservation at a scenic restaurant. The perfect ending to your golden hour picnic experience.",
       },
     ],
   },
@@ -122,12 +132,9 @@ const stories = [
       "Candle-lit dinner reservation",
       "Bottle of wine or champagne",
       "Private car service (optional)",
-      // "Gift: Elegant dress or outfit for her",
-      // "Gift: High end Bag",
-      // "Gift: Luxury Brand Shoes",
     ],
     whyYoullLove: [
-      " Creates a glamorous",
+      "Creates a glamorous",
       "intimate atmosphere that makes her feel special while giving thoughtful gifts to enhance the experience",
     ],
     duration: "4–5 hours",
@@ -142,6 +149,8 @@ const stories = [
         price: "$5,250.00",
         image:
           "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=400&fit=crop&crop=center",
+        description:
+          "Luxurious designer heeled sandals perfect for elegant evening occasions. Crafted with premium materials for ultimate sophistication.",
       },
       {
         id: 2,
@@ -149,6 +158,8 @@ const stories = [
         price: "$450.00",
         image:
           "https://images.unsplash.com/photo-1566479179817-f8ec83218f9e?w=400&h=400&fit=crop&crop=center",
+        description:
+          "An elegant white A-line dress designed for sophisticated evening events. Perfect for starlit dinners and romantic occasions.",
       },
       {
         id: 3,
@@ -156,6 +167,8 @@ const stories = [
         price: "$3,400.00",
         image:
           "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=400&fit=crop&crop=center",
+        description:
+          "A luxury designer handbag that complements any elegant evening look. Crafted from premium leather with impeccable attention to detail.",
       },
       {
         id: 4,
@@ -163,10 +176,13 @@ const stories = [
         price: "$2,100.00",
         image:
           "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=400&fit=crop&crop=center",
+        description:
+          "A stunning diamond necklace that adds the perfect sparkle to any romantic evening. Expertly crafted with brilliant-cut diamonds.",
       },
     ],
   },
 ];
+
 const DotNav = ({ stories, currentIndex, onSelect }: any) => {
   return (
     <div className="absolute bottom-20 left-0 right-0 flex justify-center gap-2 z-20">
@@ -182,9 +198,9 @@ const DotNav = ({ stories, currentIndex, onSelect }: any) => {
     </div>
   );
 };
-const ProductSlider = ({ products }: any) => {
-  console.log("Products received:", products); // Add this line for debugging
 
+const ProductSlider = ({ products }: any) => {
+  console.log("Products received:", products);
   const scrollRef = useRef(null);
 
   return (
@@ -197,32 +213,28 @@ const ProductSlider = ({ products }: any) => {
           msOverflowStyle: "none",
         }}
       >
-        {products?.map(
-          (
-            product: any,
-            index: any // Add optional chaining
-          ) => (
-            <div key={product.id || index} className="flex-shrink-0 w-44 mt-4">
-              <div className="bg-gray-50 overflow-hidden mb-3 aspect-square">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="text-sm font-times font-medium text-gray-900 mb-1 line-clamp-2">
-                {product.name}
-              </h3>
-              <p className="text-sm text-gray-600 font-montserrat font-semibold">
-                {product.price}
-              </p>
+        {products?.map((product: any, index: any) => (
+          <div key={product.id || index} className="flex-shrink-0 w-44 mt-4">
+            <div className="bg-gray-50 overflow-hidden mb-3 aspect-square">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-full object-cover"
+              />
             </div>
-          )
-        )}
+            <h3 className="text-sm font-times font-medium text-gray-900 mb-1 line-clamp-2">
+              {product.name}
+            </h3>
+            <p className="text-sm text-gray-600 font-montserrat font-semibold">
+              {product.price}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
+
 const StoriesUI = () => {
   const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -231,11 +243,31 @@ const StoriesUI = () => {
   const [showDetailScreen, setShowDetailScreen] = useState(false);
   const [showSecondScreen, setShowSecondScreen] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [isWhatsIncludedExpanded, setIsWhatsIncludedExpanded] = useState(false);
+
+  const navigate = useNavigate();
   const progressInterval = useRef<any>(null);
   const touchStart = useRef(0);
   const touchEnd = useRef(0);
   const scrollRef = useRef<any>(null);
   const videoRefs = useRef<{ [key: string]: HTMLVideoElement | null }>({});
+
+  // Navigation function to pass moment data
+  const navigateToSwipeUI = (momentId: number) => {
+    const selectedMoment = stories.find((story) => story.id === momentId);
+    if (selectedMoment) {
+      // Store the selected moment's data in localStorage or state management
+      localStorage.setItem(
+        "selectedMomentProducts",
+        JSON.stringify({
+          momentId: selectedMoment.id,
+          momentTitle: selectedMoment.title,
+          products: selectedMoment.products,
+        })
+      );
+      navigate("/swipeui");
+    }
+  };
 
   useEffect(() => {
     if (showSecondScreen && isPlaying && !showDetailScreen) {
@@ -265,9 +297,7 @@ const StoriesUI = () => {
     scrollToStory(currentStoryIndex);
   }, [currentStoryIndex]);
 
-  // Handle video playback optimization
   useEffect(() => {
-    // Play only the current video, pause others
     Object.keys(videoRefs.current).forEach((key) => {
       const video = videoRefs.current[key];
       if (video) {
@@ -279,10 +309,10 @@ const StoriesUI = () => {
       }
     });
   }, [currentStoryIndex]);
-  const [isWhatsIncludedExpanded, setIsWhatsIncludedExpanded] = useState(false);
+
   const scrollToStory = (index: number) => {
     if (scrollRef.current) {
-      const slideWidth = window.innerWidth * 0.85; // Responsive width based on viewport
+      const slideWidth = window.innerWidth * 0.85;
       scrollRef.current.scrollTo({
         left: slideWidth * index,
         behavior: "smooth",
@@ -292,7 +322,7 @@ const StoriesUI = () => {
 
   const handleScroll = () => {
     if (scrollRef.current) {
-      const slideWidth = window.innerWidth * 0.85; // Responsive width
+      const slideWidth = window.innerWidth * 0.85;
       const scrollPosition = scrollRef.current.scrollLeft;
       const newIndex = Math.round(scrollPosition / slideWidth);
       if (
@@ -392,7 +422,7 @@ const StoriesUI = () => {
 
         <div className="p-6 space-y-6">
           <Link to="/makeitYours">
-            <button className="w-full mt-4 bg-[#E7BD79] text-white py-3 text-[16px]  rounded-lg font-medium font-montserrat">
+            <button className="w-full mt-4 bg-[#E7BD79] text-white py-3 text-[16px] rounded-lg font-medium font-montserrat">
               Make this Moment Yours
             </button>
           </Link>
@@ -409,8 +439,7 @@ const StoriesUI = () => {
             <div className="flex items-center justify-between gap-2 mb-4">
               <span className="text-lg font-montserrat">What's Included</span>
               <button
-                className={`p-1 rounded-full border border-gray-300 transition-transform duration-200 
-                }`}
+                className={`p-1 rounded-full border border-gray-300 transition-transform duration-200`}
                 onClick={() =>
                   setIsWhatsIncludedExpanded(!isWhatsIncludedExpanded)
                 }
@@ -423,7 +452,6 @@ const StoriesUI = () => {
               </button>
             </div>
 
-            {/* Expandable content */}
             <div
               className={`overflow-hidden transition-all duration-300 ease-in-out ${
                 isWhatsIncludedExpanded
@@ -433,7 +461,7 @@ const StoriesUI = () => {
             >
               <ul className="space-y-3 pt-2">
                 {story.whatsIncluded.map((item, idx) => (
-                  <li key={idx} className="text-gray-600 flex items-start  ">
+                  <li key={idx} className="text-gray-600 flex items-start">
                     {item}
                   </li>
                 ))}
@@ -477,7 +505,7 @@ const StoriesUI = () => {
             <div className="flex w-full">
               <div className="flex justify-between items-center w-full">
                 <span className="text-gray-500 text-sm font-montserrat">
-                  Duration
+                  Price Range
                 </span>
                 <p className="font-medium font-montserrat">
                   {story.priceRange}
@@ -486,8 +514,11 @@ const StoriesUI = () => {
             </div>
           </div>
 
-          <button className="w-full bg-[#E7BD79] text-white text-[16px] py-3 rounded-lg  text-lg">
-            <Link to="/swipeui">Choose this Moment</Link>
+          <button
+            onClick={() => navigateToSwipeUI(story.id)}
+            className="w-full bg-[#E7BD79] text-white text-[16px] py-3 rounded-lg text-lg"
+          >
+            Choose this Moment
           </button>
         </div>
       </div>
@@ -495,16 +526,11 @@ const StoriesUI = () => {
   };
 
   const StoryComponent = ({ story, index }: any) => (
-    <div className="relative w-full h-full overflow-hidden l">
-      {/* Background Video - Optimized */}
+    <div className="relative w-full h-full overflow-hidden">
       <div className="absolute inset-0">
         <img src={story.image} className="w-full h-full object-cover" />
-
-        {/* Overlay gradient */}
-        {/* <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" /> */}
       </div>
 
-      {/* Central Play Button */}
       <div className="absolute inset-0 flex items-center justify-center">
         <button
           className="w-10 h-10 rounded-full flex items-center justify-center border border-white hover:bg-white/35 transition-all duration-200"
@@ -518,7 +544,6 @@ const StoriesUI = () => {
         </button>
       </div>
 
-      {/* Bottom Content */}
       <div className="absolute bottom-8 left-0 right-0 text-center px-4">
         <h2 className="text-white font-times text-xl font-bold tracking-wide mb-2">
           {story.title}
@@ -560,7 +585,6 @@ const StoriesUI = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
         </div>
 
-        {/* Progress bars at top */}
         <div className="absolute top-4 left-4 right-4 z-20 flex gap-1">
           {stories.map((_, index) => (
             <div
@@ -652,7 +676,6 @@ const StoriesUI = () => {
 
   return (
     <div className="w-full h-screen overflow-hidden relative flex items-center justify-center bg-black">
-      {/* Background video - Only play current video */}
       {!showDetailScreen && !showSecondScreen && (
         <img
           src={stories[currentStoryIndex]?.image}
@@ -662,20 +685,17 @@ const StoriesUI = () => {
 
       <div className="absolute top-5 left-1 w-full flex items-center justify-between px-4 py-3 z-20">
         <Link to="/moment">
-          <button className="w-10 h-10 rounded-full bg-black  border border-white flex items-center justify-center hover:bg-opacity-50 transition-all duration-200">
+          <button className="w-10 h-10 rounded-full bg-black border border-white flex items-center justify-center hover:bg-opacity-50 transition-all duration-200">
             <ArrowLeft size={22} color="#FFFFFF" strokeWidth={2} />
           </button>
         </Link>
       </div>
-
-      {/* Background overlay */}
 
       {showDetailScreen && <DetailScreen />}
       {showSecondScreen && <SecondScreen />}
 
       {!showDetailScreen && !showSecondScreen && (
         <>
-          {/* Responsive Slider Container */}
           <div className="relative z-10 w-full px-4">
             <div
               ref={scrollRef}
@@ -684,7 +704,7 @@ const StoriesUI = () => {
               style={{
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",
-                WebkitOverflowScrolling: "touch", // Smooth scrolling on iOS
+                WebkitOverflowScrolling: "touch",
               }}
             >
               {stories.map((story, index) => (
@@ -692,10 +712,10 @@ const StoriesUI = () => {
                   key={story.id}
                   className="flex-shrink-0 snap-start px-2"
                   style={{
-                    width: "85vw", // Responsive width based on viewport
-                    maxWidth: "375px", // Maximum width for larger screens
-                    height: "70vh", // Responsive height
-                    maxHeight: "637px", // Maximum height
+                    width: "85vw",
+                    maxWidth: "375px",
+                    height: "70vh",
+                    maxHeight: "637px",
                   }}
                 >
                   <StoryComponent story={story} index={index} />

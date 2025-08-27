@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { X, Check, ArrowLeft, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -9,34 +9,36 @@ const ShoppingSwipeUI = () => {
   const [exitDirection, setExitDirection] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [products, setProducts] = useState<any[]>([]);
   const constraintsRef = useRef(null);
 
-  // Sample product data with placeholder images
-  const products = [
+  // Load moment-specific products on component mount
+  useEffect(() => {
+    const storedMomentData = localStorage.getItem("selectedMomentProducts");
+    if (storedMomentData) {
+      try {
+        const parsedData = JSON.parse(storedMomentData);
+        setProducts(parsedData.products || []);
+      } catch (error) {
+        console.error("Error parsing stored moment data:", error);
+        // Fallback to default products if there's an error
+        setProducts(getDefaultProducts());
+      }
+    } else {
+      // Fallback to default products if no stored data
+      setProducts(getDefaultProducts());
+    }
+  }, []);
+  console.log(products);
+
+  // Fallback default products
+  const getDefaultProducts = () => [
     {
       id: 1,
       name: "Ankle-cuff heeled sandals",
       price: "$5,250.00",
       image:
         "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=400&fit=crop",
-      description:
-        "Crafted from luxurious Taurillon leather, the Capucines MM blends timeless elegance with everyday versatility. Featuring the iconic LV initials, a structured silhouette, and a removable strap, it transitions effortlessly from day to night.",
-    },
-    {
-      id: 2,
-      name: "White A Line Dress",
-      price: "$3,890.00",
-      image:
-        "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=400&fit=crop",
-      description:
-        "Crafted from luxurious Taurillon leather, the Capucines MM blends timeless elegance with everyday versatility. Featuring the iconic LV initials, a structured silhouette, and a removable strap, it transitions effortlessly from day to night.",
-    },
-    {
-      id: 3,
-      name: "Hermes Mini kelly",
-      price: "$2,150.00",
-      image:
-        "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=400&fit=crop",
       description:
         "Crafted from luxurious Taurillon leather, the Capucines MM blends timeless elegance with everyday versatility. Featuring the iconic LV initials, a structured silhouette, and a removable strap, it transitions effortlessly from day to night.",
     },
@@ -112,6 +114,15 @@ const ShoppingSwipeUI = () => {
   // Check if we're at the end (showing the gift selection screen)
   const isAtEnd = currentIndex >= products.length;
 
+  // Don't render anything if products haven't loaded yet
+  if (products.length === 0) {
+    return (
+      <div className="min-h-screen w-full flex items-center justify-center bg-black">
+        <div className="text-white text-lg">Loading products...</div>
+      </div>
+    );
+  }
+
   return (
     <div
       className="min-h-screen w-full relative flex flex-col"
@@ -120,11 +131,12 @@ const ShoppingSwipeUI = () => {
       {/* Header */}
       <div className="flex absolute top-8 px-8 right-0 left-0 justify-between items-center gap-8 mt-6 z-10">
         <Link
-          to="/momentDetails"
+          to="/stories"
           className="w-10 h-10 rounded-full border-2 border-gray-600 bg-transparent flex items-center justify-center hover:bg-gray-800 transition-colors"
         >
           <ArrowLeft className="text-white" size={24} />
         </Link>
+
         <button className="w-10 h-10 rounded-full border-2 border-gray-600 bg-transparent flex items-center justify-center hover:bg-gray-800 transition-colors">
           <Link to="/cart">
             <ShoppingBag className="text-white" size={24} />
@@ -173,50 +185,52 @@ const ShoppingSwipeUI = () => {
 
             {/* Main interactive card */}
             <AnimatePresence initial={false} custom={exitDirection}>
-              <motion.div
-                key={products[currentIndex].id}
-                custom={exitDirection}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{
-                  x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 },
-                }}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={1}
-                onDragEnd={handleDragEnd}
-                className="absolute w-full bg-white overflow-hidden text-center shadow-lg cursor-grab active:cursor-grabbing"
-                whileTap={{ cursor: "grabbing" }}
-                whileDrag={{
-                  rotate: 10,
-                  scale: 1.05,
-                }}
-              >
-                <div
-                  className="w-full h-[320px] relative cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleImageClick(products[currentIndex], e);
+              {products[currentIndex] && (
+                <motion.div
+                  key={products[currentIndex].id}
+                  custom={exitDirection}
+                  variants={variants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    x: { type: "spring", stiffness: 300, damping: 30 },
+                    opacity: { duration: 0.2 },
+                  }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={1}
+                  onDragEnd={handleDragEnd}
+                  className="absolute w-full bg-white overflow-hidden text-center shadow-lg cursor-grab active:cursor-grabbing"
+                  whileTap={{ cursor: "grabbing" }}
+                  whileDrag={{
+                    rotate: 10,
+                    scale: 1.05,
                   }}
                 >
-                  <img
-                    src={products[currentIndex].image}
-                    alt={products[currentIndex].name}
-                    className="w-full h-full object-cover pointer-events-none"
-                  />
-                </div>
-                <div className="p-4">
-                  <h2 className="text-lg font-bold">
-                    {products[currentIndex].name}
-                  </h2>
-                  <p className="text-[#3C5A72] font-medium">
-                    {products[currentIndex].price}
-                  </p>
-                </div>
-              </motion.div>
+                  <div
+                    className="w-full h-[320px] relative cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleImageClick(products[currentIndex], e);
+                    }}
+                  >
+                    <img
+                      src={products[currentIndex].image}
+                      alt={products[currentIndex].name}
+                      className="w-full h-full object-cover pointer-events-none"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h2 className="text-lg font-bold">
+                      {products[currentIndex].name}
+                    </h2>
+                    <p className="text-[#3C5A72] font-medium">
+                      {products[currentIndex].price}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
             </AnimatePresence>
           </div>
         ) : (
@@ -245,9 +259,11 @@ const ShoppingSwipeUI = () => {
                   Continue Shopping
                 </button>
 
-                <button className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2  px-4 rounded-lg text-lg transition-colors duration-200 font-montserrat">
-                  Create my Moment
-                </button>
+                <Link to="/makeitYours">
+                  <button className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2  px-4 rounded-lg text-lg transition-colors duration-200 font-montserrat">
+                    Create my Moment
+                  </button>
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -362,7 +378,7 @@ const ShoppingSwipeUI = () => {
             {/* Fixed Bottom Button */}
             <div className="bg-white border-t p-4 flex-shrink-0">
               <button className="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 text-lg">
-                Order Now
+                Add to Cart
               </button>
             </div>
           </motion.div>
