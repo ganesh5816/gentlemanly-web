@@ -252,21 +252,59 @@ const StoriesUI = () => {
   const scrollRef = useRef<any>(null);
   const videoRefs = useRef<{ [key: string]: HTMLVideoElement | null }>({});
 
-  // Navigation function to pass moment data
+  // Navigation function to pass moment data WITHOUT adding to cart
   const navigateToSwipeUI = (momentId: number) => {
     const selectedMoment = stories.find((story) => story.id === momentId);
     if (selectedMoment) {
-      // Store the selected moment's data in localStorage or state management
+      // Clear any existing cart data to ensure fresh start
+      localStorage.removeItem("cartItems");
+
+      // Store ONLY the moment data for the swipe UI to use
       localStorage.setItem(
         "selectedMomentProducts",
         JSON.stringify({
           momentId: selectedMoment.id,
           momentTitle: selectedMoment.title,
           products: selectedMoment.products,
+          // Add flag to indicate this is for swiping, not for cart
+          isForSwiping: true,
         })
       );
       navigate("/swipeui");
     }
+  };
+
+  // Function for "Make this Moment Yours" - this could add the moment itself but NOT products
+  const handleMakeItYours = () => {
+    const currentStory = stories[currentSlide];
+
+    // Store only the moment/experience, not the individual products
+    const momentData = {
+      id: currentStory.id,
+      title: currentStory.title,
+      subtitle: currentStory.subtitle,
+      description: currentStory.description,
+      duration: currentStory.duration,
+      location: currentStory.location,
+      priceRange: currentStory.priceRange,
+      type: "moment", // Flag to distinguish from products
+    };
+
+    // Get existing cart or create new one
+    const existingCart = JSON.parse(localStorage.getItem("cartItems") || "[]");
+
+    // Check if moment already exists in cart
+    const momentExists = existingCart.some(
+      (item: any) => item.type === "moment" && item.id === currentStory.id
+    );
+
+    if (!momentExists) {
+      existingCart.push(momentData);
+      localStorage.setItem("cartItems", JSON.stringify(existingCart));
+    }
+
+    // Navigate to make it yours page
+    navigate("/makeitYours");
   };
 
   useEffect(() => {
@@ -421,11 +459,14 @@ const StoriesUI = () => {
         </div>
 
         <div className="p-6 space-y-6">
-          <Link to="/makeitYours">
-            <button className="w-full mt-4 bg-[#E7BD79] text-white py-3 text-[16px] rounded-lg font-medium font-montserrat">
-              Make this Moment Yours
-            </button>
-          </Link>
+          {/* Updated button to use handleMakeItYours */}
+          <button
+            onClick={handleMakeItYours}
+            className="w-full mt-4 bg-[#E7BD79] text-white py-3 text-[16px] rounded-lg font-medium font-montserrat"
+          >
+            Make this Moment Yours
+          </button>
+
           <div>
             <h2 className="text-2xl font-semibold mb-3 font-times">
               {story.tagline}
@@ -465,6 +506,7 @@ const StoriesUI = () => {
                     {item}
                   </li>
                 ))}
+                {/* Products are displayed here but NOT added to cart automatically */}
                 <ProductSlider products={story.products} />
               </ul>
             </div>
@@ -514,6 +556,7 @@ const StoriesUI = () => {
             </div>
           </div>
 
+          {/* This button navigates to swipe UI without adding products to cart */}
           <button
             onClick={() => navigateToSwipeUI(story.id)}
             className="w-full bg-[#E7BD79] text-white text-[16px] py-3 rounded-lg text-lg"

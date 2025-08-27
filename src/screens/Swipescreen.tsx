@@ -10,6 +10,7 @@ const ShoppingSwipeUI = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [products, setProducts] = useState<any[]>([]);
+  const [likedProducts, setLikedProducts] = useState<any[]>([]); // New state for liked products
   const constraintsRef = useRef(null);
 
   // Load moment-specific products on component mount
@@ -22,27 +23,23 @@ const ShoppingSwipeUI = () => {
       } catch (error) {
         console.error("Error parsing stored moment data:", error);
         // Fallback to default products if there's an error
-        setProducts(getDefaultProducts());
       }
     } else {
       // Fallback to default products if no stored data
-      setProducts(getDefaultProducts());
     }
   }, []);
-  console.log(products);
 
-  // Fallback default products
-  const getDefaultProducts = () => [
-    {
-      id: 1,
-      name: "Ankle-cuff heeled sandals",
-      price: "$5,250.00",
-      image:
-        "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=400&fit=crop",
-      description:
-        "Crafted from luxurious Taurillon leather, the Capucines MM blends timeless elegance with everyday versatility. Featuring the iconic LV initials, a structured silhouette, and a removable strap, it transitions effortlessly from day to night.",
-    },
-  ];
+  // Update localStorage whenever likedProducts changes
+  useEffect(() => {
+    if (likedProducts.length > 0) {
+      const cartData = {
+        products: likedProducts,
+        momentTitle: "My Selected Items", // You can customize this or get it from somewhere else
+        timestamp: Date.now(),
+      };
+      localStorage.setItem("selectedMomentProducts", JSON.stringify(cartData));
+    }
+  }, [likedProducts]);
 
   const handleImageClick = (product: any, e: any) => {
     e.stopPropagation();
@@ -55,8 +52,22 @@ const ShoppingSwipeUI = () => {
     setSelectedProduct(null);
   };
 
+  const addToLikedProducts = (product: any) => {
+    // Check if product is already in liked products to avoid duplicates
+    const isAlreadyLiked = likedProducts.some(
+      (likedProduct) => likedProduct.id === product.id
+    );
+    if (!isAlreadyLiked) {
+      setLikedProducts((prev) => [...prev, product]);
+    }
+  };
+
   const handleNext = () => {
     if (currentIndex < products.length) {
+      // Right swipe (like) - add current product to liked products
+      if (products[currentIndex]) {
+        addToLikedProducts(products[currentIndex]);
+      }
       setExitDirection(1);
       setCurrentIndex(currentIndex + 1);
     }
@@ -64,6 +75,7 @@ const ShoppingSwipeUI = () => {
 
   const handlePrev = () => {
     if (currentIndex > 0) {
+      // Left swipe (dislike) - don't add to cart, just move to previous
       setExitDirection(-1);
       setCurrentIndex(currentIndex - 1);
     }
@@ -78,9 +90,14 @@ const ShoppingSwipeUI = () => {
     const swipe = swipePower(offset.x, velocity.x);
 
     if (swipe > swipeConfidenceThreshold && currentIndex < products.length) {
+      // Right swipe (like) - add to liked products
+      if (products[currentIndex]) {
+        addToLikedProducts(products[currentIndex]);
+      }
       setExitDirection(-1);
       setCurrentIndex(currentIndex + 1);
     } else if (swipe < -swipeConfidenceThreshold && currentIndex > 0) {
+      // Left swipe (dislike) - don't add to cart
       setExitDirection(1);
       setCurrentIndex(currentIndex - 1);
     }
@@ -137,11 +154,19 @@ const ShoppingSwipeUI = () => {
           <ArrowLeft className="text-white" size={24} />
         </Link>
 
-        <button className="w-10 h-10 rounded-full border-2 border-gray-600 bg-transparent flex items-center justify-center hover:bg-gray-800 transition-colors">
-          <Link to="/cart">
-            <ShoppingBag className="text-white" size={24} />
-          </Link>
-        </button>
+        <div className="relative">
+          <button className="w-10 h-10 rounded-full border-2 border-gray-600 bg-transparent flex items-center justify-center hover:bg-gray-800 transition-colors">
+            <Link to="/cart">
+              <ShoppingBag className="text-white" size={24} />
+            </Link>
+          </button>
+          {/* Cart Badge */}
+          {likedProducts.length > 0 && (
+            <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              {likedProducts.length}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Background */}
@@ -265,6 +290,14 @@ const ShoppingSwipeUI = () => {
                   </button>
                 </Link>
               </div>
+
+              {/* Show liked products count */}
+              {likedProducts.length > 0 && (
+                <div className="mt-4 text-sm text-gray-300">
+                  You've selected {likedProducts.length} item
+                  {likedProducts.length !== 1 ? "s" : ""} for your cart
+                </div>
+              )}
             </div>
           </motion.div>
         )}
@@ -377,7 +410,13 @@ const ShoppingSwipeUI = () => {
 
             {/* Fixed Bottom Button */}
             <div className="bg-white border-t p-4 flex-shrink-0">
-              <button className="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 text-lg">
+              <button
+                onClick={() => {
+                  addToLikedProducts(selectedProduct);
+                  closePopup();
+                }}
+                className="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 text-lg"
+              >
                 Add to Cart
               </button>
             </div>

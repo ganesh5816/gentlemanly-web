@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
-import { ChevronLeft, Eye, Minus, Plus, X } from "lucide-react";
+import { ArrowLeft, Eye, Minus, Plus, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 type ItemId = string;
@@ -24,11 +24,6 @@ export default function ShoppingCart() {
 
   // Load moment-specific products on component mount
   useEffect(() => {
-    return () => {
-      localStorage.removeItem("selectedMomentProducts");
-    };
-  }, []);
-  useEffect(() => {
     const storedMomentData = localStorage.getItem("selectedMomentProducts");
     if (storedMomentData) {
       try {
@@ -48,7 +43,7 @@ export default function ShoppingCart() {
         }));
 
         setCartItems(transformedItems);
-        setMomentTitle(parsedData.momentTitle || "");
+        setMomentTitle(parsedData.momentTitle || "My Selected Items");
 
         // Initialize quantities
         const initialQuantities: Record<string, number> = {};
@@ -58,14 +53,21 @@ export default function ShoppingCart() {
         setQuantities(initialQuantities);
       } catch (error) {
         console.error("Error parsing stored moment data:", error);
-        // Fallback to default items
-        initializeDefaultQuantities();
+        // Set empty cart if there's an error
+        setCartItems([]);
       }
     } else {
-      // Fallback to default items
-      initializeDefaultQuantities();
+      // Set empty cart if no stored data
+      setCartItems([]);
     }
   }, []);
+
+  // Don't show modal if cart is empty
+  useEffect(() => {
+    if (cartItems.length === 0) {
+      setShowModal(false);
+    }
+  }, [cartItems]);
 
   const getCategoryFromName = (name: string): string => {
     const lowerName = name.toLowerCase();
@@ -98,12 +100,26 @@ export default function ShoppingCart() {
     return "COLOR: Natural";
   };
 
-  const initializeDefaultQuantities = () => {
-    setQuantities({
-      "1": 1,
-      "2": 1,
-      "3": 1,
-    });
+  const removeFromCart = (itemId: ItemId) => {
+    const updatedItems = cartItems.filter((item) => item.id !== itemId);
+    setCartItems(updatedItems);
+
+    // Update localStorage
+    if (updatedItems.length > 0) {
+      const cartData = {
+        products: updatedItems,
+        momentTitle,
+        timestamp: Date.now(),
+      };
+      localStorage.setItem("selectedMomentProducts", JSON.stringify(cartData));
+    } else {
+      localStorage.removeItem("selectedMomentProducts");
+    }
+
+    // Update quantities
+    const newQuantities = { ...quantities };
+    delete newQuantities[itemId];
+    setQuantities(newQuantities);
   };
 
   const updateQuantity = (item: ItemId, change: number) => {
@@ -118,7 +134,6 @@ export default function ShoppingCart() {
     const numericValue = parseFloat(priceString.replace(/[^0-9.]/g, ""));
     return isNaN(numericValue) ? 0 : numericValue;
   };
-  console.log(cartItems);
 
   const renderProductImage = (item: CartItem) => {
     const name = item.name.toLowerCase();
@@ -131,7 +146,9 @@ export default function ShoppingCart() {
     ) {
       return (
         <img
-          src={`../${item.image}`}
+          height={110}
+          width={110}
+          src={`..${item.image}`}
           alt={item.name}
           className="w-full h-full object-cover"
         />
@@ -226,7 +243,35 @@ export default function ShoppingCart() {
     }, 0);
     return `$${total.toFixed(2)}`;
   };
-  console.log("cartitem", cartItems);
+
+  // Empty cart state
+  if (cartItems.length === 0) {
+    return (
+      <div className="max-w-sm mx-auto bg-white min-h-screen flex flex-col">
+        {/* Header */}
+        <div className="flex items-center justify-between px-4 py-4">
+          <button className="border-2  border-[#E7E7E7] rounded-lg p-2">
+            <Link to="/moment">
+              <ArrowLeft className="w-6 h-6 text-black" />
+            </Link>
+          </button>
+          <div className="text-center flex-1">
+            <h1 className="text-xl font-semibold text-black font-times">
+              My Shopping Cart
+            </h1>
+          </div>
+          <div className="w-6 h-6"></div> {/* Spacer */}
+        </div>
+
+        {/* Empty cart content */}
+        <div className="flex-1 flex flex-col items-center justify-center px-8 text-center">
+          <h2 className="text-xl font-semibold text-gray-800 mb-4 font-times">
+            Your cart is empty
+          </h2>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen flex flex-col relative">
@@ -267,21 +312,16 @@ export default function ShoppingCart() {
       <div className="flex justify-between items-center px-6 pt-3 pb-1 text-black text-lg font-medium"></div>
 
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-4">
-        <button>
-          <Link to="/swipeui">
-            <ChevronLeft className="w-6 h-6 text-black" />
+      <div className="flex items-center justify-between rounded-full px-4 py-4">
+        <button className="border-2 border-[#E7E7E7] rounded-full p-2">
+          <Link to="/moment">
+            <ArrowLeft className="w-6 h-6 text-black" />
           </Link>
         </button>
         <div className="text-center flex-1">
           <h1 className="text-xl font-semibold text-black font-times">
             My Shopping Cart
           </h1>
-          {momentTitle && (
-            <p className="text-sm text-gray-600 font-montserrat mt-1">
-              {momentTitle}
-            </p>
-          )}
         </div>
         <button onClick={() => setShowModal(true)}>
           <Eye className="w-6 h-6 text-black" />
@@ -304,23 +344,34 @@ export default function ShoppingCart() {
             <div className="px-4 py-6">
               <div className="flex space-x-4">
                 {/* Product Image */}
-                <div className="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
+                <div className="w-[110px] h-[110px] bg-gray-100 overflow-hidden flex-shrink-0">
                   {renderProductImage(item)}
                 </div>
 
                 {/* Product Details */}
                 <div className="flex-1">
-                  <div className="text-xs text-gray-500 font-medium mb-1 font-montserrat">
-                    {item.category || "ITEM"}
-                  </div>
-                  <h3 className="text-lg font-medium text-black mb-2 font-times">
-                    {item.name}
-                  </h3>
-                  <div className="text-sm text-gray-600 mb-1 font-montserrat">
-                    {item.size || "ONE SIZE"}
-                  </div>
-                  <div className="text-sm text-gray-600 font-montserrat">
-                    {item.color || "COLOR: Standard"}
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <div className="text-xs text-gray-500 font-medium mb-1 font-montserrat">
+                        {item.category || "ITEM"}
+                      </div>
+                      <h3 className="text-lg font-medium text-black mb-2 font-times">
+                        {item.name}
+                      </h3>
+                      <div className="text-sm text-gray-600 mb-1 font-montserrat">
+                        {item.size || "ONE SIZE"}
+                      </div>
+                      <div className="text-sm text-gray-600 font-montserrat">
+                        {item.color || "COLOR: Standard"}
+                      </div>
+                    </div>
+                    {/* Remove button */}
+                    <button
+                      onClick={() => removeFromCart(item.id)}
+                      className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                    >
+                      <X className="w-4 h-4 text-gray-400" />
+                    </button>
                   </div>
                 </div>
               </div>
