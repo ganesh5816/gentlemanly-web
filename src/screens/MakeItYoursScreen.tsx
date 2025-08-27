@@ -70,7 +70,7 @@ const OrderConfirmationScreen = () => {
           <div className="text-center space-y-6">
             <div className="space-y-2">
               <h1 className="text-4xl font-times font-normal text-black">
-                Yay!
+                Congratulation !
               </h1>
               <h2 className="text-2xl font-normal text-black leading-tight font-montserrat">
                 Your Order is Placed
