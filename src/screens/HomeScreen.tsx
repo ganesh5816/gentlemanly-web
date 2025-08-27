@@ -201,9 +201,11 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                     style="w-[341px] rounded-lg"
                     variant="transparent"
                   >
-                    <span className="text-white font-medium font-montserrat">
-                      Begin with Moments
-                    </span>
+                    <Link to="/moment">
+                      <span className="text-white font-medium font-montserrat">
+                        Begin with Moments
+                      </span>
+                    </Link>
                   </CustomButton>
                 </div>
               </div>

@@ -126,7 +126,9 @@ const ShoppingSwipeUI = () => {
           <ArrowLeft className="text-white" size={24} />
         </Link>
         <button className="w-10 h-10 rounded-full border-2 border-gray-600 bg-transparent flex items-center justify-center hover:bg-gray-800 transition-colors">
-          <ShoppingBag className="text-white" size={24} />
+          <Link to="/cart">
+            <ShoppingBag className="text-white" size={24} />
+          </Link>
         </button>
       </div>
 

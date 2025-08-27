@@ -8,6 +8,7 @@ import MobileChatInterface from "./screens/ChatbotScreen";
 import StoriesUI from "./screens/MomentsDetailsScrren";
 import OrderConfirmationScreen from "./screens/MakeItYoursScreen";
 import ShoppingSwipeUI from "./screens/Swipescreen";
+import ShoppingCart from "./screens/cartScreen";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/momentDetails" element={<StoriesUI />} />
         <Route path="/makeitYours" element={<OrderConfirmationScreen />} />
         <Route path="/notification" element={<NotificationsScreen />} />
+        <Route path="/cart" element={<ShoppingCart />} />
       </Routes>
     </BrowserRouter>
   );
