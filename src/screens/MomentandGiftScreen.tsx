@@ -135,7 +135,9 @@ const MomentsGiftsScreen: React.FC<Props> = () => {
                   MOMENTS
                 </h1>
                 <p className="text-base text-white text-center mb-8 font-montserra">
-                  {expandedSection === "moments" && "Choose a moment first  "}
+                  {expandedSection === "moments"
+                    ? "Tap again to collapse"
+                    : "Choose a moment first."}
                 </p>
                 {expandedSection === "moments" && (
                   <Link to="/momentDetails">

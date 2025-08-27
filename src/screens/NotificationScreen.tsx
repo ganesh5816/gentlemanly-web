@@ -101,22 +101,17 @@ export default function NotificationsScreen() {
 
   return (
     <div className="max-w-sm mx-auto bg-white min-h-screen">
-      <div className="flex justify-between items-center px-4 py-2 text-sm font-medium"></div>
-
-      <div className="flex items-center justify-between px-4 py-4 border-b  border-gray-100">
-        <div className="flex items-center justify-between">
-          <Link to={"/home"}>
-            <ArrowLeft className="w-6 h-6 text-gray-700 mr-4" />
-          </Link>
-          <h1 className="text-xl font-times font-semibold text-black">
-            Notifications
-          </h1>
-          <div className="h-10" />
-        </div>
+      <div className="relative flex items-center justify-center px-4 py-4 border-b border-gray-100">
+        <Link to={"/home"} className="absolute left-4">
+          <ArrowLeft className="w-6 h-6 text-gray-700" />
+        </Link>
+        <h1 className="text-xl font-times font-semibold text-black">
+          Notifications
+        </h1>
       </div>
 
       {/* Recent Section */}
-      <div className="px-4 py-4">
+      <div className="px-1 py-1">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-montserrat text-black">Recent</h2>
           <button className="text-sm text-gray-500">Mark all as read</button>

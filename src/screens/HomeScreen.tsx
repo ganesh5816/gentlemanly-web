@@ -1,5 +1,5 @@
 import React from "react";
-import { BarChart3, Bell } from "lucide-react";
+import { Bell } from "lucide-react";
 import birthday from "../assets/birthday.jpg";
 import aniversery from "../assets/anniversarytwo.jpg";
 import justbecause1 from "../assets/just-because1.jpg";
@@ -7,7 +7,7 @@ import justbecause2 from "../assets/just-because-2.jpg";
 import mothersday from "../assets/mothersday.jpg";
 import apology from "../assets/apology.jpg";
 import datenight from "../assets/datenight.jpg";
-
+import vector from "../assets/Vector.png";
 import { Link } from "react-router-dom";
 import Logo from "../assets/GiftHer.png";
 
@@ -50,7 +50,6 @@ const upcomimgEvents = [
   {
     image: datenight,
     eventName: "Date Night",
-    date: "Just Because",
   },
 ];
 
@@ -99,11 +98,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
       {/* Header */}
       <div className="h-17 px-6 py-4 flex justify-between items-center">
         <Link to="/menu" className="p-2">
-          <BarChart3
-            size={24}
-            color={theme.blackSecondary}
-            style={{ transform: "rotate(90deg)" }}
-          />
+          <img width={25} height={25} src={vector} />
         </Link>
         <img height={19} width={107} src={Logo} />
         <Link to="/notification" className="p-2">

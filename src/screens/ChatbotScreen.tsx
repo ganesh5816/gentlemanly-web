@@ -5,15 +5,15 @@ import { motion } from "framer-motion";
 const MobileChatInterface: React.FC = () => {
   return (
     <motion.div
-      className="max-w-sm mx-auto bg-gray-100 h-screen flex flex-col"
+      className="w-full h-screen flex flex-col bg-gray-100" // full width now
       initial={{ x: "100%" }}
       animate={{ x: 0 }}
       exit={{ x: "-100%" }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
       {/* Header */}
-      <div className="bg-white px-4 py-3 flex items-center shadow-sm border-[#E7E7E7]">
-        <ArrowLeft className="w-6 h-6 text-gray-600 mr-4" />
+      <div className="relative flex items-center justify-center bg-white px-4 py-3 shadow-sm border-b border-[#E7E7E7]">
+        <ArrowLeft className="absolute left-4 w-6 h-6 text-gray-600" />
         <h1 className="text-lg font-semibold text-black font-times">
           ChatBot Name Here
         </h1>
