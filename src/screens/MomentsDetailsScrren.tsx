@@ -10,57 +10,117 @@ import {
   ArrowLeft,
   Minus,
 } from "lucide-react";
-import moment1video from "../assets/mold.mp4";
+// import moment1video from "../assets/mold.mp4";
 import moment2video from "../assets/picnic.mp4";
 import moment3video from "../assets/moment3.mp4";
 import { Link, useNavigate } from "react-router-dom";
-import moment1 from "../assets/pottery.jpg";
+// import moment1 from "../assets/pottery.jpg";
 import moment2 from "../assets/picnic.jpg";
 import moment3 from "../assets/datenight.jpg";
-import dress from "../assets/dress.jpg";
-import shoesframe from "../assets/Frame283.png";
-import blackBag from "../assets/blackbag.jpg";
+// import dress from "../assets/dress.jpg";
+// import shoesframe from "../assets/Frame283.png";
+// import dinner from "../assets/dinner.jpg";
+import secondshoes from "../assets/2nddress.jpg";
+import picnicdress from "../assets/shirt.jpg";
+import skirt from "../assets/skirt.jpg";
+import roses from "../assets/roses.jpg";
+import sunhat from "../assets/sunhat.jpg";
+import snacks from "../assets/snacks.jpg";
+import floral from "../assets/floral.jpg";
+import blackshoes from "../assets/blackshoe.jpg";
 import dinner from "../assets/dinner.jpg";
+import limo from "../assets/limo.jpg";
+import redrose from "../assets/redrose.jpg";
+import wine from "../assets/wine.jpg";
+import dressred from "../assets/dressred.jpg";
 
 const stories = [
+  // {
+  //   id: 1,
+  //   title: "MOLD & MEMORIES",
+  //   subtitle: "Shape love with clay",
+  //   tagline: "Get your hands messy and your hearts full.",
+  //   description:
+  //     "Spin the wheel, shape something real, and create more than just pottery, create memories. Whether you're beginners or pros, it's about the laughs, the smudges, and the moments in between.",
+  //   whatsIncluded: [
+  //     "All pottery materials and tools provided",
+  //     "Professional instruction and guidance",
+  //     "Your finished pieces fired and glazed",
+  //   ],
+  //   whyYoullLove: [
+  //     "Perfect for slow, meaningful connection",
+  //     "Great for fun and creativity",
+  //     "You leave with handmade souvenirs of your time together",
+  //   ],
+  //   duration: "1.5 - 2 hours",
+  //   location: "Local pottery studio",
+  //   priceRange: "$150.00 - $800.00",
+  //   image: moment1,
+  //   detailImage: moment1video,
+  //   products: [
+  //     {
+  //       id: 1,
+  //       name: "Ankle-cuff heeled sandals",
+  //       price: "$45.00",
+  //       image: shoesframe,
+  //       description:
+  //         "Crafted from luxurious materials, these ankle-cuff heeled sandals blend timeless elegance with everyday comfort. Perfect for your pottery date look.",
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "White A-line Dress",
+  //       price: "$25.00",
+  //       image: dress,
+  //       description:
+  //         "A beautiful white A-line dress that's perfect for creative dates. Comfortable yet stylish, ideal for getting a little messy while staying chic.",
+  //     },
+  //   ],
+  // },
   {
-    id: 1,
-    title: "MOLD & MEMORIES",
-    subtitle: "Shape love with clay",
-    tagline: "Get your hands messy and your hearts full.",
+    id: 23,
+    title: "POETTRY DATE GIFT",
+    subtitle: "An Evening of Romance & Elegance",
+    tagline: "Disconnect to reconnect under the stars.",
     description:
-      "Spin the wheel, shape something real, and create more than just pottery, create memories. Whether you're beginners or pros, it's about the laughs, the smudges, and the moments in between.",
+      "Dress up for a night of fine dining, enchanting music, and unforgettable moments, complete with stylish gifts for the evening.",
     whatsIncluded: [
-      "All pottery materials and tools provided",
-      "Professional instruction and guidance",
-      "Your finished pieces fired and glazed",
+      "Candle-lit dinner reservation",
+      "Bottle of wine or champagne",
+      "Private car service (optional)",
     ],
     whyYoullLove: [
-      "Perfect for slow, meaningful connection",
-      "Great for fun and creativity",
-      "You leave with handmade souvenirs of your time together",
+      "Creates a glamorous",
+      "intimate atmosphere that makes her feel special while giving thoughtful gifts to enhance the experience",
     ],
-    duration: "1.5 - 2 hours",
-    location: "Local pottery studio",
-    priceRange: "$150.00 - $800.00",
-    image: moment1,
-    detailImage: moment1video,
+    duration: "4–5 hours",
+    location: "Upscale restaurant or rooftop venue",
+    priceRange: "$250.00 - $600.00",
+    image: moment3,
+    detailImage: moment3video,
     products: [
       {
         id: 1,
-        name: "Ankle-cuff heeled sandals",
-        price: "$45.00",
-        image: shoesframe,
+        name: "Ankle-cuff Heeled Sandals",
+        price: "$5,250.00",
+        image: secondshoes,
         description:
-          "Crafted from luxurious materials, these ankle-cuff heeled sandals blend timeless elegance with everyday comfort. Perfect for your pottery date look.",
+          "Luxurious designer heeled sandals perfect for elegant evening occasions. Crafted with premium materials for ultimate sophistication.",
       },
       {
         id: 2,
         name: "White A-line Dress",
-        price: "$25.00",
-        image: dress,
+        price: "$450.00",
+        image: picnicdress,
         description:
-          "A beautiful white A-line dress that's perfect for creative dates. Comfortable yet stylish, ideal for getting a little messy while staying chic.",
+          "An elegant white A-line dress designed for sophisticated evening events. Perfect for starlit dinners and romantic occasions.",
+      },
+      {
+        id: 30,
+        name: "Designer Handbag",
+        price: "$3,400.00",
+        image: skirt,
+        description:
+          "A luxury designer handbag that complements any elegant evening look. Crafted from premium leather with impeccable attention to detail.",
       },
     ],
   },
@@ -91,7 +151,7 @@ const stories = [
         id: 1,
         name: "Ankle-cuff heeled sandals",
         price: "$89.00",
-        image: shoesframe,
+        image: roses,
         description:
           "Comfortable yet elegant heeled sandals perfect for outdoor picnics. The ankle-cuff design provides stability on uneven ground while maintaining style.",
       },
@@ -99,17 +159,25 @@ const stories = [
         id: 2,
         name: "Woven Sun Hat",
         price: "$45.00",
-        image: dress,
+        image: sunhat,
         description:
           "A stylish woven sun hat that provides perfect protection during golden hour picnics while adding a chic bohemian touch to your look.",
       },
       {
         id: 3,
-        name: "Hermes Mini Kelly",
+        name: "Snacks",
         price: "$125.00",
-        image: blackBag,
+        image: snacks,
         description:
           "A luxurious mini Kelly bag that's perfect for carrying your essentials during a romantic picnic. Compact yet sophisticated.",
+      },
+      {
+        id: 124,
+        name: "Floral dress",
+        price: "Call for pricing",
+        image: floral,
+        description:
+          "Complete your perfect day with a dinner reservation at a scenic restaurant. The perfect ending to your golden hour picnic experience.",
       },
       {
         id: 4,
@@ -123,61 +191,76 @@ const stories = [
   },
   {
     id: 3,
-    title: "STARLIT CAMPING",
-    subtitle: "An Evening of Romance & Elegance",
-    tagline: "Disconnect to reconnect under the stars.",
+    title: "Dinner Date",
+    subtitle: "Golden hour moments",
+    tagline: "A Blissful Day Under the Open Sky",
     description:
-      "Dress up for a night of fine dining, enchanting music, and unforgettable moments, complete with stylish gifts for the evening.",
+      "Relax together outdoors with a thoughtfully curated picnic experience, paired with accessories and outfits for the perfect vibe.",
     whatsIncluded: [
-      "Candle-lit dinner reservation",
-      "Bottle of wine or champagne",
-      "Private car service (optional)",
+      "Picnic setup with blanket & cushions",
+      "Gourmet snacks & drinks",
+      "Fresh flower bouquet",
     ],
     whyYoullLove: [
-      "Creates a glamorous",
-      "intimate atmosphere that makes her feel special while giving thoughtful gifts to enhance the experience",
+      "Intimate moments in nature's best light",
+      "Instagram-worthy golden hour photos",
+      "Quality time away from distractions",
     ],
-    duration: "4–5 hours",
-    location: "Upscale restaurant or rooftop venue",
-    priceRange: "$250.00 - $600.00",
-    image: moment3,
-    detailImage: moment3video,
+    duration: "2 - 3 hours",
+    location: "Scenic overlook points",
+    priceRange: "$120.00 - $450.00",
+    image: moment2,
+    detailImage: moment2video,
     products: [
       {
         id: 1,
-        name: "Ankle-cuff Heeled Sandals",
-        price: "$5,250.00",
-        image:
-          "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=400&fit=crop&crop=center",
+        name: "Ankle-cuff heeled sandals",
+        price: "$89.00",
+        image: redrose,
         description:
-          "Luxurious designer heeled sandals perfect for elegant evening occasions. Crafted with premium materials for ultimate sophistication.",
+          "Comfortable yet elegant heeled sandals perfect for outdoor picnics. The ankle-cuff design provides stability on uneven ground while maintaining style.",
       },
       {
         id: 2,
-        name: "White A-line Dress",
-        price: "$450.00",
-        image:
-          "https://images.unsplash.com/photo-1566479179817-f8ec83218f9e?w=400&h=400&fit=crop&crop=center",
+        name: "Woven Sun Hat",
+        price: "$45.00",
+        image: blackshoes,
         description:
-          "An elegant white A-line dress designed for sophisticated evening events. Perfect for starlit dinners and romantic occasions.",
+          "A stylish woven sun hat that provides perfect protection during golden hour picnics while adding a chic bohemian touch to your look.",
       },
+
       {
-        id: 3,
-        name: "Designer Handbag",
-        price: "$3,400.00",
-        image:
-          "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=400&fit=crop&crop=center",
+        id: 14,
+        name: "Limo",
+        price: "Call for pricing",
+        image: limo,
         description:
-          "A luxury designer handbag that complements any elegant evening look. Crafted from premium leather with impeccable attention to detail.",
+          "Complete your perfect day with a dinner reservation at a scenic restaurant. The perfect ending to your golden hour picnic experience.",
       },
       {
         id: 4,
-        name: "Diamond Necklace",
-        price: "$2,100.00",
-        image:
-          "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=400&fit=crop&crop=center",
+        name: "Dinner Reservation",
+        price: "Call for pricing",
+        image: dinner,
         description:
-          "A stunning diamond necklace that adds the perfect sparkle to any romantic evening. Expertly crafted with brilliant-cut diamonds.",
+          "Complete your perfect day with a dinner reservation at a scenic restaurant. The perfect ending to your golden hour picnic experience.",
+      },
+      {
+        id: 40,
+        name: "Dinner Reservation",
+        price: "$ 400",
+        image: wine,
+        description:
+          "Complete your perfect day with a dinner reservation at a scenic restaurant. The perfect ending to your golden hour picnic experience.",
+      },
+
+      {
+        id: 48,
+        name: "Red Dress",
+        price: "$ 400",
+        image: dressred,
+        description:
+          "Complete your perfect day with a dinner reservation at a scenic restaurant. The perfect ending to your golden hour picnic experience.",
       },
     ],
   },
@@ -456,6 +539,16 @@ const StoriesUI = () => {
             src={story.detailImage}
             className="w-full h-64 object-cover"
           />
+
+          {/* Back button overlay on video */}
+          <div className="absolute top-4 left-4 z-40">
+            <button
+              onClick={() => setShowDetailScreen(false)}
+              className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-black/50 transition-all duration-200"
+            >
+              <ArrowLeft className="w-5 h-5 text-white" strokeWidth={2} />
+            </button>
+          </div>
         </div>
 
         <div className="p-6 space-y-6">
