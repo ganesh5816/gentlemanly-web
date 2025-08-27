@@ -348,78 +348,138 @@ const ShoppingSwipeUI = () => {
       <AnimatePresence>
         {showPopup && selectedProduct && (
           <motion.div
+            className="fixed inset-0 z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-white z-50 flex flex-col"
-            style={{ backgroundColor: "#f8f9fa" }}
           >
-            {/* Header */}
-            <div className="flex items-center justify-between p-4 bg-white border-b flex-shrink-0">
-              <button
-                onClick={closePopup}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-              >
-                <X size={24} className="text-gray-800" />
-              </button>
-              <h1 className="text-lg font-semibold text-center flex-1 mx-4">
-                {selectedProduct.name}
-              </h1>
-              <div className="w-10 h-10"></div> {/* Spacer for centering */}
-            </div>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0 bg-black bg-opacity-50"
+              onClick={closePopup}
+            />
 
-            {/* Scrollable Content */}
-            <div className="flex-1 overflow-y-auto">
-              {/* Product Image */}
-              <div className="flex items-center justify-center p-4 ">
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.1 }}
-                  className="w-full max-w-md"
+            {/* Popup Container - Full Screen */}
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{
+                y: 0,
+                transition: {
+                  type: "spring",
+                  damping: 25,
+                  stiffness: 300,
+                  mass: 0.8,
+                },
+              }}
+              exit={{
+                y: "100%",
+                transition: {
+                  type: "spring",
+                  damping: 30,
+                  stiffness: 400,
+                  mass: 0.8,
+                },
+              }}
+              className="absolute inset-0 flex flex-col bg-white shadow-2xl overflow-hidden"
+              style={{ backgroundColor: "#f8f9fa" }}
+            >
+              {/* Header */}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  transition: { delay: 0.1, duration: 0.4 },
+                }}
+                exit={{ opacity: 0, y: -20 }}
+                className="flex items-center justify-between p-4 bg-white border-b flex-shrink-0"
+              >
+                <button
+                  onClick={closePopup}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                 >
-                  <img
-                    src={selectedProduct.image}
-                    alt={selectedProduct.name}
-                    className="w-full h-96 object-cover"
-                  />
+                  <X size={24} className="text-gray-800" />
+                </button>
+                <h1 className="text-lg font-semibold text-center flex-1 mx-4">
+                  {selectedProduct.name}
+                </h1>
+                <div className="w-10 h-10"></div> {/* Spacer for centering */}
+              </motion.div>
+
+              {/* Scrollable Content */}
+              <div className="flex-1 overflow-y-auto">
+                {/* Product Image */}
+                <div className="flex items-center justify-center p-4">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
+                      transition: { delay: 0.2, duration: 0.4 },
+                    }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    className="w-full max-w-md"
+                  >
+                    <img
+                      src={selectedProduct.image}
+                      alt={selectedProduct.name}
+                      className="w-full h-96 object-cover"
+                    />
+                  </motion.div>
+                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    transition: { delay: 0.3, duration: 0.4 },
+                  }}
+                  exit={{ opacity: 0, y: 20 }}
+                  className="p-6 rounded-t-3xl mx-4 mb-4"
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-sm font-medium text-gray-600 uppercase tracking-wide">
+                      Price
+                    </span>
+                    <span className="text-sm text-gray-900">
+                      {selectedProduct.price}
+                    </span>
+                  </div>
+
+                  <div className="mb-6">
+                    <p className="text-gray-700 leading-relaxed text-base">
+                      {selectedProduct.description}
+                    </p>
+                  </div>
                 </motion.div>
               </div>
+
+              {/* Fixed Bottom Button */}
               <motion.div
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className=" p-6 rounded-t-3xl mx-4 mb-4"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm font-medium text-gray-600 uppercase tracking-wide">
-                    Price
-                  </span>
-                  <span className="text-sm text-gray-900">
-                    {selectedProduct.price}
-                  </span>
-                </div>
-
-                <div className="mb-6">
-                  <p className="text-gray-700 leading-relaxed text-base">
-                    {selectedProduct.description}
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Fixed Bottom Button */}
-            <div className="bg-white border-t p-4 flex-shrink-0">
-              <button
-                onClick={() => {
-                  addToLikedProducts(selectedProduct);
-                  closePopup();
+                initial={{ opacity: 0, y: 20 }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  transition: { delay: 0.4, duration: 0.4 },
                 }}
-                className="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 text-lg"
+                exit={{ opacity: 0, y: 20 }}
+                className="bg-white border-t p-4 flex-shrink-0"
               >
-                Add to Cart
-              </button>
-            </div>
+                <button
+                  onClick={() => {
+                    addToLikedProducts(selectedProduct);
+                    closePopup();
+                  }}
+                  className="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 text-lg transform hover:scale-105 active:scale-95"
+                >
+                  Add to Cart
+                </button>
+              </motion.div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
