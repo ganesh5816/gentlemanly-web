@@ -535,7 +535,7 @@ const StoriesUI = () => {
           </button>
 
           <div>
-            <h2 className="text-2xl font-semibold mb-3 font-times">
+            <h2 className="text-[18px] font-semibold mb-3 font-times">
               {story.tagline}
             </h2>
             <p className="text-gray-600 leading-relaxed font-montserrat">
@@ -586,12 +586,15 @@ const StoriesUI = () => {
           </div>
 
           <div className="border-t py-6">
-            <h3 className="text-lg font-semibold mb-4 font-times">
+            <h3 className="text-[18px] font-semibold mb-4 font-times">
               Why You'll Love It
             </h3>
             <ul className="space-y-3">
               {story.whyYoullLove.map((item, idx) => (
-                <li key={idx} className="text-gray-600 font-montserrat">
+                <li
+                  key={idx}
+                  className="text-gray-600 font-[14px] font-montserrat"
+                >
                   {item}
                 </li>
               ))}
@@ -599,19 +602,19 @@ const StoriesUI = () => {
           </div>
           <div className="border-t pt-6 space-y-4">
             <div className="flex justify-between items-center w-full">
-              <span className="text-gray-500 text-sm font-montserrat">
+              <span className="text-gray-500 text-[14px] font-montserrat">
                 Duration
               </span>
-              <p className="font-medium font-montserrat text-gray-500">
+              <p className="font-medium text-[14px] font-montserrat text-gray-500">
                 {story.duration}
               </p>
             </div>
 
             <div className="flex justify-between items-center w-full border-t pt-4">
-              <span className="text-gray-500 text-sm font-montserrat">
+              <span className="text-gray-500 text-[14px] font-montserrat">
                 Location
               </span>
-              <p className="font-medium font-montserrat text-gray-500">
+              <p className="font-medium font-montserrat text-[14px] text-gray-500">
                 {story.location}
               </p>
             </div>
