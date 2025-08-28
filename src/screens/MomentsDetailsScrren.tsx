@@ -106,7 +106,7 @@ const stories = [
     ],
     duration: "2 - 3 hours",
     location: "Scenic overlook points",
-    priceRange: "$120.00 - $450.00",
+    priceRange: "$450.00",
     image: moment2,
     detailImage: moment2video,
     products: [
@@ -521,7 +521,7 @@ const StoriesUI = () => {
         <div className="flex justify-between items-center mt-5   px-6">
           <p className="text-lg font-montserrat  text-gray-500">price</p>
           <p className="text-lg font-montserrat  text-gray-500">
-            ${story.priceRange}
+            {story.priceRange}
           </p>
         </div>
 
