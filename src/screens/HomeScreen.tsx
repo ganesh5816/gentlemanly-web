@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Bell } from "lucide-react";
 import birthday from "../assets/birthday.jpg";
 import aniversery from "../assets/anniversarytwo.jpg";
@@ -8,8 +10,9 @@ import mothersday from "../assets/mothersday.jpg";
 import apology from "../assets/apology.jpg";
 import datenight from "../assets/datenight.jpg";
 import vector from "../assets/Vector.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/GiftHer.png";
+import { setSelectedEvent } from "../store/giftSlice";
 
 // Mock theme object - replace with your actual theme
 const theme = {
@@ -17,39 +20,35 @@ const theme = {
   blackSecondary: "#666666",
 };
 
-// Mock navigation prop
-interface NavigationProp {
-  navigate: (screen: string) => void;
-}
-
-interface Props {
-  navigation?: NavigationProp;
-}
-
-// Mock upcoming events data - replace with your actual data
+// Updated events data with event keys that match your Redux store
 const upcomimgEvents = [
   {
     image: birthday,
     eventName: "Her Birthday",
     date: "September 30",
+    eventKey: "birthday", // This key matches your Redux store
   },
   {
     image: aniversery,
     eventName: "Anniversary",
     date: "October 15",
+    eventKey: "anniversary",
   },
   {
     image: mothersday,
     eventName: "Mother's Day",
     date: "September 30th",
+    eventKey: "mothersday",
   },
   {
     image: apology,
     eventName: "Apology",
+    eventKey: "apology",
   },
   {
     image: datenight,
     eventName: "Date Night",
+    eventKey: "datenight",
   },
 ];
 
@@ -84,13 +83,30 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   );
 };
 
-const HomeScreen: React.FC<Props> = ({ navigation }) => {
+const HomeScreen: React.FC = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // Get gifts data from Redux store
+  const { eventGifts } = useSelector((state: any) => state.gifts);
+
+  const handleEventClick = (eventKey: string, eventName: string) => {
+    // Set the selected event in Redux store
+    dispatch(setSelectedEvent({ key: eventKey, name: eventName }));
+
+    // Navigate to moments/gifts screen with the selected event
+    navigate("/moment", {
+      state: {
+        eventKey,
+        eventName,
+        gifts: eventGifts[eventKey] || [],
+      },
+    });
+  };
+
   const handleNavigate = (screen: string) => {
-    if (navigation) {
-      navigation.navigate(screen);
-    } else {
-      console.log(`Navigate to ${screen}`);
-    }
+    console.log(`Navigate to ${screen}`);
+    // Add your navigation logic here
   };
 
   return (
@@ -122,7 +138,9 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                   <div
                     key={index}
                     className="flex-shrink-0 cursor-pointer"
-                    onClick={() => handleNavigate("MomentsGiftsScreen")}
+                    onClick={() =>
+                      handleEventClick(item.eventKey, item.eventName)
+                    }
                   >
                     <div
                       className="relative w-[calc(100vw-30px)] max-w-[370px] h-[600px] bg bg-cover bg-center bg-no-repeat rounded-lg overflow-hidden flex items-center justify-center"
@@ -142,22 +160,26 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                           <p className="text-base text-white text-center font-montserrat">
                             {item.date}
                           </p>
+                          {/* Show gift count */}
+                          <p className="text-sm text-white text-center font-montserrat mt-2 opacity-80">
+                            {eventGifts[item.eventKey]?.length || 0} gifts
+                            available
+                          </p>
                         </div>
                       </div>
 
                       {/* Bottom Button Container */}
-                      <Link
-                        to="/moment"
-                        className="absolute bottom-8 left-0 right-0 flex items-center justify-center px-8"
-                      >
+                      <div className="absolute bottom-8 left-0 right-0 flex items-center justify-center px-8">
                         <CustomButton
-                          onPress={() => handleNavigate("MomentsGiftsScreen")}
+                          onPress={() =>
+                            handleEventClick(item.eventKey, item.eventName)
+                          }
                           style="w-full max-w-[341px] rounded-lg "
                           variant="transparent"
                         >
                           <p className="font-montserrat">Plan an Event</p>
                         </CustomButton>
-                      </Link>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -197,15 +219,27 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                     MOMENTS
                   </h2>
                   <CustomButton
-                    onPress={() => handleNavigate("MomentsScreen")}
+                    onPress={() => {
+                      dispatch(
+                        setSelectedEvent({
+                          key: "justbecause",
+                          name: "Just Because",
+                        })
+                      );
+                      navigate("/moment", {
+                        state: {
+                          eventKey: "justbecause",
+                          eventName: "Just Because",
+                          gifts: eventGifts["justbecause"] || [],
+                        },
+                      });
+                    }}
                     style="w-[341px] rounded-lg"
                     variant="transparent"
                   >
-                    <Link to="/moment">
-                      <span className="text-white font-medium font-montserrat">
-                        Begin with Moments
-                      </span>
-                    </Link>
+                    <span className="text-white font-medium font-montserrat">
+                      Begin with Moments
+                    </span>
                   </CustomButton>
                 </div>
               </div>
@@ -231,7 +265,21 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                     GIFTS
                   </h2>
                   <CustomButton
-                    onPress={() => handleNavigate("GiftsScreen")}
+                    onPress={() => {
+                      dispatch(
+                        setSelectedEvent({
+                          key: "justbecause",
+                          name: "Just Because",
+                        })
+                      );
+                      navigate("/gifts", {
+                        state: {
+                          eventKey: "justbecause",
+                          eventName: "Just Because",
+                          gifts: eventGifts["justbecause"] || [],
+                        },
+                      });
+                    }}
                     style="w-[341px] rounded-lg"
                     variant="transparent"
                   >

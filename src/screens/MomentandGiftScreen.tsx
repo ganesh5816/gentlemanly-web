@@ -2,17 +2,8 @@ import React, { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import momentbg from "../assets/momentsbackground.jpg";
 import giftbg from "../assets/giftsbackground.jpg";
-import { Link } from "react-router-dom";
-
-// Mock navigation prop
-interface NavigationProp {
-  goBack: () => void;
-  navigate: (screen: string) => void;
-}
-
-interface Props {
-  navigation?: NavigationProp;
-}
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // Custom Button Component
 interface CustomButtonProps {
@@ -45,11 +36,23 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   );
 };
 
-const MomentsGiftsScreen: React.FC<Props> = () => {
+const MomentsGiftsScreen: React.FC = () => {
   const [expandedSection, setExpandedSection] = useState<
     "moments" | "gifts" | null
   >(null);
   const [isAnimating, setIsAnimating] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Get event data passed from HomeScreen
+  const { eventKey, eventName, gifts } = location.state || {};
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { eventGifts } = useSelector((state: any) => state.gifts);
+
+  // Use gifts from navigation state or fallback to Redux store
+  const availableGifts = gifts || eventGifts[eventKey] || [];
 
   const handleMomentsPress = () => {
     if (isAnimating) return;
@@ -57,14 +60,11 @@ const MomentsGiftsScreen: React.FC<Props> = () => {
     setIsAnimating(true);
 
     if (expandedSection === "moments") {
-      // Collapse back to equal sections
       setExpandedSection(null);
     } else {
-      // Expand moments section
       setExpandedSection("moments");
     }
 
-    // Reset animation flag after animation duration
     setTimeout(() => setIsAnimating(false), 300);
   };
 
@@ -74,15 +74,34 @@ const MomentsGiftsScreen: React.FC<Props> = () => {
     setIsAnimating(true);
 
     if (expandedSection === "gifts") {
-      // Collapse back to equal sections
       setExpandedSection(null);
     } else {
-      // Expand gifts section
       setExpandedSection("gifts");
     }
 
-    // Reset animation flag after animation duration
     setTimeout(() => setIsAnimating(false), 300);
+  };
+
+  const handleBeginWithMoments = () => {
+    // Navigate to moments/moment details screen
+    navigate("/momentDetails", {
+      state: {
+        eventKey,
+        eventName,
+        gifts: availableGifts,
+      },
+    });
+  };
+
+  const handleBeginWithGifts = () => {
+    // Navigate to gifts screen with specific gifts for this event
+    navigate("/gifts", {
+      state: {
+        eventKey,
+        eventName,
+        gifts: availableGifts,
+      },
+    });
   };
 
   // Calculate heights based on expanded section
@@ -110,13 +129,21 @@ const MomentsGiftsScreen: React.FC<Props> = () => {
         </Link>
       </div>
 
+      {/* Event Title (Optional - shows which event was selected) */}
+      {eventName && (
+        <div className="absolute top-5 left-1/2 transform -translate-x-1/2 z-40">
+          <h2 className="text-white text-lg font-medium text-center bg-black bg-opacity-50 px-4 py-2 rounded-lg">
+            {eventName}
+          </h2>
+        </div>
+      )}
+
       {/* MOMENTS Section */}
       <div
         className={`w-full transition-all duration-300 ease-in-out ${getMomentsHeight()}`}
       >
         <div
-          onDrag={handleMomentsPress}
-          className="w-full h-full block active:opacity-90 transition-opacity duration-150"
+          className="w-full h-full block active:opacity-90 transition-opacity duration-150 cursor-pointer"
           onClick={handleMomentsPress}
         >
           <div
@@ -137,20 +164,19 @@ const MomentsGiftsScreen: React.FC<Props> = () => {
                 </h1>
                 <p className="text-base text-white text-center mb-8 font-montserrat">
                   {expandedSection === "moments"
-                    ? "Tap again to collapse"
+                    ? "Create a special moment for your gift"
                     : "Choose a moment first."}
                 </p>
                 {expandedSection === "moments" && (
-                  <Link to="/momentDetails">
-                    <CustomButton
-                      style="w-[341px] rounded-lg"
-                      variant="transparent"
-                    >
-                      <span className="text-white font-medium font-montserrat">
-                        Begin with Moments
-                      </span>
-                    </CustomButton>
-                  </Link>
+                  <CustomButton
+                    onPress={handleBeginWithMoments}
+                    style="w-[341px] rounded-lg"
+                    variant="transparent"
+                  >
+                    <span className="text-white font-medium font-montserrat">
+                      Begin with Moments
+                    </span>
+                  </CustomButton>
                 )}
               </div>
             </div>
@@ -163,9 +189,8 @@ const MomentsGiftsScreen: React.FC<Props> = () => {
         className={`w-full transition-all duration-300 ease-in-out ${getGiftsHeight()}`}
       >
         <div
-          className="w-full h-full block active:opacity-90 transition-opacity duration-150"
+          className="w-full h-full block active:opacity-90 transition-opacity duration-150 cursor-pointer"
           onClick={handleGiftsPress}
-          onDrag={handleGiftsPress}
         >
           <div
             className="w-full h-full bg-cover bg-center relative"
@@ -185,15 +210,18 @@ const MomentsGiftsScreen: React.FC<Props> = () => {
                 </h1>
                 <p className="text-base text-white text-center mb-8 font-montserrat">
                   {expandedSection === "gifts"
-                    ? "Tap again to collapse"
+                    ? `${availableGifts.length} gifts available for ${
+                        eventName || "this event"
+                      }`
                     : "Choose a gift first."}
                 </p>
                 {expandedSection === "gifts" && (
                   <CustomButton
+                    onPress={handleBeginWithGifts}
                     style="w-[341px] rounded-lg"
                     variant="transparent"
                   >
-                    <span className="text-white font-mediumfont-montserrat">
+                    <span className="text-white font-medium font-montserrat">
                       Begin with Gifts
                     </span>
                   </CustomButton>
