@@ -420,24 +420,25 @@ const ShoppingSwipeUI = () => {
           <button
             onClick={handleDislikeProduct}
             disabled={currentIndex >= filteredProducts.length}
-            className={`p-4 rounded-full bg-white shadow-md mr-20 transition-opacity ${
+            className={`p-4 rounded-full bg-white shadow-[0px_0px_12px_0px_#0000000F] mr-20 transition-opacity ${
               currentIndex >= filteredProducts.length
                 ? "opacity-50 cursor-not-allowed"
                 : "hover:shadow-lg"
             }`}
           >
-            <X className="text-red-500" size={28} />
+            <X strokeWidth={4} className="text-red-500" size={28} />
           </button>
+
           <button
             onClick={handleLikeProduct}
             disabled={currentIndex >= filteredProducts.length}
-            className={`p-4 rounded-full bg-white shadow-md transition-opacity ${
+            className={`p-4 rounded-full bg-white shadow-[0px_0px_12px_0px_#0000000F] transition-opacity ${
               currentIndex >= filteredProducts.length
                 ? "opacity-50 cursor-not-allowed"
                 : "hover:shadow-lg"
             }`}
           >
-            <Check className="text-green-500" size={28} />
+            <Check strokeWidth={4} className="text-green-500" size={28} />
           </button>
         </div>
       )}

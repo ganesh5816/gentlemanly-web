@@ -487,7 +487,7 @@ const SwipeGiftsScreen: React.FC = () => {
                 : "hover:shadow-lg"
             }`}
           >
-            <X className="text-red-500" size={28} />
+            <X strokeWidth={3} className="text-red-500" size={28} />
           </button>
           <button
             onClick={handleLikeGift}
@@ -498,7 +498,7 @@ const SwipeGiftsScreen: React.FC = () => {
                 : "hover:shadow-lg"
             }`}
           >
-            <Check className="text-green-500" size={28} />
+            <Check strokeWidth={3} className="text-green-500" size={28} />
           </button>
         </div>
       )}

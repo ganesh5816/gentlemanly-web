@@ -15,8 +15,6 @@ import moment2video from "../assets/picnic.mp4";
 import { Link, useNavigate } from "react-router-dom";
 import moment1 from "../assets/pottery.jpg";
 import moment2 from "../assets/picnic.jpg";
-// import dress from "../assets/dress.jpg";
-// import shoesframe from "../assets/Frame283.png";
 import datenight from "../assets/datenight.jpg";
 import secondshoes from "../assets/2nddress.jpg";
 import picnicdress from "../assets/shirt.jpg";

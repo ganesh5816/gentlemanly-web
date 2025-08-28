@@ -450,10 +450,6 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
     return filteredGifts.slice(currentIndex, currentIndex + 3);
   };
 
-  const goBack = () => {
-    navigate(-1); // Navigate back to previous screen
-  };
-
   const goToCart = () => {
     // Navigate to cart/checkout screen with selected gifts
     navigate("/cart", {
@@ -488,7 +484,7 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
         {/* Header */}
         <div className="flex absolute top-8 px-8 right-0 left-0 justify-between items-center gap-8 mt-6 z-10">
           <button
-            onClick={goBack}
+            onClick={() => navigate("/home")}
             className="w-10 h-10 rounded-full border-2 border-gray-600 bg-transparent flex items-center justify-center hover:bg-gray-800 transition-colors"
           >
             <ArrowLeft className="text-white" size={24} />
@@ -531,10 +527,7 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
                 {eventName || "this event"}.
               </p>
 
-              <button
-                onClick={goBack}
-                className="w-full bg-gray-200 hover:bg-gray-300 text-[#79756C] font-[14px] py-3 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat"
-              >
+              <button className="w-full bg-gray-200 hover:bg-gray-300 text-[#79756C] font-[14px] py-3 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat">
                 Go Back
               </button>
             </div>
@@ -551,7 +544,7 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
         {/* Header */}
         <div className="flex absolute top-8 px-8 right-0 left-0 justify-between items-center gap-8 mt-6 z-10">
           <button
-            onClick={goBack}
+            // onClick={goBack}
             className="w-10 h-10 rounded-full border-2 border-gray-600 bg-transparent flex items-center justify-center hover:bg-gray-800 transition-colors"
           >
             <ArrowLeft className="text-white" size={24} />
@@ -622,7 +615,7 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
       {/* Header */}
       <div className="flex absolute top-8 px-8 right-0 left-0 justify-between items-center gap-8 mt-6 z-10">
         <button
-          onClick={goBack}
+          // onClick={goBack}
           className="w-10 h-10 rounded-full border-2 border-gray-600 bg-transparent flex items-center justify-center hover:bg-gray-800 transition-colors"
         >
           <ArrowLeft className="text-white" size={24} />
@@ -795,7 +788,7 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
                 : "hover:shadow-lg"
             }`}
           >
-            <X className="text-red-500" size={28} />
+            <X strokeWidth={3} className="text-red-500" size={28} />
           </button>
           <button
             onClick={handleLikeGift}
@@ -806,7 +799,7 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
                 : "hover:shadow-lg"
             }`}
           >
-            <Check className="text-green-500" size={28} />
+            <Check strokeWidth={3} className="text-green-500" size={28} />
           </button>
         </div>
       )}
