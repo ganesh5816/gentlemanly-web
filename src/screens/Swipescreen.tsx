@@ -10,7 +10,10 @@ const ShoppingSwipeUI = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [products, setProducts] = useState<any[]>([]);
-  const [likedProducts, setLikedProducts] = useState<any[]>([]); // New state for liked products
+  const [likedProducts, setLikedProducts] = useState<any[]>([]);
+  const [removedProducts, setRemovedProducts] = useState<Set<string>>(
+    new Set()
+  ); // Track removed products
   const constraintsRef = useRef(null);
 
   // Load moment-specific products on component mount
@@ -34,12 +37,11 @@ const ShoppingSwipeUI = () => {
     if (likedProducts.length > 0) {
       const cartData = {
         products: likedProducts,
-        momentTitle: "My Selected Items", // You can customize this or get it from somewhere else
+        momentTitle: "My Selected Items",
         timestamp: Date.now(),
       };
       localStorage.setItem("selectedMomentProducts", JSON.stringify(cartData));
     } else {
-      // Clear localStorage if no liked products
       localStorage.removeItem("selectedMomentProducts");
     }
   }, [likedProducts]);
@@ -56,7 +58,6 @@ const ShoppingSwipeUI = () => {
   };
 
   const addToLikedProducts = (product: any) => {
-    // Check if product is already in liked products to avoid duplicates
     const isAlreadyLiked = likedProducts.some(
       (likedProduct) => likedProduct.id === product.id
     );
@@ -65,20 +66,53 @@ const ShoppingSwipeUI = () => {
     }
   };
 
-  // FIXED: Separate function for liking a product
-  const handleLikeProduct = () => {
-    if (products[currentIndex]) {
-      addToLikedProducts(products[currentIndex]);
-    }
-    setExitDirection(1);
-    setCurrentIndex(currentIndex + 1);
+  // Get filtered products (excluding removed ones)
+  const getFilteredProducts = () => {
+    return products.filter((product) => !removedProducts.has(product.id));
   };
 
-  // FIXED: Just navigate backward
-  const handlePrev = () => {
-    if (currentIndex > 0) {
-      setExitDirection(-1);
-      setCurrentIndex(currentIndex - 1);
+  // Function for liking a product (right swipe/check button)
+  const handleLikeProduct = () => {
+    const filteredProducts = getFilteredProducts();
+    if (filteredProducts[currentIndex]) {
+      addToLikedProducts(filteredProducts[currentIndex]);
+    }
+    moveToNextProduct(1);
+  };
+
+  // Function for disliking a product (left swipe/X button)
+  const handleDislikeProduct = () => {
+    const filteredProducts = getFilteredProducts();
+    if (filteredProducts[currentIndex]) {
+      // Add product to removed set
+      setRemovedProducts(
+        (prev) => new Set([...prev, filteredProducts[currentIndex].id])
+      );
+    }
+    moveToNextProduct(-1);
+  };
+
+  // Helper function to move to next available product
+  const moveToNextProduct = (direction: number) => {
+    setExitDirection(direction);
+    const filteredProducts = getFilteredProducts();
+
+    // If we're at the last product, stay at the end
+    if (currentIndex >= filteredProducts.length - 1) {
+      setCurrentIndex(filteredProducts.length);
+    } else {
+      // Check if the next product exists after filtering
+      const nextIndex = currentIndex + 1;
+      const nextFilteredProducts = products.filter(
+        (product) => !removedProducts.has(product.id)
+      );
+
+      if (nextIndex < nextFilteredProducts.length) {
+        setCurrentIndex(nextIndex);
+      } else {
+        // If no more products after filtering, go to end
+        setCurrentIndex(nextFilteredProducts.length);
+      }
     }
   };
 
@@ -89,18 +123,25 @@ const ShoppingSwipeUI = () => {
 
   const handleDragEnd = (_event: any, { offset, velocity }: any) => {
     const swipe = swipePower(offset.x, velocity.x);
+    const filteredProducts = getFilteredProducts();
 
-    if (swipe > swipeConfidenceThreshold && currentIndex < products.length) {
+    if (
+      swipe > swipeConfidenceThreshold &&
+      currentIndex < filteredProducts.length
+    ) {
       // Right swipe (like) - add to liked products
-      if (products[currentIndex]) {
-        addToLikedProducts(products[currentIndex]);
+      if (filteredProducts[currentIndex]) {
+        addToLikedProducts(filteredProducts[currentIndex]);
       }
-      setExitDirection(-1);
-      setCurrentIndex(currentIndex + 1);
-    } else if (swipe < -swipeConfidenceThreshold && currentIndex > 0) {
-      // Left swipe (dislike) - don't add to cart
-      setExitDirection(1);
-      setCurrentIndex(currentIndex - 1);
+      moveToNextProduct(1);
+    } else if (swipe < -swipeConfidenceThreshold) {
+      // Left swipe (dislike) - remove from UI
+      if (filteredProducts[currentIndex]) {
+        setRemovedProducts(
+          (prev) => new Set([...prev, filteredProducts[currentIndex].id])
+        );
+      }
+      moveToNextProduct(-1);
     }
   };
 
@@ -126,17 +167,92 @@ const ShoppingSwipeUI = () => {
   };
 
   const getVisibleProducts = () => {
-    return products.slice(currentIndex, currentIndex + 3);
+    const filteredProducts = getFilteredProducts();
+    return filteredProducts.slice(currentIndex, currentIndex + 3);
   };
 
   // Check if we're at the end (showing the gift selection screen)
-  const isAtEnd = currentIndex >= products.length;
+  const filteredProducts = getFilteredProducts();
+  const isAtEnd = currentIndex >= filteredProducts.length;
 
   // Don't render anything if products haven't loaded yet
   if (products.length === 0) {
     return (
       <div className="min-h-screen w-full flex items-center justify-center bg-black">
         <div className="text-white text-lg">Loading products...</div>
+      </div>
+    );
+  }
+
+  // If all products are removed, show end screen
+  if (filteredProducts.length === 0) {
+    return (
+      <div className="min-h-screen w-full relative flex flex-col">
+        {/* Header */}
+        <div className="flex absolute top-8 px-8 right-0 left-0 justify-between items-center gap-8 mt-6 z-10">
+          <Link
+            to="/stories"
+            className="w-10 h-10 rounded-full border-2 border-gray-600 bg-transparent flex items-center justify-center hover:bg-gray-800 transition-colors"
+          >
+            <ArrowLeft className="text-white" size={24} />
+          </Link>
+
+          <div className="relative">
+            <button className="w-10 h-10 rounded-full border-2 border-gray-600 bg-transparent flex items-center justify-center hover:bg-gray-800 transition-colors">
+              <Link to="/cart">
+                <ShoppingBag className="text-white" size={24} />
+              </Link>
+            </button>
+            {likedProducts.length > 0 && (
+              <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {likedProducts.length}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Background */}
+        <div className="flex-1 bg-black"></div>
+        <div className="flex-1 bg-white"></div>
+
+        {/* End Screen */}
+        <div className="absolute inset-0 flex items-center justify-center p-3">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="w-full max-w-md mx-auto px-8 text-center"
+          >
+            <div className="bg-gray-900 rounded-lg p-8 text-white">
+              <h1 className="text-[22px] font-times font-semibold mb-4 leading-tight">
+                No more products to show!
+              </h1>
+
+              <p className="text-md font-montserrat mb-8 text-gray-300">
+                You've gone through all the products. Want to start over or
+                create your moment?
+              </p>
+
+              <div className="space-y-4">
+                <button
+                  onClick={() => {
+                    setRemovedProducts(new Set());
+                    setCurrentIndex(0);
+                  }}
+                  className="w-full bg-gray-200 mb-4 hover:bg-gray-300 text-[#79756C] font-[14px] py-3 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat"
+                >
+                  Start Over
+                </button>
+
+                <Link to="/makeitYours">
+                  <button className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat">
+                    Create my Moment
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     );
   }
@@ -161,7 +277,6 @@ const ShoppingSwipeUI = () => {
               <ShoppingBag className="text-white" size={24} />
             </Link>
           </button>
-          {/* Cart Badge */}
           {likedProducts.length > 0 && (
             <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
               {likedProducts.length}
@@ -211,9 +326,9 @@ const ShoppingSwipeUI = () => {
 
             {/* Main interactive card */}
             <AnimatePresence initial={false} custom={exitDirection}>
-              {products[currentIndex] && (
+              {filteredProducts[currentIndex] && (
                 <motion.div
-                  key={products[currentIndex].id}
+                  key={filteredProducts[currentIndex].id}
                   custom={exitDirection}
                   variants={variants}
                   initial="enter"
@@ -238,21 +353,21 @@ const ShoppingSwipeUI = () => {
                     className="w-full h-[320px] relative cursor-pointer"
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleImageClick(products[currentIndex], e);
+                      handleImageClick(filteredProducts[currentIndex], e);
                     }}
                   >
                     <img
-                      src={products[currentIndex].image}
-                      alt={products[currentIndex].name}
+                      src={filteredProducts[currentIndex].image}
+                      alt={filteredProducts[currentIndex].name}
                       className="w-full h-full object-cover pointer-events-none"
                     />
                   </div>
                   <div className="p-4">
                     <h2 className="text-lg font-bold">
-                      {products[currentIndex].name}
+                      {filteredProducts[currentIndex].name}
                     </h2>
                     <p className="text-[#3C5A72] font-medium">
-                      {products[currentIndex].price}
+                      {filteredProducts[currentIndex].price}
                     </p>
                   </div>
                 </motion.div>
@@ -279,14 +394,17 @@ const ShoppingSwipeUI = () => {
 
               <div className="space-y-4">
                 <button
-                  onClick={() => setCurrentIndex(0)}
+                  onClick={() => {
+                    setRemovedProducts(new Set());
+                    setCurrentIndex(0);
+                  }}
                   className="w-full bg-gray-200 mb-4 hover:bg-gray-300 text-[#79756C] font-[14px] py-3 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat"
                 >
                   Continue Shopping
                 </button>
 
                 <Link to="/makeitYours">
-                  <button className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2  px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat">
+                  <button className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat">
                     Create my Moment
                   </button>
                 </Link>
@@ -300,10 +418,10 @@ const ShoppingSwipeUI = () => {
       {!isAtEnd && (
         <div className="flex absolute bottom-8 right-0 left-0 justify-center gap-8 mt-6 z-10">
           <button
-            onClick={handlePrev}
-            disabled={currentIndex === 0}
+            onClick={handleDislikeProduct}
+            disabled={currentIndex >= filteredProducts.length}
             className={`p-4 rounded-full bg-white shadow-md mr-20 transition-opacity ${
-              currentIndex === 0
+              currentIndex >= filteredProducts.length
                 ? "opacity-50 cursor-not-allowed"
                 : "hover:shadow-lg"
             }`}
@@ -311,10 +429,10 @@ const ShoppingSwipeUI = () => {
             <X className="text-red-500" size={28} />
           </button>
           <button
-            onClick={handleLikeProduct} // FIXED: Now uses handleLikeProduct instead of handleNext
-            disabled={currentIndex === products.length}
+            onClick={handleLikeProduct}
+            disabled={currentIndex >= filteredProducts.length}
             className={`p-4 rounded-full bg-white shadow-md transition-opacity ${
-              currentIndex === products.length
+              currentIndex >= filteredProducts.length
                 ? "opacity-50 cursor-not-allowed"
                 : "hover:shadow-lg"
             }`}
@@ -327,7 +445,7 @@ const ShoppingSwipeUI = () => {
       {/* Progress indicator */}
       {!isAtEnd && (
         <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
-          {products.map((_, index) => (
+          {filteredProducts.map((_, index) => (
             <div
               key={index}
               className={`w-2 h-2 rounded-full transition-colors ${

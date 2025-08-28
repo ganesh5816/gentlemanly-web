@@ -76,7 +76,8 @@ const MvdWelcomeScreen: React.FC<Props> = () => {
 
           {/* Subtitle */}
           <p className="text-white text-lg leading-6  mb-10 max-w-md font-montserrat">
-            Everything you need to plan unforgettable moments, all in one place.
+            Be the man who always gets it right—every occasion remembered, every
+            gift perfected, every moment unforgettable.
           </p>
 
           {/* Button */}
@@ -87,7 +88,7 @@ const MvdWelcomeScreen: React.FC<Props> = () => {
                 variant="transparent"
                 style="w-full"
               >
-                <span className="text-white font-medium font-sans">
+                <span className="text-white font-medium font-montserrat">
                   Go To My Dashboard
                 </span>
               </CustomButton>

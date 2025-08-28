@@ -135,7 +135,7 @@ const MomentsGiftsScreen: React.FC<Props> = () => {
                 >
                   MOMENTS
                 </h1>
-                <p className="text-base text-white text-center mb-8 font-montserra">
+                <p className="text-base text-white text-center mb-8 font-montserrat">
                   {expandedSection === "moments"
                     ? "Tap again to collapse"
                     : "Choose a moment first."}
@@ -183,10 +183,10 @@ const MomentsGiftsScreen: React.FC<Props> = () => {
                 >
                   GIFTS
                 </h1>
-                <p className="text-base text-white text-center mb-8 font-montserra">
+                <p className="text-base text-white text-center mb-8 font-montserrat">
                   {expandedSection === "gifts"
                     ? "Tap again to collapse"
-                    : "Select a gift first."}
+                    : "Choose a gift first."}
                 </p>
                 {expandedSection === "gifts" && (
                   <CustomButton

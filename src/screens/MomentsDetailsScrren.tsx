@@ -10,16 +10,14 @@ import {
   ArrowLeft,
   Minus,
 } from "lucide-react";
-// import moment1video from "../assets/mold.mp4";
+import moment1video from "../assets/mold.mp4";
 import moment2video from "../assets/picnic.mp4";
-import moment3video from "../assets/moment3.mp4";
 import { Link, useNavigate } from "react-router-dom";
-// import moment1 from "../assets/pottery.jpg";
+import moment1 from "../assets/pottery.jpg";
 import moment2 from "../assets/picnic.jpg";
-import moment3 from "../assets/datenight.jpg";
 // import dress from "../assets/dress.jpg";
 // import shoesframe from "../assets/Frame283.png";
-// import dinner from "../assets/dinner.jpg";
+import datenight from "../assets/datenight.jpg";
 import secondshoes from "../assets/2nddress.jpg";
 import picnicdress from "../assets/shirt.jpg";
 import skirt from "../assets/skirt.jpg";
@@ -35,68 +33,32 @@ import wine from "../assets/wine.jpg";
 import dressred from "../assets/dressred.jpg";
 
 const stories = [
-  // {
-  //   id: 1,
-  //   title: "MOLD & MEMORIES",
-  //   subtitle: "Shape love with clay",
-  //   tagline: "Get your hands messy and your hearts full.",
-  //   description:
-  //     "Spin the wheel, shape something real, and create more than just pottery, create memories. Whether you're beginners or pros, it's about the laughs, the smudges, and the moments in between.",
-  //   whatsIncluded: [
-  //     "All pottery materials and tools provided",
-  //     "Professional instruction and guidance",
-  //     "Your finished pieces fired and glazed",
-  //   ],
-  //   whyYoullLove: [
-  //     "Perfect for slow, meaningful connection",
-  //     "Great for fun and creativity",
-  //     "You leave with handmade souvenirs of your time together",
-  //   ],
-  //   duration: "1.5 - 2 hours",
-  //   location: "Local pottery studio",
-  //   priceRange: "$150.00 - $800.00",
-  //   image: moment1,
-  //   detailImage: moment1video,
-  //   products: [
-  //     {
-  //       id: 1,
-  //       name: "Ankle-cuff heeled sandals",
-  //       price: "$45.00",
-  //       image: shoesframe,
-  //       description:
-  //         "Crafted from luxurious materials, these ankle-cuff heeled sandals blend timeless elegance with everyday comfort. Perfect for your pottery date look.",
-  //     },
-  //     {
-  //       id: 2,
-  //       name: "White A-line Dress",
-  //       price: "$25.00",
-  //       image: dress,
-  //       description:
-  //         "A beautiful white A-line dress that's perfect for creative dates. Comfortable yet stylish, ideal for getting a little messy while staying chic.",
-  //     },
-  //   ],
-  // },
   {
     id: 23,
     title: "POETTRY DATE GIFT",
-    subtitle: "An Evening of Romance & Elegance",
-    tagline: "Disconnect to reconnect under the stars.",
+    subtitle: "Shape love with clay",
+    tagline: "Get your hands messy and your hearts full",
     description:
-      "Dress up for a night of fine dining, enchanting music, and unforgettable moments, complete with stylish gifts for the evening.",
+      "Spin the wheel, shape something real, and create more than just pottery, create memories. Whether you're beginners or pros, it's about the laughs, the smudges, and the moments in between",
     whatsIncluded: [
-      "Candle-lit dinner reservation",
-      "Bottle of wine or champagne",
-      "Private car service (optional)",
+      "Pottery session for two",
+      "All materials and tools provided",
+      "Guided support from a local artisan",
+      "Take home your own handmade pieces",
+      "Refreshments during the session",
+      "Gift: A Pleated White Shirt",
+      "Gift: Dark Blue Denim Skirt",
+      "Gift: Shoes",
     ],
     whyYoullLove: [
       "Creates a glamorous",
       "intimate atmosphere that makes her feel special while giving thoughtful gifts to enhance the experience",
     ],
     duration: "4–5 hours",
-    location: "Upscale restaurant or rooftop venue",
-    priceRange: "$250.00 - $600.00",
-    image: moment3,
-    detailImage: moment3video,
+    location: "Local Pottery Studio",
+    priceRange: "2050.00",
+    image: moment1,
+    detailImage: moment1video,
     products: [
       {
         id: 1,
@@ -127,19 +89,20 @@ const stories = [
   {
     id: 2,
     title: "SUNSET PICNIC",
-    subtitle: "Golden hour moments",
+    subtitle: "A Blissful Day Under the Open Sky",
     tagline: "A Blissful Day Under the Open Sky",
     description:
       "Relax together outdoors with a thoughtfully curated picnic experience, paired with accessories and outfits for the perfect vibe.",
     whatsIncluded: [
-      "Picnic setup with blanket & cushions",
+      " Picnic setup with blanket & cushions",
       "Gourmet snacks & drinks",
       "Fresh flower bouquet",
+      "Soft background music",
+      "Gift: Floral dress for her",
+      "Gift: Matching sunhat or scarf",
     ],
     whyYoullLove: [
-      "Intimate moments in nature's best light",
-      "Instagram-worthy golden hour photos",
-      "Quality time away from distractions",
+      "   Perfect for connecting, enjoying nature, and making memories in a cozy, romantic setting.",
     ],
     duration: "2 - 3 hours",
     location: "Scenic overlook points",
@@ -192,24 +155,25 @@ const stories = [
   {
     id: 3,
     title: "Dinner Date",
-    subtitle: "Golden hour moments",
+    subtitle: "An Evening of Romance & Elegance",
     tagline: "A Blissful Day Under the Open Sky",
     description:
-      "Relax together outdoors with a thoughtfully curated picnic experience, paired with accessories and outfits for the perfect vibe.",
+      "Dress up for a night of fine dining, enchanting music, and unforgettable moments, complete with stylish gifts for the evening.",
     whatsIncluded: [
-      "Picnic setup with blanket & cushions",
-      "Gourmet snacks & drinks",
-      "Fresh flower bouquet",
+      "Candle-lit dinner reservation",
+      "Bottle of wine or champagne",
+      "Private car service (optional)",
+      "Gift: Elegant dress or outfit for her",
+      "Gift: High end Bag",
+      "Gift: Luxury Brand Shoes",
     ],
     whyYoullLove: [
-      "Intimate moments in nature's best light",
-      "Instagram-worthy golden hour photos",
-      "Quality time away from distractions",
+      "Creates a glamorous, intimate atmosphere that makes her feel special while giving thoughtful gifts to enhance the experience.",
     ],
     duration: "2 - 3 hours",
     location: "Scenic overlook points",
-    priceRange: "$120.00 - $450.00",
-    image: moment2,
+    priceRange: "$450.00",
+    image: datenight,
     detailImage: moment2video,
     products: [
       {
@@ -287,7 +251,9 @@ const ProductSlider = ({ products }: any) => {
   const scrollRef = useRef(null);
 
   return (
-    <div className="relative mt-4">
+    <div className="relative">
+      {" "}
+      {/* Removed mt-4 that might cause issues */}
       <div
         ref={scrollRef}
         className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide"
@@ -297,7 +263,9 @@ const ProductSlider = ({ products }: any) => {
         }}
       >
         {products?.map((product: any, index: any) => (
-          <div key={product.id || index} className="flex-shrink-0 w-44 mt-4">
+          <div key={product.id || index} className="flex-shrink-0 w-44">
+            {" "}
+            {/* Removed mt-4 */}
             <div className="bg-gray-50 overflow-hidden mb-3 aspect-square">
               <img
                 src={product.image}
@@ -308,7 +276,7 @@ const ProductSlider = ({ products }: any) => {
             <h3 className="text-sm font-times font-medium text-gray-900 mb-1 line-clamp-2">
               {product.name}
             </h3>
-            <p className="text-sm text-gray-600 font-montserrat font-semibold">
+            <p className="text-sm text-gray-500 font-montserrat font-semibold">
               {product.price}
             </p>
           </div>
@@ -550,12 +518,18 @@ const StoriesUI = () => {
             </button>
           </div>
         </div>
+        <div className="flex justify-between items-center mt-5   px-6">
+          <p className="text-lg font-montserrat  text-gray-500">price</p>
+          <p className="text-lg font-montserrat  text-gray-500">
+            ${story.priceRange}
+          </p>
+        </div>
 
-        <div className="p-6 space-y-6">
+        <div className="px-6  py-3 space-y-2">
           {/* Updated button to use handleMakeItYours */}
           <button
             onClick={handleMakeItYours}
-            className="w-full mt-4 bg-[#E7BD79] text-white py-3 text-[16px] rounded-lg font-medium font-montserrat"
+            className="w-full mt-4 bg-[#E7BD79] text-white mb-4 py-3 text-[16px] rounded-lg font-medium font-montserrat"
           >
             Make this Moment Yours
           </button>
@@ -568,7 +542,6 @@ const StoriesUI = () => {
               {story.description}
             </p>
           </div>
-
           <div className="border-t pt-6">
             <div className="flex items-center justify-between gap-2 mb-4">
               <span className="text-lg font-montserrat">What's Included</span>
@@ -587,25 +560,32 @@ const StoriesUI = () => {
             </div>
 
             <div
-              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+              className={`overflow-hidden transition-all duration-500 ease-in-out ${
                 isWhatsIncludedExpanded
-                  ? "max-h-96 opacity-100"
+                  ? "max-h-[2000px] opacity-100" // Increased max-height significantly
                   : "max-h-0 opacity-0"
               }`}
             >
-              <ul className="space-y-3 pt-2">
-                {story.whatsIncluded.map((item, idx) => (
-                  <li key={idx} className="text-gray-600 flex items-start">
-                    {item}
-                  </li>
-                ))}
-                {/* Products are displayed here but NOT added to cart automatically */}
-                <ProductSlider products={story.products} />
-              </ul>
+              <div className="pt-2 pb-4">
+                <ul className="space-y-3 mb-6">
+                  {story.whatsIncluded.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="text-gray-600 flex items-start font-montserrat"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className=" pt-4">
+                  <ProductSlider products={story.products} />
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="border-t pt-6">
+          <div className="border-t py-6">
             <h3 className="text-lg font-semibold mb-4 font-times">
               Why You'll Love It
             </h3>
@@ -617,40 +597,28 @@ const StoriesUI = () => {
               ))}
             </ul>
           </div>
-
           <div className="border-t pt-6 space-y-4">
-            <div className="flex w-full">
-              <div className="flex justify-between items-center w-full">
-                <span className="text-gray-500 text-sm font-montserrat">
-                  Duration
-                </span>
-                <p className="font-medium font-montserrat">{story.duration}</p>
-              </div>
+            <div className="flex justify-between items-center w-full">
+              <span className="text-gray-500 text-sm font-montserrat">
+                Duration
+              </span>
+              <p className="font-medium font-montserrat text-gray-500">
+                {story.duration}
+              </p>
             </div>
 
-            <div className="flex w-full">
-              <div className="flex justify-between items-center w-full">
-                <span className="text-gray-500 text-sm font-montserrat">
-                  Location
-                </span>
-                <p className="font-medium font-montserrat">{story.location}</p>
-              </div>
-            </div>
-
-            <div className="flex w-full">
-              <div className="flex justify-between items-center w-full">
-                <span className="text-gray-500 text-sm font-montserrat">
-                  Price Range
-                </span>
-                <p className="font-medium font-montserrat">
-                  {story.priceRange}
-                </p>
-              </div>
+            <div className="flex justify-between items-center w-full border-t pt-4">
+              <span className="text-gray-500 text-sm font-montserrat">
+                Location
+              </span>
+              <p className="font-medium font-montserrat text-gray-500">
+                {story.location}
+              </p>
             </div>
           </div>
 
-          {/* This button navigates to swipe UI without adding products to cart */}
           <button
+            style={{ marginTop: "30px" }}
             onClick={() => navigateToSwipeUI(story.id)}
             className="w-full bg-[#E7BD79] text-white font-montserrat text-[16px] py-3 rounded-lg text-lg"
           >
