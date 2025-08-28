@@ -260,21 +260,7 @@ const HomeScreen: React.FC = () => {
                     GIFTS
                   </h2>
                   <CustomButton
-                    onPress={() => {
-                      dispatch(
-                        setSelectedEvent({
-                          key: "justbecause",
-                          name: "Just Because",
-                        })
-                      );
-                      navigate("/gifts", {
-                        state: {
-                          eventKey: "justbecause",
-                          eventName: "Just Because",
-                          gifts: eventGifts["justbecause"] || [],
-                        },
-                      });
-                    }}
+                    onPress={() => navigate("/defaultgifts")}
                     style="w-[341px] rounded-lg"
                     variant="transparent"
                   >
