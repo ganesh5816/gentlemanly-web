@@ -72,7 +72,8 @@ const SwipeGiftsScreen: React.FC = () => {
     }
   };
 
-  const handleDragEnd = (event: any, info: any) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleDragEnd = (info: any) => {
     const threshold = 50;
     if (info.offset.x > threshold) {
       handleLikeGift();

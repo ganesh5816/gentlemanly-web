@@ -140,7 +140,8 @@ const initialState = {
         id: 9,
         name: "Pearl Set",
         price: "$150.00",
-        image: "perfume", // Replace with flower image
+        image:
+          "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/pearlset.jpg", // Replace with flower image
         description:
           "Beautiful arrangement of her favorite flowers with a heartfelt apology note.",
       },
@@ -148,7 +149,8 @@ const initialState = {
         id: 10,
         name: "Black Chanel Bag",
         price: "$85.00",
-        image: "dress", // Replace with chocolate image
+        image:
+          "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/91043a2d6f77b0f18a9b23c54257558a.jpg", // Replace with chocolate image
         description:
           "Premium chocolate collection to sweeten your apology and show you care.",
       },
@@ -156,7 +158,8 @@ const initialState = {
         id: 102,
         name: "White Coat",
         price: "$85.00",
-        image: "dress", // Replace with chocolate image
+        image:
+          "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/88a6c4cc5e01d7d520d926c780692a2e.jpg", // Replace with chocolate image
         description:
           "Premium chocolate collection to sweeten your apology and show you care.",
       },
@@ -164,7 +167,8 @@ const initialState = {
         id: 10,
         name: "LV Black Heels",
         price: "$85.00",
-        image: "dress", // Replace with chocolate image
+        image:
+          "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/dcf95caed2209c87620cfb348e2e0f5e.jpg", // Replace with chocolate image
         description:
           "Premium chocolate collection to sweeten your apology and show you care.",
       },
@@ -172,7 +176,8 @@ const initialState = {
         id: 10,
         name: "Pink Flowers",
         price: "$85.00",
-        image: "dress", // Replace with chocolate image
+        image:
+          "drehttps://gentemanly-web.s3.us-east-1.amazonaws.com/assets/797dcb2cb823bc1d8ee40eea8b2b440d.jpgss", // Replace with chocolate image
         description:
           "Premium chocolate collection to sweeten your apology and show you care.",
       },
