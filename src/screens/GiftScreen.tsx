@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, ShoppingBag, X, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -31,6 +32,46 @@ const SwipeGiftsScreen: React.FC = () => {
   const [selectedGift, setSelectedGift] = useState<Gift | null>(null);
   const [exitDirection, setExitDirection] = useState(0);
 
+  // Load existing liked gifts from localStorage on component mount
+  useEffect(() => {
+    const storedMomentData = localStorage.getItem("selectedMomentProducts");
+    if (storedMomentData) {
+      try {
+        const parsedData = JSON.parse(storedMomentData);
+        const existingProducts = parsedData.products || [];
+
+        // Convert existing products back to Gift format
+        const existingGifts: Gift[] = existingProducts.map((product: any) => ({
+          id: product.id.toString(),
+          name: product.name,
+          price: product.price,
+          image: product.image,
+          description: product.description,
+          category: product.category,
+        }));
+
+        setLikedGifts(existingGifts);
+      } catch (error) {
+        console.error("Error loading existing moment data:", error);
+      }
+    }
+  }, []);
+
+  // Save to localStorage whenever likedGifts changes
+  useEffect(() => {
+    if (likedGifts.length > 0) {
+      const cartData = {
+        products: likedGifts,
+        momentTitle: eventName || "My Selected Items",
+        timestamp: Date.now(),
+      };
+      localStorage.setItem("selectedMomentProducts", JSON.stringify(cartData));
+    } else {
+      // If no liked gifts, remove from localStorage
+      localStorage.removeItem("selectedMomentProducts");
+    }
+  }, [likedGifts, eventName]);
+
   const filteredGifts = giftsList.filter((gift) => !removedGifts.has(gift.id));
   const isAtEnd = currentIndex >= filteredGifts.length;
 
@@ -57,7 +98,13 @@ const SwipeGiftsScreen: React.FC = () => {
   const handleLikeGift = () => {
     if (currentIndex < filteredGifts.length) {
       const currentGift = filteredGifts[currentIndex];
-      setLikedGifts((prev) => [...prev, currentGift]);
+      setLikedGifts((prev) => {
+        // Check if gift is already liked to avoid duplicates
+        if (!prev.find((g) => g.id === currentGift.id)) {
+          return [...prev, currentGift];
+        }
+        return prev;
+      });
       setExitDirection(-1);
       setCurrentIndex((prev) => prev + 1);
     }
@@ -72,8 +119,7 @@ const SwipeGiftsScreen: React.FC = () => {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleDragEnd = (info: any) => {
+  const handleDragEnd = (_event: any, info: any) => {
     const threshold = 50;
     if (info.offset.x > threshold) {
       handleLikeGift();
@@ -94,9 +140,12 @@ const SwipeGiftsScreen: React.FC = () => {
   };
 
   const addToLikedGifts = (gift: Gift) => {
-    if (!likedGifts.find((g) => g.id === gift.id)) {
-      setLikedGifts((prev) => [...prev, gift]);
-    }
+    setLikedGifts((prev) => {
+      if (!prev.find((g) => g.id === gift.id)) {
+        return [...prev, gift];
+      }
+      return prev;
+    });
   };
 
   const getVisibleGifts = () => {
@@ -310,7 +359,7 @@ const SwipeGiftsScreen: React.FC = () => {
               .map((gift, index) => (
                 <motion.div
                   key={`${gift.id}-bg`}
-                  className="absolute w-full bg-white overflow-hidden text-center shadow-lg"
+                  className="absolute w-full bg-white overflow-hidden text-center"
                   style={{
                     zIndex: -index - 1,
                     transform: `scale(${0.95 - index * 0.05}) translateY(${
@@ -327,8 +376,12 @@ const SwipeGiftsScreen: React.FC = () => {
                     onClick={(e) => handleImageClick(gift, e)}
                   />
                   <div className="p-4">
-                    <h2 className="text-lg font-bold">{gift.name}</h2>
-                    <p className="text-[#3C5A72] font-medium">{gift.price}</p>
+                    <h2 className="text-lg font-bold font-times">
+                      {gift.name}
+                    </h2>
+                    <p className="text-[#3C5A72] font-medium font-montserrat">
+                      {gift.price}
+                    </p>
                   </div>
                 </motion.div>
               ))}
@@ -372,10 +425,10 @@ const SwipeGiftsScreen: React.FC = () => {
                     />
                   </div>
                   <div className="p-4">
-                    <h2 className="text-lg font-bold">
+                    <h2 className="text-lg font-bold font-times">
                       {filteredGifts[currentIndex].name}
                     </h2>
-                    <p className="text-[#3C5A72] font-medium">
+                    <p className="text-[#3C5A72] font-medium font-montserrat">
                       {filteredGifts[currentIndex].price}
                     </p>
                   </div>
@@ -428,7 +481,7 @@ const SwipeGiftsScreen: React.FC = () => {
           <button
             onClick={handleDislikeGift}
             disabled={currentIndex >= filteredGifts.length}
-            className={`p-4 rounded-full bg-white shadow-md mr-20 transition-opacity ${
+            className={`p-4 rounded-full bg-white mr-20 transition-opacity ${
               currentIndex >= filteredGifts.length
                 ? "opacity-50 cursor-not-allowed"
                 : "hover:shadow-lg"
@@ -439,7 +492,7 @@ const SwipeGiftsScreen: React.FC = () => {
           <button
             onClick={handleLikeGift}
             disabled={currentIndex >= filteredGifts.length}
-            className={`p-4 rounded-full bg-white shadow-md transition-opacity ${
+            className={`p-4 rounded-full bg-white transition-opacity ${
               currentIndex >= filteredGifts.length
                 ? "opacity-50 cursor-not-allowed"
                 : "hover:shadow-lg"
@@ -504,7 +557,7 @@ const SwipeGiftsScreen: React.FC = () => {
                   mass: 0.8,
                 },
               }}
-              className="absolute inset-0 flex flex-col bg-white shadow-2xl overflow-hidden"
+              className="absolute inset-0 flex flex-col bg-white  overflow-hidden"
               style={{ backgroundColor: "#f8f9fa" }}
             >
               {/* Header */}
@@ -566,7 +619,7 @@ const SwipeGiftsScreen: React.FC = () => {
                     <span className="text-sm font-medium text-gray-600 uppercase tracking-wide">
                       Price
                     </span>
-                    <span className="text-sm text-gray-900">
+                    <span className="text-sm text-gray-900 font-montserrat">
                       {selectedGift.price}
                     </span>
                   </div>

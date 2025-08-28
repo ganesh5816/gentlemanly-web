@@ -148,7 +148,7 @@ export default function ShoppingCart() {
         <img
           height={110}
           width={110}
-          src={`..${item.image}`}
+          src={`${item.image}`}
           alt={item.name}
           className="w-full h-full object-cover"
         />
@@ -250,7 +250,7 @@ export default function ShoppingCart() {
       <div className="max-w-sm mx-auto bg-white min-h-screen flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-4">
-          <button className="border-2  border-[#E7E7E7] rounded-lg p-2">
+          <button className="border-2  border-[#E7E7E7] rounded-full p-2">
             <Link to="/moment">
               <ArrowLeft className="w-6 h-6 text-black" />
             </Link>

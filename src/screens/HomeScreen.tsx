@@ -160,11 +160,6 @@ const HomeScreen: React.FC = () => {
                           <p className="text-base text-white text-center font-montserrat">
                             {item.date}
                           </p>
-                          {/* Show gift count */}
-                          <p className="text-sm text-white text-center font-montserrat mt-2 opacity-80">
-                            {eventGifts[item.eventKey]?.length || 0} gifts
-                            available
-                          </p>
                         </div>
                       </div>
 
