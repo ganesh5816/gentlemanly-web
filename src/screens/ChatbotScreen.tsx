@@ -6,14 +6,14 @@ import { Link } from "react-router-dom";
 const MobileChatInterface: React.FC = () => {
   return (
     <motion.div
-      className="w-full h-screen flex flex-col bg-gray-100" // full width now
+      className="w-full h-screen flex flex-col bg-white" // full width now
       initial={{ x: "100%" }}
       animate={{ x: 0 }}
       exit={{ x: "-100%" }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
       {/* Header */}
-      <div className="relative flex items-center justify-center bg-white px-4 py-3 shadow-sm border-b border-[#E7E7E7]">
+      <div className="relative flex items-center justify-center bg-[#fff] px-4 py-3 shadow-sm border-b border-[#E7E7E7]">
         <ArrowLeft className="absolute left-4 w-6 h-6 text-gray-600" />
         <h1 className="text-lg font-semibold text-black font-times">
           ChatBot Name Here
@@ -24,8 +24,8 @@ const MobileChatInterface: React.FC = () => {
       <div className="flex-1 p-4 space-y-4">
         {/* Bot Message 1 */}
         <div className="flex justify-start">
-          <div className="bg-gray-800 text-white rounded-2xl px-4 py-3 max-w-xs">
-            <p className="text-sm">
+          <div className="bg-[#A0C2CD33] text-white rounded-tr-md rounded-tl-md rounded-br-md px-4 py-3 max-w-xs">
+            <p className="text-sm text-[#5E8C9B]">
               Hey! 👋 You've got a gift idea? That's exciting!
             </p>
           </div>
@@ -33,22 +33,26 @@ const MobileChatInterface: React.FC = () => {
 
         {/* Bot Message 2 */}
         <div className="flex justify-start">
-          <div className="bg-gray-800 text-white rounded-2xl px-4 py-3 max-w-xs">
-            <p className="text-sm">What kind of gift are you thinking of?</p>
+          <div className=" text-white rounded-tr-md rounded-tl-md rounded-br-md px-4 py-3 max-w-xs">
+            <p className="text-sm text-[#5E8C9B]">
+              What kind of gift are you thinking of?
+            </p>
           </div>
         </div>
 
         {/* User Message */}
         <div className="flex justify-end">
-          <div className="bg-white rounded-2xl px-4 py-3 max-w-xs shadow-sm">
-            <p className="text-sm text-gray-800">Shoes</p>
+          <div className="bg-[#E7BD794D] rounded-tr-md rounded-tl-md rounded-bl-md px-4 py-3 max-w-xs shadow-sm">
+            <p className="text-sm text-[#C99D55]">
+              Elegant dress, luxury brand shoes and a high end bag.
+            </p>
           </div>
         </div>
 
         {/* Bot Message 3 */}
         <div className="flex justify-start">
-          <div className="bg-gray-800 text-white rounded-2xl px-4 py-3 max-w-xs">
-            <p className="text-sm">
+          <div className="bg-[#A0C2CD33] text-white rounded-tr-md rounded-tl-md rounded-br-md px-4 py-3 max-w-xs">
+            <p className="text-sm text-[#5E8C9B]">
               Great choice! 👠 We have some stunning picks just for her. Click
               below to explore.
             </p>
@@ -56,9 +60,9 @@ const MobileChatInterface: React.FC = () => {
         </div>
 
         {/* Button */}
-        <button className="w-full bg-white border border-gray-400 rounded-lg py-3 shadow-sm hover:bg-gray-50 transition-colors">
+        <button className="w-full bg-[#E7BD79]  rounded-lg py-3 shadow-sm hover:bg-gray-50 transition-colors">
           <Link to="/defaultgifts" className="block w-full text-center">
-            <span className="text-gray-800 font-normal text-base">
+            <span className="text-white font-montserrat text-base">
               Show Me Shoes
             </span>
           </Link>
