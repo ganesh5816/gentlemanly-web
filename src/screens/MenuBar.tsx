@@ -37,7 +37,7 @@ const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
   ];
 
   return (
-    <div className="w-full max-w-sm h-screen bg-gray-900 text-white flex flex-col">
+    <div className="fixed inset-0 h-screen w-screen bg-[#30363C] text-white flex flex-col z-50">
       {/* Header with User Info */}
       <div className="flex items-center justify-between px-6 py-6 border-b border-gray-700">
         <div className="flex items-center space-x-3">

@@ -56,15 +56,13 @@ const MobileChatInterface: React.FC = () => {
         </div>
 
         {/* Button */}
-        <div className="flex justify-center mt-4">
-          <button className="bg-white border border-gray-400 rounded-lg px-6 py-3 shadow-sm hover:bg-gray-50 transition-colors w-80">
-            <Link to="/defaultgifts">
-              <span className="text-gray-800 font-normal text-base">
-                Show Me Shoes
-              </span>
-            </Link>
-          </button>
-        </div>
+        <button className="w-full bg-white border border-gray-400 rounded-lg py-3 shadow-sm hover:bg-gray-50 transition-colors">
+          <Link to="/defaultgifts" className="block w-full text-center">
+            <span className="text-gray-800 font-normal text-base">
+              Show Me Shoes
+            </span>
+          </Link>
+        </button>
       </div>
 
       {/* Input Area */}

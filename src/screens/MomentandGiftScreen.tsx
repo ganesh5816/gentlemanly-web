@@ -154,9 +154,8 @@ const MomentsGiftsScreen: React.FC = () => {
                   MOMENTS
                 </h1>
                 <p className="text-base text-white text-center mb-8 font-montserrat">
-                  {expandedSection === "moments"
-                    ? "Create a special moment for your gift"
-                    : "Choose a moment first."}
+                  {expandedSection === "moments" &&
+                    "Choose a moment first we will help you to find perfect gift match."}
                 </p>
                 {expandedSection === "moments" && (
                   <CustomButton

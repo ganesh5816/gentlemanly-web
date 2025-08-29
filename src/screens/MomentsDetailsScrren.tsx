@@ -16,7 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import moment1 from "../assets/pottery.jpg";
 import moment2 from "../assets/picnic.jpg";
 import datenight from "../assets/datenight.jpg";
-import secondshoes from "../assets/2nddress.jpg";
+import secondshoes from "../assets/2ndshoes.jpg";
 import picnicdress from "../assets/shirt.jpg";
 import skirt from "../assets/skirt.jpg";
 import roses from "../assets/roses.jpg";
@@ -29,7 +29,7 @@ import limo from "../assets/limo.jpg";
 import redrose from "../assets/redrose.jpg";
 import wine from "../assets/wine.jpg";
 import dressred from "../assets/dressred.jpg";
-
+import moment3 from "../assets/moment3.mp4";
 const stories = [
   {
     id: 23,
@@ -172,7 +172,7 @@ const stories = [
     location: "Scenic overlook points",
     priceRange: "$450.00",
     image: datenight,
-    detailImage: moment2video,
+    detailImage: moment3,
     products: [
       {
         id: 1,
@@ -274,7 +274,7 @@ const ProductSlider = ({ products }: any) => {
             <h3 className="text-sm font-times font-medium text-gray-900 mb-1 line-clamp-2">
               {product.name}
             </h3>
-            <p className="text-sm text-gray-500 font-montserrat font-semibold">
+            <p className="text-sm text-gray-500 font-montserrat ">
               {product.price}
             </p>
           </div>
@@ -631,22 +631,22 @@ const StoriesUI = () => {
   };
 
   const StoryComponent = ({ story, index }: any) => (
-    <div className="relative w-full h-full overflow-hidden">
+    <div
+      className="relative w-full h-full overflow-hidden cursor-pointer"
+      onClick={() => {
+        setCurrentSlide(index);
+        setShowDetailScreen(true);
+      }}
+    >
       <div className="absolute inset-0">
         <img src={story.image} className="w-full h-full object-cover" />
       </div>
 
+      {/* Optional: Keep the play button as a visual indicator but remove its separate click handler */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <button
-          className="w-10 h-10 rounded-full flex items-center justify-center border border-white hover:bg-white/35 transition-all duration-200"
-          onClick={(e) => {
-            e.stopPropagation();
-            setCurrentSlide(index);
-            setShowDetailScreen(true);
-          }}
-        >
+        <div className="w-10 h-10 rounded-full flex items-center justify-center border border-white bg-black/20 backdrop-blur-sm">
           <Play className="w-4 h-4 text-white ml-1" />
-        </button>
+        </div>
       </div>
 
       <div className="absolute bottom-8 left-0 right-0 text-center px-4">
