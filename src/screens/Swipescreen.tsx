@@ -14,6 +14,11 @@ const ShoppingSwipeUI = () => {
   const [removedProducts, setRemovedProducts] = useState<Set<string>>(
     new Set()
   ); // Track removed products
+
+  // New state for swipe feedback
+  const [isSwipingRight, setIsSwipingRight] = useState(false);
+  const [isSwipingLeft, setIsSwipingLeft] = useState(false);
+
   const constraintsRef = useRef(null);
 
   // Load moment-specific products on component mount
@@ -121,9 +126,38 @@ const ShoppingSwipeUI = () => {
     return Math.abs(offset) * velocity;
   };
 
+  // Handle drag start to reset swipe states
+  const handleDragStart = () => {
+    setIsSwipingRight(false);
+    setIsSwipingLeft(false);
+  };
+
+  // Handle drag to update swipe feedback
+  const handleDrag = (_event: any, { offset }: any) => {
+    const swipeThreshold = 50; // Threshold for showing feedback
+
+    if (offset.x > swipeThreshold) {
+      // Swiping right (like)
+      setIsSwipingRight(true);
+      setIsSwipingLeft(false);
+    } else if (offset.x < -swipeThreshold) {
+      // Swiping left (dislike)
+      setIsSwipingLeft(true);
+      setIsSwipingRight(false);
+    } else {
+      // Not swiping far enough
+      setIsSwipingRight(false);
+      setIsSwipingLeft(false);
+    }
+  };
+
   const handleDragEnd = (_event: any, { offset, velocity }: any) => {
     const swipe = swipePower(offset.x, velocity.x);
     const filteredProducts = getFilteredProducts();
+
+    // Reset swipe feedback states
+    setIsSwipingRight(false);
+    setIsSwipingLeft(false);
 
     if (
       swipe > swipeConfidenceThreshold &&
@@ -341,6 +375,8 @@ const ShoppingSwipeUI = () => {
                   drag="x"
                   dragConstraints={{ left: 0, right: 0 }}
                   dragElastic={1}
+                  onDragStart={handleDragStart}
+                  onDrag={handleDrag}
                   onDragEnd={handleDragEnd}
                   className="absolute w-full bg-white overflow-hidden text-center shadow-lg cursor-grab active:cursor-grabbing"
                   whileTap={{ cursor: "grabbing" }}
@@ -420,25 +456,41 @@ const ShoppingSwipeUI = () => {
           <button
             onClick={handleDislikeProduct}
             disabled={currentIndex >= filteredProducts.length}
-            className={`p-4 rounded-full bg-white shadow-[0px_0px_12px_0px_#0000000F] mr-20 transition-opacity ${
+            className={`p-4 rounded-full shadow-[0px_0px_12px_0px_#0000000F] mr-20 transition-all duration-200 ${
               currentIndex >= filteredProducts.length
-                ? "opacity-50 cursor-not-allowed"
-                : "hover:shadow-lg"
+                ? "opacity-50 cursor-not-allowed bg-white"
+                : isSwipingLeft
+                ? "bg-red-500 hover:shadow-lg transform scale-110"
+                : "bg-white hover:shadow-lg"
             }`}
           >
-            <X strokeWidth={4} className="text-red-500" size={28} />
+            <X
+              strokeWidth={4}
+              className={`transition-colors duration-200 ${
+                isSwipingLeft ? "text-white" : "text-red-500"
+              }`}
+              size={28}
+            />
           </button>
 
           <button
             onClick={handleLikeProduct}
             disabled={currentIndex >= filteredProducts.length}
-            className={`p-4 rounded-full bg-white shadow-[0px_0px_12px_0px_#0000000F] transition-opacity ${
+            className={`p-4 rounded-full shadow-[0px_0px_12px_0px_#0000000F] transition-all duration-200 ${
               currentIndex >= filteredProducts.length
-                ? "opacity-50 cursor-not-allowed"
-                : "hover:shadow-lg"
+                ? "opacity-50 cursor-not-allowed bg-white"
+                : isSwipingRight
+                ? "bg-green-500 hover:shadow-lg transform scale-110"
+                : "bg-white hover:shadow-lg"
             }`}
           >
-            <Check strokeWidth={4} className="text-green-500" size={28} />
+            <Check
+              strokeWidth={4}
+              className={`transition-colors duration-200 ${
+                isSwipingRight ? "text-white" : "text-green-500"
+              }`}
+              size={28}
+            />
           </button>
         </div>
       )}
