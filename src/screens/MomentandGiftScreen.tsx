@@ -199,11 +199,8 @@ const MomentsGiftsScreen: React.FC = () => {
                   GIFTS
                 </h1>
                 <p className="text-base text-white text-center mb-8 font-montserrat">
-                  {expandedSection === "gifts"
-                    ? `${availableGifts.length} gifts available for ${
-                        eventName || "this event"
-                      }`
-                    : "Choose a gift first."}
+                  {expandedSection === "gifts" &&
+                    "Choose a gift  first we will help you to create meaningful moment around it."}
                 </p>
                 {expandedSection === "gifts" && (
                   <CustomButton
