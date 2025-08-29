@@ -1,4 +1,5 @@
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { Link } from "react-router-dom";
 
 const OrderConfirmationScreen = () => {
   return (
@@ -29,9 +30,11 @@ const OrderConfirmationScreen = () => {
           </p>
 
           <div className="pt-6">
-            <button className="w-full max-w-sm bg-transparent border font-montserrat border-gray-300 text-gray-700 py-3 rounded-lg font-medium text-base hover:bg-gray-100 transition-colors duration-200">
-              Preview the Experience
-            </button>
+            <Link to="/preview">
+              <button className="w-full max-w-sm bg-transparent border font-montserrat border-gray-300 text-gray-700 py-3 rounded-lg font-medium text-base hover:bg-gray-100 transition-colors duration-200">
+                Preview the Experience
+              </button>
+            </Link>
           </div>
         </div>
       </div>
