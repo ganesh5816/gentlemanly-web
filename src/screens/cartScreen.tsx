@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 import { ArrowLeft, Eye, Minus, Plus, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 type ItemId = string;
 
@@ -243,7 +243,7 @@ export default function ShoppingCart() {
     }, 0);
     return `$${total.toFixed(2)}`;
   };
-
+  const navigate = useNavigate();
   // Empty cart state
   if (cartItems.length === 0) {
     return (
@@ -419,7 +419,10 @@ export default function ShoppingCart() {
             {calculateTotal()}
           </span>
         </div>
-        <button className="w-full font-montserrat bg-[#E7BD79] text-white py-3 rounded-xl font-medium text-sm">
+        <button
+          onClick={() => navigate("/makeitYours")}
+          className="w-full font-montserrat bg-[#E7BD79] text-white py-3 rounded-xl font-medium text-sm"
+        >
           Proceed to checkout
         </button>
       </div>

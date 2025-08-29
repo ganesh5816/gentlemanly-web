@@ -27,7 +27,7 @@ import blackshoes from "../assets/blackshoe.jpg";
 import dinner from "../assets/dinner.jpg";
 import limo from "../assets/limo.jpg";
 import redrose from "../assets/redrose.jpg";
-import wine from "../assets/wine.jpg";
+// import wine from "../assets/wine.jpg";
 import dressred from "../assets/dressred.jpg";
 import moment3 from "../assets/moment3.mp4";
 const stories = [
@@ -64,7 +64,7 @@ const stories = [
         price: "$5,250.00",
         image: secondshoes,
         description:
-          "Luxurious designer heeled sandals perfect for elegant evening occasions. Crafted with premium materials for ultimate sophistication.",
+          "Elegant ankle-cuff heeled sandals crafted with premium materials, perfect for adding height and sophistication to evening outfits.",
       },
       {
         id: 2,
@@ -72,7 +72,7 @@ const stories = [
         price: "$450.00",
         image: picnicdress,
         description:
-          "An elegant white A-line dress designed for sophisticated evening events. Perfect for starlit dinners and romantic occasions.",
+          "A chic white A-line dress that offers timeless elegance, ideal for both casual gatherings and sophisticated events.",
       },
       {
         id: 30,
@@ -80,7 +80,7 @@ const stories = [
         price: "$3,400.00",
         image: skirt,
         description:
-          "A luxury designer handbag that complements any elegant evening look. Crafted from premium leather with impeccable attention to detail.",
+          "A stylish denim skirt that blends classic design with modern flair, versatile enough for casual wear or elevated street style.",
       },
     ],
   },
@@ -110,11 +110,11 @@ const stories = [
     products: [
       {
         id: 1,
-        name: "Ankle-cuff heeled sandals",
+        name: "White flower",
         price: "$89.00",
         image: roses,
         description:
-          "Comfortable yet elegant heeled sandals perfect for outdoor picnics. The ankle-cuff design provides stability on uneven ground while maintaining style.",
+          "Fresh white flowers that bring natural elegance and charm, perfect for brightening up any picnic or special occasion.",
       },
       {
         id: 2,
@@ -122,7 +122,7 @@ const stories = [
         price: "$45.00",
         image: sunhat,
         description:
-          "A stylish woven sun hat that provides perfect protection during golden hour picnics while adding a chic bohemian touch to your look.",
+          "A lightweight woven sun hat that provides shade and style, ideal for sunny picnics and outdoor gatherings.",
       },
       {
         id: 3,
@@ -130,15 +130,15 @@ const stories = [
         price: "$125.00",
         image: snacks,
         description:
-          "A luxurious mini Kelly bag that's perfect for carrying your essentials during a romantic picnic. Compact yet sophisticated.",
+          "A delightful assortment of gourmet snacks, perfect for sharing during a picnic or enjoying on the go.",
       },
       {
         id: 124,
         name: "Floral dress",
-        price: "Call for pricing",
+        price: "$230.77",
         image: floral,
         description:
-          "Complete your perfect day with a dinner reservation at a scenic restaurant. The perfect ending to your golden hour picnic experience.",
+          "A charming floral dress designed for comfort and elegance, making it a beautiful choice for picnics and warm afternoons.",
       },
     ],
   },
@@ -168,28 +168,27 @@ const stories = [
     products: [
       {
         id: 1,
-        name: "Ankle-cuff heeled sandals",
+        name: "Red Rose Bouquet",
         price: "$89.00",
         image: redrose,
         description:
-          "Comfortable yet elegant heeled sandals perfect for outdoor picnics. The ankle-cuff design provides stability on uneven ground while maintaining style.",
+          "A classic bouquet of fresh red roses, symbolizing love and elegance — perfect for gifting or romantic occasions.",
       },
       {
         id: 2,
-        name: "Woven Sun Hat",
+        name: "Black Heels",
         price: "$45.00",
         image: blackshoes,
         description:
-          "A stylish woven sun hat that provides perfect protection during golden hour picnics while adding a chic bohemian touch to your look.",
+          "Chic and versatile black heels designed for both comfort and style, suitable for parties, dinners, and elegant outings.",
       },
-
       {
         id: 14,
         name: "Limo",
         price: "Call for pricing",
         image: limo,
         description:
-          "Complete your perfect day with a dinner reservation at a scenic restaurant. The perfect ending to your golden hour picnic experience.",
+          "Luxury limousine service that adds sophistication and comfort to your special events or romantic evenings.",
       },
       {
         id: 4,
@@ -197,24 +196,15 @@ const stories = [
         price: "Call for pricing",
         image: dinner,
         description:
-          "Complete your perfect day with a dinner reservation at a scenic restaurant. The perfect ending to your golden hour picnic experience.",
+          "Exclusive dinner reservation at a scenic restaurant — the perfect way to end a memorable day.",
       },
-      {
-        id: 40,
-        name: "Dinner Reservation",
-        price: "$ 400",
-        image: wine,
-        description:
-          "Complete your perfect day with a dinner reservation at a scenic restaurant. The perfect ending to your golden hour picnic experience.",
-      },
-
       {
         id: 48,
         name: "Red Dress",
-        price: "$ 400",
+        price: "$400",
         image: dressred,
         description:
-          "Complete your perfect day with a dinner reservation at a scenic restaurant. The perfect ending to your golden hour picnic experience.",
+          "A stunning red dress crafted for elegance and confidence, ideal for romantic dinners or special celebrations.",
       },
     ],
   },

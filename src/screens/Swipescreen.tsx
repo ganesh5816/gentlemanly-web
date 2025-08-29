@@ -350,7 +350,9 @@ const ShoppingSwipeUI = () => {
                     onClick={(e) => handleImageClick(product, e)}
                   />
                   <div className="p-4">
-                    <h2 className="text-lg font-bold">{product.name}</h2>
+                    <h2 className="text-lg font-bold font-times">
+                      {product.name}
+                    </h2>
                     <p className="text-[#3C5A72] font-medium">
                       {product.price}
                     </p>
@@ -399,10 +401,10 @@ const ShoppingSwipeUI = () => {
                     />
                   </div>
                   <div className="p-4">
-                    <h2 className="text-lg font-bold">
+                    <h2 className="text-lg font-bold font-times">
                       {filteredProducts[currentIndex].name}
                     </h2>
-                    <p className="text-[#3C5A72] font-medium">
+                    <p className="text-[#3C5A72] font-medium font-montserrat">
                       {filteredProducts[currentIndex].price}
                     </p>
                   </div>

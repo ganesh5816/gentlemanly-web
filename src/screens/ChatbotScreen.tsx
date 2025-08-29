@@ -63,7 +63,7 @@ const MobileChatInterface: React.FC = () => {
         <button className="w-full bg-[#E7BD79]  rounded-lg py-3 shadow-sm hover:bg-gray-50 transition-colors">
           <Link to="/defaultgifts" className="block w-full text-center">
             <span className="text-white font-montserrat text-base">
-              Show Me Shoes
+              Show Me Gifts
             </span>
           </Link>
         </button>
