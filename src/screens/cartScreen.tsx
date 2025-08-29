@@ -398,7 +398,7 @@ export default function ShoppingCart() {
                   </button>
                 </div>
                 {getPriceValue(item.price) > 0 && (
-                  <div className="text-lg font-semibold text-[#79756C] font-montserrat">
+                  <div className="text-sm text-[#79756C] font-montserrat">
                     {item.price}
                   </div>
                 )}
@@ -415,7 +415,7 @@ export default function ShoppingCart() {
       <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-sm bg-white p-4 border-t border-gray-200">
         <div className="flex justify-between items-center mb-3">
           <span className="text-lg font-medium font-montserrat">Total:</span>
-          <span className="text-lg font-semibold text-[#79756C] font-montserrat">
+          <span className="text-sm text-[#79756C] font-montserrat">
             {calculateTotal()}
           </span>
         </div>
