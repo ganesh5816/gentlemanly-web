@@ -140,14 +140,6 @@ const stories = [
         description:
           "Complete your perfect day with a dinner reservation at a scenic restaurant. The perfect ending to your golden hour picnic experience.",
       },
-      {
-        id: 4,
-        name: "Dinner Reservation",
-        price: "Call for pricing",
-        image: dinner,
-        description:
-          "Complete your perfect day with a dinner reservation at a scenic restaurant. The perfect ending to your golden hour picnic experience.",
-      },
     ],
   },
   {
