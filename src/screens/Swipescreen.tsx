@@ -265,7 +265,7 @@ const ShoppingSwipeUI = () => {
       {/* Header */}
       <div className="flex absolute top-8 px-8 right-0 left-0 justify-between items-center gap-8 mt-6 z-10">
         <Link
-          to="/stories"
+          to="/momentDetails"
           className="w-10 h-10 rounded-full border-2 border-gray-600 bg-transparent flex items-center justify-center hover:bg-gray-800 transition-colors"
         >
           <ArrowLeft className="text-white" size={24} />
@@ -586,7 +586,7 @@ const ShoppingSwipeUI = () => {
                     addToLikedProducts(selectedProduct);
                     closePopup();
                   }}
-                  className="w-full bg-[#E7BD79] font-montserrat text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 text-lg transform hover:scale-105 active:scale-95"
+                  className="w-full bg-[#E7BD79] font-montserrat text-white  py-3 px-6 rounded-lg transition-colors duration-200 text-lg transform hover:scale-105 active:scale-95"
                 >
                   Add to Cart
                 </button>

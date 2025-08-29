@@ -13,6 +13,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/giftSlice";
 import GiftsScreen from "./screens/GiftScreen";
 import DefaultSwipeGiftsScreen from "./screens/DefaultSwipeScreen";
+import PreviewMomentView from "./screens/previewMomwntScreen";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/cart" element={<ShoppingCart />} />
           <Route path="/gifts" element={<GiftsScreen />} />
           <Route path="/defaultgifts" element={<DefaultSwipeGiftsScreen />} />
+          <Route path="/preview" element={<PreviewMomentView />} />
         </Routes>
       </BrowserRouter>
     </Provider>
