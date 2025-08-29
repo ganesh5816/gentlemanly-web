@@ -19,7 +19,7 @@ const RomanticCafeUI = () => {
         <div className="px-6 pb-8">
           <button
             onClick={() => navigate("/home")}
-            className="w-full bg-white/90 font-montserrat backdrop-blur-sm text-gray-700 py-4 rounded-2xl font-medium text-lg shadow-lg border border-white/20 hover:bg-white/95 transition-all duration-200"
+            className="w-full bg-white/90 font-montserrat backdrop-blur-sm text-gray-700 py-3 rounded-2xl font-medium text-lg shadow-lg border border-white/20 hover:bg-white/95 transition-all duration-200"
           >
             Back to Dashboard
           </button>

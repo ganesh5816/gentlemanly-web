@@ -111,7 +111,7 @@ export default function NotificationsScreen() {
       </div>
 
       {/* Recent Section */}
-      <div className="px-1 py-1">
+      <div className="p-3">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-montserrat text-black">Recent</h2>
           <button className="text-sm text-gray-500">Mark all as read</button>
