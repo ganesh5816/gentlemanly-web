@@ -76,7 +76,7 @@ const stories = [
       },
       {
         id: 30,
-        name: "Designer Handbag",
+        name: "Denim Skirt",
         price: "$3,400.00",
         image: skirt,
         description:

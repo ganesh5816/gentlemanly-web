@@ -588,7 +588,7 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
                 moment?
               </p>
 
-              <div className="space-y-4">
+              <div className="">
                 <button
                   onClick={handleContinueBrowsing}
                   className="w-full bg-gray-200 mb-4 hover:bg-gray-300 text-[#79756C] font-[14px] py-3 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat"
@@ -673,11 +673,6 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
                     <p className="text-[#3C5A72] font-medium font-montserrat">
                       {gift.price}
                     </p>
-                    {gift.category && (
-                      <p className="text-xs text-gray-500 mt-1">
-                        {gift.category}
-                      </p>
-                    )}
                   </div>
                 </motion.div>
               ))}
@@ -727,11 +722,6 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
                     <p className="text-[#3C5A72] font-medium font-montserrat">
                       {filteredGifts[currentIndex].price}
                     </p>
-                    {filteredGifts[currentIndex].category && (
-                      <p className="text-xs text-gray-500 mt-1">
-                        {filteredGifts[currentIndex].category}
-                      </p>
-                    )}
                   </div>
                 </motion.div>
               )}

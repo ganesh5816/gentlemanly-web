@@ -398,13 +398,13 @@ const ShoppingSwipeUI = () => {
                     setRemovedProducts(new Set());
                     setCurrentIndex(0);
                   }}
-                  className="w-full bg-gray-200 mb-4 hover:bg-gray-300 text-[#79756C] font-[14px] py-3 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat"
+                  className="w-full bg-gray-200 mb-4 hover:bg-gray-300 text-[#79756C] font-[14px] py-3 px-4 rounded-md text-sm transition-colors duration-200 font-montserrat"
                 >
                   Continue Shopping
                 </button>
 
                 <Link to="/makeitYours">
-                  <button className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat">
+                  <button className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-md text-sm transition-colors duration-200 font-montserrat">
                     Create my Moment
                   </button>
                 </Link>
