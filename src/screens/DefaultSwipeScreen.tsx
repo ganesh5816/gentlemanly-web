@@ -743,10 +743,7 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
                   Continue Browsing
                 </button>
 
-                <button
-                  onClick={handleCreateMoment}
-                  className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat"
-                >
+                <button className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat">
                   Create my Moment
                 </button>
               </div>
