@@ -181,6 +181,7 @@ const SwipeGiftsScreen: React.FC = () => {
   const handleContinueBrowsing = () => {
     setRemovedGifts(new Set());
     setCurrentIndex(0);
+    navigate("/giftmoment");
   };
 
   // Show message if no gifts provided
@@ -297,10 +298,10 @@ const SwipeGiftsScreen: React.FC = () => {
                 moment?
               </p>
 
-              <div className="space-y-4">
+              <div>
                 <button
                   onClick={handleContinueBrowsing}
-                  className="w-full bg-gray-200 mb-4 hover:bg-gray-300 text-[#79756C] font-[14px] py-3 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat"
+                  className="w-full bg-gray-200 mb-4 hover:bg-gray-300 text-[#79756C] font-[14px] py-2 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat"
                 >
                   Start Over
                 </button>
@@ -455,7 +456,7 @@ const SwipeGiftsScreen: React.FC = () => {
                 below.
               </p>
 
-              <div className="space-y-4">
+              <div>
                 <button
                   onClick={handleContinueBrowsing}
                   className="w-full bg-gray-200 mb-4 hover:bg-gray-300 text-[#79756C] font-[14px] py-3 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat"

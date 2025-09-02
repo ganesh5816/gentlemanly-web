@@ -1,5 +1,6 @@
 import { ArrowLeft, Smile, Meh, Frown } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function FeedbackForm() {
   const [selectedAnswers, setSelectedAnswers] = useState({
@@ -87,14 +88,18 @@ export default function FeedbackForm() {
       textStrong: "text-red-600",
     },
   };
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
       <div className="bg-white px-6 py-4 flex items-center border-b border-gray-100">
-        <div className="relative flex p-2 border border-[#E7E7E7] rounded-full justify-center items-center">
+        <button
+          onClick={() => navigate("/feedback")}
+          className="relative flex p-2 border border-[#E7E7E7] rounded-full justify-center items-center"
+        >
           <ArrowLeft className="w-6 h-6 text-gray-700" />
-        </div>
+        </button>
         <h1 className="text-xl font-medium text-center font-times flex-1 mr-10">
           Feedback
         </h1>

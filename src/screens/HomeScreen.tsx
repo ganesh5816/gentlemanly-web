@@ -260,7 +260,7 @@ const HomeScreen: React.FC = () => {
                     GIFTS
                   </h2>
                   <CustomButton
-                    onPress={() => navigate("/chat")}
+                    onPress={() => navigate("/defaultgifts")}
                     style="w-[341px] rounded-lg"
                     variant="transparent"
                   >

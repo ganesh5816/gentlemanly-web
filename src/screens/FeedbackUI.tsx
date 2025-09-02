@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 export default function FeedbackUI() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* Status Bar */}
@@ -16,7 +19,10 @@ export default function FeedbackUI() {
             delivering the perfect gifts and moments.
           </p>
 
-          <button className="w-full bg-[#E7BD79]  text-white font-medium py-4 px-6 rounded-lg transition-colors duration-200 font-montserrat">
+          <button
+            onClick={() => navigate("/form")}
+            className="w-full bg-[#E7BD79]  text-white font-medium py-4 px-6 rounded-lg transition-colors duration-200 font-montserrat"
+          >
             Review the Experience
           </button>
         </div>

@@ -1,9 +1,10 @@
 import { useState } from "react";
-import img from "../assets/welcome1.jpg";
+import img from "../assets/anniversarys.jpg";
+import { useNavigate } from "react-router-dom";
 
 export default function WaitlistSignup() {
   const [email, setEmail] = useState("");
-
+  const navigate = useNavigate();
   const benefits = [
     "1 Year of Free Premium Membership",
     "50% discount on first Moment Bundle Purchase",
@@ -14,7 +15,7 @@ export default function WaitlistSignup() {
     <div className="min-h-screen relative bg-white">
       {/* Background Image Placeholder */}
       <div className="absolute inset-0">
-        <img src={img} alt="Background" className="h-1/2 w-full object-cover" />
+        <img src={img} alt="Background" className="h-1/3 w-full object-cover" />
       </div>
 
       {/* Status Bar */}
@@ -68,11 +69,14 @@ export default function WaitlistSignup() {
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-4 border border-gray-200 rounded-lg mb-4 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E7BD79] focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg mb-4 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E7BD79] focus:border-transparent"
           />
 
           {/* Join Button */}
-          <button className="w-full bg-[#E7BD79] text-white hover:bg-yellow-500  font-montserrat font-medium py-3 px-6 rounded-lg transition-colors duration-200 mb-4">
+          <button
+            onClick={() => navigate("/feedback")}
+            className="w-full bg-[#E7BD79] text-white hover:bg-yellow-500  font-montserrat font-medium py-3 px-6 rounded-lg transition-colors duration-200 mb-4"
+          >
             Join the Waitlist
           </button>
 

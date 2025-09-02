@@ -461,17 +461,6 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
     });
   };
 
-  const handleCreateMoment = () => {
-    // Navigate to moment creation screen with selected gifts
-    navigate("/create-moment", {
-      state: {
-        selectedGifts: likedGifts,
-        eventKey,
-        eventName,
-      },
-    });
-  };
-
   const handleContinueBrowsing = () => {
     setRemovedGifts(new Set());
     setCurrentIndex(0);
@@ -597,7 +586,7 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
                 </button>
 
                 <button
-                  onClick={handleCreateMoment}
+                  onClick={() => navigate("/giftmoment")}
                   className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat"
                 >
                   Create my Moment
