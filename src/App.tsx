@@ -36,7 +36,7 @@ function App() {
           <Route path="/defaultgifts" element={<DefaultSwipeGiftsScreen />} />
           <Route path="/preview" element={<PreviewMomentView />} />
           <Route path="/feedback" element={<FeedbackUI />} />
-          <Route path="/form" element={<FeedbackForm />} />
+          {/* <Route path="/form" element={<FeedbackForm />} /> */}
         </Routes>
       </BrowserRouter>
     </Provider>
