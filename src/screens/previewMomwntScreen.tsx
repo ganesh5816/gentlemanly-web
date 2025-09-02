@@ -1,14 +1,22 @@
 import { useNavigate } from "react-router-dom";
-import backgroundimg from "../assets/welcome1.jpg";
+import backgroundVideo from "../assets/20998315-1401-40a5-8484-58394ab58f15.mp4"; // your video file
 
 const RomanticCafeUI = () => {
   const navigate = useNavigate();
+
   return (
-    <div
-      className="relative min-h-screen bg-cover bg-center"
-      style={{ backgroundImage: `url(${backgroundimg})` }}
-    >
-      {/* Dark overlay for better text readability */}
+    <div className="relative min-h-screen">
+      {/* Background Video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        src={backgroundVideo}
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+
+      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/30"></div>
 
       <div className="relative z-10 flex flex-col h-screen">

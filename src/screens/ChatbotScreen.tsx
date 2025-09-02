@@ -1,19 +1,14 @@
 import React from "react";
 import { ArrowLeft, Plus, Mic } from "lucide-react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const MobileChatInterface: React.FC = () => {
   return (
-    <motion.div
+    <div
       className="w-full h-screen flex flex-col bg-white" // full width now
-      initial={{ x: "100%" }}
-      animate={{ x: 0 }}
-      exit={{ x: "-100%" }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
       {/* Header */}
-      <div className="relative flex items-center justify-center bg-[#fff] px-4 py-3 shadow-sm border-b border-[#E7E7E7]">
+      <div className="relative flex items-center justify-center bg-[#fff] px-4 py-3 shadow-sm border- border-[#E7E7E7]">
         <ArrowLeft className="absolute left-4 w-6 h-6 text-gray-600" />
         <h1 className="text-lg font-semibold text-black font-times">
           ChatBot Name Here
@@ -87,7 +82,7 @@ const MobileChatInterface: React.FC = () => {
           <Mic className="w-5 h-5 text-white" />
         </button>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
