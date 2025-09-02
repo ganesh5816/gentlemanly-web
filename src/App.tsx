@@ -14,6 +14,8 @@ import { store } from "./store/giftSlice";
 import GiftsScreen from "./screens/GiftScreen";
 import DefaultSwipeGiftsScreen from "./screens/DefaultSwipeScreen";
 import PreviewMomentView from "./screens/previewMomwntScreen";
+import FeedbackUI from "./screens/FeedbackUI";
+// import FeedbackForm from "./screens/FeedbackForm";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
           <Route path="/gifts" element={<GiftsScreen />} />
           <Route path="/defaultgifts" element={<DefaultSwipeGiftsScreen />} />
           <Route path="/preview" element={<PreviewMomentView />} />
+          <Route path="/feedback" element={<FeedbackUI />} />
+          <Route path="/form" element={<FeedbackForm />} />
         </Routes>
       </BrowserRouter>
     </Provider>

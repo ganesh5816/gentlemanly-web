@@ -54,17 +54,17 @@ const stories = [
     ],
     duration: "4–5 hours",
     location: "Local Pottery Studio",
-    priceRange: "2050.00",
+    priceRange: "$2050.00",
     image: moment1,
     detailImage: moment1video,
     products: [
       {
         id: 1,
-        name: "Ankle-cuff Heeled Sandals",
+        name: "Beige Block Heels",
         price: "$5,250.00",
         image: secondshoes,
         description:
-          "Elegant ankle-cuff heeled sandals crafted with premium materials, perfect for adding height and sophistication to evening outfits.",
+          "Elegant Beige Block Heels crafted with premium materials, perfect for adding height and sophistication to evening outfits.",
       },
       {
         id: 2,
