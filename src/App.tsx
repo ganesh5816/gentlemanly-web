@@ -15,7 +15,8 @@ import GiftsScreen from "./screens/GiftScreen";
 import DefaultSwipeGiftsScreen from "./screens/DefaultSwipeScreen";
 import PreviewMomentView from "./screens/previewMomwntScreen";
 import FeedbackUI from "./screens/FeedbackUI";
-// import FeedbackForm from "./screens/FeedbackForm";
+import FeedbackForm from "./screens/FeedbackForm";
+import WaitlistSignup from "./screens/waitListScreen";
 
 function App() {
   return (
@@ -36,7 +37,8 @@ function App() {
           <Route path="/defaultgifts" element={<DefaultSwipeGiftsScreen />} />
           <Route path="/preview" element={<PreviewMomentView />} />
           <Route path="/feedback" element={<FeedbackUI />} />
-          {/* <Route path="/form" element={<FeedbackForm />} /> */}
+          <Route path="/form" element={<FeedbackForm />} />
+          <Route path="/waitlist" element={<WaitlistSignup />} />
         </Routes>
       </BrowserRouter>
     </Provider>
