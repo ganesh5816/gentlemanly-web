@@ -443,6 +443,14 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
     setRemovedGifts(new Set());
     setCurrentIndex(0);
   };
+  const goBack = () => {
+    // Navigate to the previous page if available, otherwise go to /home
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate("/home");
+    }
+  };
 
   // Show message if no gifts provided
   if (!giftsList || giftsList.length === 0) {
@@ -451,14 +459,10 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
         {/* Header */}
         <div className="flex absolute top-8 px-8 right-0 left-0 justify-between items-center gap-8 mt-6 z-10">
           <button
-            onClick={() => navigate("/home")}
+            onClick={goBack}
             className="w-10 h-10 rounded-full border-2 border-gray-600 bg-transparent flex items-center justify-center hover:bg-gray-800 transition-colors"
           >
-            <ArrowLeft
-              onClick={() => navigate("/home")}
-              className="text-white"
-              size={24}
-            />
+            <ArrowLeft className="text-white" size={24} />
           </button>
 
           <div className="relative">
@@ -515,7 +519,7 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
         {/* Header */}
         <div className="flex absolute top-8 px-8 right-0 left-0 justify-between items-center gap-8 mt-6 z-10">
           <button
-            // onClick={goBack}
+            onClick={goBack}
             className="w-10 h-10 rounded-full border-2 border-gray-600 bg-transparent flex items-center justify-center hover:bg-gray-800 transition-colors"
           >
             <ArrowLeft className="text-white" size={24} />
@@ -583,7 +587,7 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
       {/* Header */}
       <div className="flex absolute top-8 px-8 right-0 left-0 justify-between items-center gap-8 mt-6 z-10">
         <button
-          // onClick={goBack}
+          onClick={goBack}
           className="w-10 h-10 rounded-full border-2 border-gray-600 bg-transparent flex items-center justify-center hover:bg-gray-800 transition-colors"
         >
           <ArrowLeft className="text-white" size={24} />

@@ -229,22 +229,22 @@ const initialState = {
       },
     ],
     justbecause: [
-      {
-        id: 13,
-        name: "Surprise Gift Box",
-        price: "$75.00",
-        image: "secondshoes", // Replace with gift box image
-        description:
-          "A curated surprise gift box filled with delightful treasures—perfect for brightening her day, just because.",
-      },
-      {
-        id: 14,
-        name: "Personalized Photo Album",
-        price: "$95.00",
-        image: "dress", // Replace with album image
-        description:
-          "A personalized photo album filled with cherished memories—a sentimental gift to show love any day.",
-      },
+      // {
+      //   id: 13,
+      //   name: "Surprise Gift Box",
+      //   price: "$75.00",
+      //   image: "secondshoes", // Replace with gift box image
+      //   description:
+      //     "A curated surprise gift box filled with delightful treasures—perfect for brightening her day, just because.",
+      // },
+      // {
+      //   id: 14,
+      //   name: "Personalized Photo Album",
+      //   price: "$95.00",
+      //   image: "dress", // Replace with album image
+      //   description:
+      //     "A personalized photo album filled with cherished memories—a sentimental gift to show love any day.",
+      // },
       {
         id: 33,
         name: "Watermelon Sugar' High",
