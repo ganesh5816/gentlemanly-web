@@ -1,15 +1,19 @@
 import React from "react";
 import { ArrowLeft, Plus, Mic } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MobileChatInterface: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div
       className="w-full h-screen flex flex-col bg-white" // full width now
     >
       {/* Header */}
       <div className="relative flex items-center justify-center bg-[#fff] px-4 py-3 shadow-sm border- border-[#E7E7E7]">
-        <ArrowLeft className="absolute left-4 w-6 h-6 text-gray-600" />
+        <ArrowLeft
+          onClick={() => navigate("/home")}
+          className="absolute left-4 w-6 h-6 text-gray-600"
+        />
         <h1 className="text-lg font-semibold text-black font-times">
           ChatBot Name Here
         </h1>

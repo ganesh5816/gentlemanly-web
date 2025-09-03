@@ -125,7 +125,7 @@ const HomeScreen: React.FC = () => {
   return (
     <div className="flex-1 bg-white min-h-screen">
       {/* Header */}
-      <div className="h-17 px-6 py-4 flex justify-between items-center">
+      <div className="h-17 px-6 py-4 flex justify-between items-center bg-white relative z-10">
         <Link to="/menu" className="p-2">
           <img width={25} height={25} src={vector} />
         </Link>
@@ -137,67 +137,72 @@ const HomeScreen: React.FC = () => {
 
       {/* Main Scroll View */}
       <div className="flex-1 overflow-y-auto">
-        {/* Upcoming Events Section - Takes full viewport height */}
-        <div className=" bg-white flex flex-col justify-center pt-4">
-          <h1 className="text-2xl font-bold text-center mb-5 text-gray-800 font-times">
-            Upcoming Events
-          </h1>
+        {/* Upcoming Events Section - Full viewport height */}
+        <div className="bg-white min-h-screen flex flex-col">
+          <div className="pt-4 pb-16">
+            <h1 className="text-2xl font-bold text-center mb-5 text-gray-800 font-times">
+              Upcoming Events
+            </h1>
 
-          {/* Slider Container */}
-          <div className="flex">
-            <div className="flex-1 overflow-x-auto">
-              <div className="flex space-x-4 px-4">
-                {upcomimgEvents.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex-shrink-0 cursor-pointer"
-                    onClick={() =>
-                      handleEventClick(item.eventKey, item.eventName)
-                    }
-                  >
+            {/* Slider Container */}
+            <div className="flex">
+              <div className="flex-1 overflow-x-auto">
+                <div className="flex space-x-4 px-4">
+                  {upcomimgEvents.map((item, index) => (
                     <div
-                      className="relative w-[calc(100vw-30px)] max-w-[370px] h-[600px] bg bg-cover bg-center bg-no-repeat rounded-lg overflow-hidden flex items-center justify-center"
-                      style={{
-                        backgroundImage: `url('${item.image}')`,
-                      }}
+                      key={index}
+                      className="flex-shrink-0 cursor-pointer"
+                      onClick={() =>
+                        handleEventClick(item.eventKey, item.eventName)
+                      }
                     >
-                      {/* Overlay */}
-                      <div className="absolute inset-0 bg-black bg-opacity-20" />
+                      <div
+                        className="relative w-[calc(100vw-30px)] max-w-[370px] h-[600px] bg-cover bg-center bg-no-repeat overflow-hidden flex items-center justify-center"
+                        style={{
+                          backgroundImage: `url('${item.image}')`,
+                        }}
+                      >
+                        {/* Overlay */}
+                        <div className="absolute inset-0 bg-black bg-opacity-20" />
 
-                      {/* Centered Text Container */}
-                      <div className="absolute inset-0 flex items-center justify-center px-5">
-                        <div className="text-center">
-                          <h2 className="text-2xl font-bold text-white text-center mb-2 font-times">
-                            {item.eventName}
-                          </h2>
-                          <p className="text-base text-white text-center font-montserrat">
-                            {item.date}
-                          </p>
+                        {/* Centered Text Container */}
+                        <div className="absolute inset-0 flex items-center justify-center px-5">
+                          <div className="text-center">
+                            <h2 className="text-2xl text-white text-center font-times">
+                              {item.eventName}
+                            </h2>
+                            <p className="text-base text-white text-center font-montserrat">
+                              {item.date}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Bottom Button Container */}
+                        <div className="absolute bottom-8 left-0 right-0 flex items-center justify-center px-8">
+                          <CustomButton
+                            onPress={() =>
+                              handleEventClick(item.eventKey, item.eventName)
+                            }
+                            style="w-full max-w-[341px] rounded-lg "
+                            variant="transparent"
+                          >
+                            <p className="font-montserrat">Plan an Event</p>
+                          </CustomButton>
                         </div>
                       </div>
-
-                      {/* Bottom Button Container */}
-                      <div className="absolute bottom-8 left-0 right-0 flex items-center justify-center px-8">
-                        <CustomButton
-                          onPress={() =>
-                            handleEventClick(item.eventKey, item.eventName)
-                          }
-                          style="w-full max-w-[341px] rounded-lg "
-                          variant="transparent"
-                        >
-                          <p className="font-montserrat">Plan an Event</p>
-                        </CustomButton>
-                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
+
+          {/* White space buffer to push "Just Because" section out of view */}
+          <div className="flex-1 min-h-[100px] bg-white"></div>
         </div>
 
-        {/* Just Because Section - Starts below viewport */}
-        <div className="min-h-screen bg-white mt-24">
+        {/* Just Because Section - Hidden until scrolled */}
+        <div className="min-h-screen bg-white">
           <div className="overflow-y-auto h-full">
             {/* Header Section */}
             <div className="px-6 pt-16 md:pt-20 pb-10 bg-gray-100 flex flex-col items-center">

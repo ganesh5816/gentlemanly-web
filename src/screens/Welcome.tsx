@@ -67,17 +67,17 @@ const MvdWelcomeScreen: React.FC<Props> = () => {
         <div className="flex-1 flex flex-col justify-end px-6 md:px-9 pb-8 md:pb-12">
           {/* Title */}
           <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-normal leading-tight md:leading-[56px] mb-4 font-times">
-            Let's
+            Be the man
             <br />
-            Create the
+            who always gets
             <br />
-            Perfect Moment
+            it right
           </h2>
 
           {/* Subtitle */}
           <p className="text-white text-lg leading-6  mb-10 max-w-md font-montserrat">
-            Be the man who always gets it right—every occasion remembered, every
-            gift perfected, every moment unforgettable.
+            Every occasion remembered, Every gift perfected, Every moment
+            unforgettable.
           </p>
 
           {/* Button */}

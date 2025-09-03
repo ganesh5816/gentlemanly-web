@@ -168,13 +168,12 @@ const SwipeGiftsScreen: React.FC = () => {
   };
 
   const handleCreateMoment = () => {
-    navigate("/preview");
+    navigate("/giftmoment");
   };
 
   const handleContinueBrowsing = () => {
     setRemovedGifts(new Set());
     setCurrentIndex(0);
-    navigate("/giftmoment");
   };
 
   // Show message if no gifts provided

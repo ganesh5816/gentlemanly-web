@@ -163,130 +163,110 @@ const initialState = {
         category: "Mother's Day",
       },
     ],
-    apology: [
-      {
-        id: "9",
-        name: "Pearl Set",
-        price: "$150.00",
-        image:
-          "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/pearlset.jpg",
-        description:
-          "A classic pearl jewelry set symbolizing sincerity and elegance—perfect for a heartfelt apology.",
-        category: "Apology",
-      },
-      {
-        id: "10",
-        name: "Black Chanel Bag",
-        price: "$85.00",
-        image:
-          "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/91043a2d6f77b0f18a9b23c54257558a.jpg",
-        description:
-          "A chic Chanel-inspired black handbag—an elegant peace offering to show you truly care.",
-        category: "Apology",
-      },
-      {
-        id: "102",
-        name: "White Coat",
-        price: "$85.00",
-        image:
-          "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/88a6c4cc5e01d7d520d926c780692a2e.jpg",
-        description:
-          "A stylish white coat that blends elegance with comfort—a thoughtful gift to mend hearts.",
-        category: "Apology",
-      },
-      {
-        id: "103",
-        name: "LV Black Heels",
-        price: "$85.00",
-        image:
-          "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/dcf95caed2209c87620cfb348e2e0f5e.jpg",
-        description:
-          "Elegant Louis Vuitton-inspired black heels—an unforgettable way to step back into her good graces.",
-        category: "Apology",
-      },
-      {
-        id: "104",
-        name: "Pink Flowers",
-        price: "$85.00",
-        image:
-          "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/797dcb2cb823bc1d8ee40eea8b2b440d.jpg",
-        description:
-          "A bright and beautiful pink flower bouquet—simple, heartfelt, and perfect for saying 'I'm sorry.'",
-        category: "Apology",
-      },
-    ],
-    datenight: [
-      {
-        id: "11",
-        name: "LV Black Heels",
-        price: "$250.00",
-        image:
-          "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/blackshoe.jpg",
-        description:
-          "Sophisticated black Louis Vuitton heels—elevate her style for a romantic date night.",
-        category: "Date Night",
-      },
-      {
-        id: "12",
-        name: "Red Dress",
-        price: "$180.00",
-        image:
-          "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/dressred.jpg",
-        description:
-          "A stunning red evening dress designed to turn heads—perfect for a passionate night out.",
-        category: "Date Night",
-      },
-      {
-        id: "122",
-        name: "Birkin Kelly",
-        price: "$180.00",
-        image:
-          "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/0e6b825617352f18b8dac2443142025d.jpg",
-        description:
-          "An iconic Birkin Kelly handbag—a luxurious companion for an unforgettable date night.",
-        category: "Date Night",
-      },
-      {
-        id: "112",
-        name: "Diamond Ring",
-        price: "$180.00",
-        image:
-          "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/anniring.jpg",
-        description:
-          "A dazzling diamond ring—romantic, timeless, and the ultimate symbol of love on date night.",
-        category: "Date Night",
-      },
-      {
-        id: "192",
-        name: "Red Roses",
-        price: "$180.00",
-        image:
-          "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/redrose.jpg",
-        description:
-          "A bouquet of classic red roses—the ultimate expression of romance for your evening together.",
-        category: "Date Night",
-      },
-    ],
-    justbecause: [
-      {
-        id: "13",
-        name: "Surprise Gift Box",
-        price: "$75.00",
-        image: "secondshoes", // Replace with gift box image
-        description:
-          "A curated surprise gift box filled with delightful treasures—perfect for brightening her day, just because.",
-        category: "Just Because",
-      },
-      {
-        id: "14",
-        name: "Personalized Photo Album",
-        price: "$95.00",
-        image: "dress", // Replace with album image
-        description:
-          "A personalized photo album filled with cherished memories—a sentimental gift to show love any day.",
-        category: "Just Because",
-      },
-    ],
+    // apology: [
+    //   {
+    //     id: "9",
+    //     name: "Pearl Set",
+    //     price: "$150.00",
+    //     image:
+    //       "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/pearlset.jpg",
+    //     description:
+    //       "A classic pearl jewelry set symbolizing sincerity and elegance—perfect for a heartfelt apology.",
+    //     category: "Apology",
+    //   },
+    //   {
+    //     id: "10",
+    //     name: "Black Chanel Bag",
+    //     price: "$85.00",
+    //     image:
+    //       "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/91043a2d6f77b0f18a9b23c54257558a.jpg",
+    //     description:
+    //       "A chic Chanel-inspired black handbag—an elegant peace offering to show you truly care.",
+    //     category: "Apology",
+    //   },
+    //   {
+    //     id: "102",
+    //     name: "White Coat",
+    //     price: "$85.00",
+    //     image:
+    //       "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/88a6c4cc5e01d7d520d926c780692a2e.jpg",
+    //     description:
+    //       "A stylish white coat that blends elegance with comfort—a thoughtful gift to mend hearts.",
+    //     category: "Apology",
+    //   },
+    //   {
+    //     id: "103",
+    //     name: "LV Black Heels",
+    //     price: "$85.00",
+    //     image:
+    //       "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/dcf95caed2209c87620cfb348e2e0f5e.jpg",
+    //     description:
+    //       "Elegant Louis Vuitton-inspired black heels—an unforgettable way to step back into her good graces.",
+    //     category: "Apology",
+    //   },
+    //   {
+    //     id: "104",
+    //     name: "Pink Flowers",
+    //     price: "$85.00",
+    //     image:
+    //       "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/797dcb2cb823bc1d8ee40eea8b2b440d.jpg",
+    //     description:
+    //       "A bright and beautiful pink flower bouquet—simple, heartfelt, and perfect for saying 'I'm sorry.'",
+    //     category: "Apology",
+    //   },
+    // ],
+    // datenight: [
+    //   {
+    //     id: "11",
+    //     name: "LV Black Heels",
+    //     price: "$250.00",
+    //     image:
+    //       "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/blackshoe.jpg",
+    //     description:
+    //       "Sophisticated black Louis Vuitton heels—elevate her style for a romantic date night.",
+    //     category: "Date Night",
+    //   },
+    //   {
+    //     id: "12",
+    //     name: "Red Dress",
+    //     price: "$180.00",
+    //     image:
+    //       "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/dressred.jpg",
+    //     description:
+    //       "A stunning red evening dress designed to turn heads—perfect for a passionate night out.",
+    //     category: "Date Night",
+    //   },
+    //   {
+    //     id: "122",
+    //     name: "Birkin Kelly",
+    //     price: "$180.00",
+    //     image:
+    //       "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/0e6b825617352f18b8dac2443142025d.jpg",
+    //     description:
+    //       "An iconic Birkin Kelly handbag—a luxurious companion for an unforgettable date night.",
+    //     category: "Date Night",
+    //   },
+    //   {
+    //     id: "112",
+    //     name: "Diamond Ring",
+    //     price: "$180.00",
+    //     image:
+    //       "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/anniring.jpg",
+    //     description:
+    //       "A dazzling diamond ring—romantic, timeless, and the ultimate symbol of love on date night.",
+    //     category: "Date Night",
+    //   },
+    //   {
+    //     id: "192",
+    //     name: "Red Roses",
+    //     price: "$180.00",
+    //     image:
+    //       "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/redrose.jpg",
+    //     description:
+    //       "A bouquet of classic red roses—the ultimate expression of romance for your evening together.",
+    //     category: "Date Night",
+    //   },
+    // ],
   },
   selectedEvent: null,
   selectedGifts: [],
@@ -474,7 +454,11 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
             onClick={() => navigate("/home")}
             className="w-10 h-10 rounded-full border-2 border-gray-600 bg-transparent flex items-center justify-center hover:bg-gray-800 transition-colors"
           >
-            <ArrowLeft className="text-white" size={24} />
+            <ArrowLeft
+              onClick={() => navigate("/home")}
+              className="text-white"
+              size={24}
+            />
           </button>
 
           <div className="relative">

@@ -54,6 +54,7 @@ export default function FeedbackForm() {
       if (response.ok) {
         alert("Feedback submitted successfully!");
         console.log("Feedback JSON:", JSON.stringify(jsonOutput, null, 2));
+        navigate("/home");
       } else {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
