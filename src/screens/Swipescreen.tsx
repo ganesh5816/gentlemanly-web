@@ -18,7 +18,7 @@ const ShoppingSwipeUI = () => {
   // New state for swipe feedback
   const [isSwipingRight, setIsSwipingRight] = useState(false);
   const [isSwipingLeft, setIsSwipingLeft] = useState(false);
-
+  const [selectedtitle, settitle] = useState();
   const constraintsRef = useRef(null);
 
   // Load moment-specific products on component mount
@@ -28,6 +28,7 @@ const ShoppingSwipeUI = () => {
       try {
         const parsedData = JSON.parse(storedMomentData);
         setProducts(parsedData.products || []);
+        settitle(parsedData.momentTitle);
       } catch (error) {
         console.error("Error parsing stored moment data:", error);
         // Fallback to default products if there's an error
@@ -37,6 +38,7 @@ const ShoppingSwipeUI = () => {
     }
   }, []);
   console.log(products);
+  console.log(selectedtitle);
 
   // Update localStorage whenever likedProducts changes
   useEffect(() => {
@@ -278,7 +280,7 @@ const ShoppingSwipeUI = () => {
                   Start Over
                 </button>
 
-                <Link to="/preview">
+                <Link to="/giftmoment ">
                   <button className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat">
                     Create my Moment
                   </button>
@@ -441,7 +443,7 @@ const ShoppingSwipeUI = () => {
                   Continue Shopping
                 </button>
 
-                <Link to="/preview">
+                <Link to="/giftmoment">
                   <button className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-md text-sm transition-colors duration-200 font-montserrat">
                     Create my Moment
                   </button>

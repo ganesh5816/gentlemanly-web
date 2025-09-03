@@ -299,6 +299,7 @@ const StoriesUI = () => {
       localStorage.removeItem("cartItems");
 
       // Store ONLY the moment data for the swipe UI to use
+      localStorage.setItem("currentMomentTitle", selectedMoment.title);
       localStorage.setItem(
         "selectedMomentProducts",
         JSON.stringify({
@@ -328,6 +329,7 @@ const StoriesUI = () => {
       priceRange: currentStory.priceRange,
       type: "moment", // Flag to distinguish from products
     };
+    console.log("momentdata", momentData);
 
     // Get existing cart or create new one
     const existingCart = JSON.parse(localStorage.getItem("cartItems") || "[]");

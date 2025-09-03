@@ -18,6 +18,7 @@ import FeedbackUI from "./screens/FeedbackUI";
 import FeedbackForm from "./screens/FeedbackForm";
 import WaitlistSignup from "./screens/waitListScreen";
 import GiftMomentScreen from "./screens/GiftMomentScreen";
+import ConcertMomentScreen from "./screens/concertScreen";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="/form" element={<FeedbackForm />} />
           <Route path="/waitlist" element={<WaitlistSignup />} />
           <Route path="/giftmoment" element={<GiftMomentScreen />} />
+          <Route path="/concert" element={<ConcertMomentScreen />} />
         </Routes>
       </BrowserRouter>
     </Provider>

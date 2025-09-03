@@ -1,35 +1,53 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { useMemo } from "react";
 
 import backgroundVideo from "../assets/mold.mp4";
 import backgroundVideo1 from "../assets/picnic.mp4";
-import backgroundVideo2 from "../assets/moment3.mp4";
 import backgroundVideo6 from "../assets/550135dc-48ab-45c0-89d9-9137789cbb86.mp4";
 
 const GiftMomentScreen = () => {
   const navigate = useNavigate();
+  const [momentTitle, setMomentTitle] = useState("");
 
-  // Store videos in an array
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const videos = [
-    backgroundVideo6,
-    backgroundVideo,
-    backgroundVideo1,
-    backgroundVideo2,
-  ];
+  useEffect(() => {
+    // ONLY read the plain string - NO JSON parsing anywhere
+    const storedMomentTitle = localStorage.getItem("currentMomentTitle");
 
-  // Pick a random video only once per mount
-  const randomVideo = useMemo(() => {
-    const randomIndex = Math.floor(Math.random() * videos.length);
-    return videos[randomIndex];
-  }, [videos]);
+    if (storedMomentTitle) {
+      setMomentTitle(storedMomentTitle);
+      console.log("Retrieved moment title:", storedMomentTitle);
+    } else {
+      setMomentTitle("Default Moment");
+      console.log("No moment title found, using default");
+    }
+
+    // Clear any corrupted data that might be causing issues
+    const corruptedData = localStorage.getItem("selectedMomentProducts");
+    if (corruptedData && !corruptedData.startsWith("{")) {
+      console.log("Found corrupted data, clearing it:", corruptedData);
+      localStorage.removeItem("selectedMomentProducts");
+    }
+  }, []);
+
+  console.log("Current moment title:", momentTitle);
+
+  const selectedVideo = useMemo(() => {
+    if (momentTitle === "Date Night with Concert") {
+      return backgroundVideo6;
+    } else if (momentTitle === "POETTRY DATE GIFT") {
+      return backgroundVideo;
+    } else {
+      return backgroundVideo1;
+    }
+  }, [momentTitle]);
 
   return (
     <div className="relative min-h-screen">
       {/* Background Video */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
-        src={randomVideo}
+        src={selectedVideo}
         autoPlay
         loop
         muted
