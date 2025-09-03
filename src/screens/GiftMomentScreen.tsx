@@ -4,13 +4,19 @@ import { useMemo } from "react";
 import backgroundVideo from "../assets/mold.mp4";
 import backgroundVideo1 from "../assets/picnic.mp4";
 import backgroundVideo2 from "../assets/moment3.mp4";
+import backgroundVideo6 from "../assets/550135dc-48ab-45c0-89d9-9137789cbb86.mp4";
 
 const GiftMomentScreen = () => {
   const navigate = useNavigate();
 
   // Store videos in an array
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const videos = [backgroundVideo, backgroundVideo1, backgroundVideo2];
+  const videos = [
+    backgroundVideo6,
+    backgroundVideo,
+    backgroundVideo1,
+    backgroundVideo2,
+  ];
 
   // Pick a random video only once per mount
   const randomVideo = useMemo(() => {
