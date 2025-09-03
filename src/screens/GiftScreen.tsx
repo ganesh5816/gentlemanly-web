@@ -168,14 +168,7 @@ const SwipeGiftsScreen: React.FC = () => {
   };
 
   const handleCreateMoment = () => {
-    // Navigate to moment creation screen with selected gifts
-    navigate("/create-moment", {
-      state: {
-        selectedGifts: likedGifts,
-        eventKey,
-        eventName,
-      },
-    });
+    navigate("/preview");
   };
 
   const handleContinueBrowsing = () => {

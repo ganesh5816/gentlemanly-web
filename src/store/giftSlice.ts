@@ -16,7 +16,7 @@ const initialState = {
       {
         id: 2,
         name: "Chanel Black Heels",
-        price: "$3,850.00",
+        price: "$1000.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/f98abc388d6c2ba1b82b3cfbc3515a28.jpg",
         description:
@@ -245,6 +245,15 @@ const initialState = {
         image: "dress", // Replace with album image
         description:
           "A personalized photo album filled with cherished memories—a sentimental gift to show love any day.",
+      },
+      {
+        id: 33,
+        name: "Watermelon Sugar' High",
+        price: " $75 ",
+        image:
+          "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/2fbec8458c1aa9aba6c900683b43ddb5.jpg",
+        description:
+          "This is a ticket to a future Harry Styles concert, an electrifying and unforgettable night of music. Imagine this: November 15, 2026, at 8:00 PM, at the iconic Madison Square Garden in New York City.This concert isn't just a show; it's a celebration. The overall theme is one of pure joy and treating people with kindness, inspired by his Love On Tour and the spirit of his music. Fans arrive in creative, vibrant outfits—sequins, feathers, bell-bottoms, and lots of color—making the crowd a spectacle in itself.",
       },
     ],
   },

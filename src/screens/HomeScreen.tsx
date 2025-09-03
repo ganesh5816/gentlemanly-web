@@ -10,6 +10,9 @@ import mothersday from "../assets/mothersday.jpg";
 import apology from "../assets/apology.jpg";
 import datenight from "../assets/datenight.jpg";
 import vector from "../assets/Vector.png";
+import christmas from "../assets/b141dae5349fd85ef651f7a20dd78a0a.jpg";
+import valentine from "../assets/81894edc83ad89a1ae0ca6771c558555.jpg";
+
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/GiftHer.png";
 import { setSelectedEvent } from "../store/giftSlice";
@@ -49,6 +52,16 @@ const upcomimgEvents = [
     image: datenight,
     eventName: "Date Night",
     eventKey: "datenight",
+  },
+  {
+    image: christmas,
+    eventName: "Christmas",
+    eventKey: "christmas",
+  },
+  {
+    image: valentine,
+    eventName: "Valentine",
+    eventKey: "valentine",
   },
 ];
 

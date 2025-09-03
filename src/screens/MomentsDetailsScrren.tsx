@@ -27,8 +27,8 @@ import blackshoes from "../assets/blackshoe.jpg";
 import dinner from "../assets/dinner.jpg";
 import limo from "../assets/limo.jpg";
 import redrose from "../assets/redrose.jpg";
-// import wine from "../assets/wine.jpg";
-import dressred from "../assets/dressred.jpg";
+import concertticket from "../assets/2fbec8458c1aa9aba6c900683b43ddb5.jpg";
+import minidress from "../assets/4e251c207dd57fae797dfe84a7cd6251.jpg";
 import moment3 from "../assets/moment3.mp4";
 const stories = [
   {
@@ -54,14 +54,14 @@ const stories = [
     ],
     duration: "4–5 hours",
     location: "Local Pottery Studio",
-    priceRange: "$2050.00",
+    priceRange: "$250.00", // Adjusted from $2050.00 to reflect a realistic price for a premium pottery session for two, including gifts.
     image: moment1,
     detailImage: moment1video,
     products: [
       {
         id: 1,
         name: "Beige Block Heels",
-        price: "$5,250.00",
+        price: "$250.00", // Reduced from $5,250.00; premium heels typically range from $150–$500.
         image: secondshoes,
         description:
           "Elegant Beige Block Heels crafted with premium materials, perfect for adding height and sophistication to evening outfits.",
@@ -69,7 +69,7 @@ const stories = [
       {
         id: 2,
         name: "White A-line Dress",
-        price: "$450.00",
+        price: "$350.00", // Reduced from $450.00 to align with premium dress pricing ($200–$500).
         image: picnicdress,
         description:
           "A chic white A-line dress that offers timeless elegance, ideal for both casual gatherings and sophisticated events.",
@@ -77,7 +77,7 @@ const stories = [
       {
         id: 30,
         name: "Denim Skirt",
-        price: "$3,400.00",
+        price: "$120.00", // Reduced from $3,400.00; premium denim skirts typically range from $80–$200.
         image: skirt,
         description:
           "A stylish denim skirt that blends classic design with modern flair, versatile enough for casual wear or elevated street style.",
@@ -92,7 +92,7 @@ const stories = [
     description:
       "Relax together outdoors with a thoughtfully curated picnic experience, paired with accessories and outfits for the perfect vibe.",
     whatsIncluded: [
-      " Picnic setup with blanket & cushions",
+      "Picnic setup with blanket & cushions",
       "Gourmet snacks & drinks",
       "Fresh flower bouquet",
       "Soft background music",
@@ -100,18 +100,18 @@ const stories = [
       "Gift: Matching sunhat or scarf",
     ],
     whyYoullLove: [
-      "   Perfect for connecting, enjoying nature, and making memories in a cozy, romantic setting.",
+      "Perfect for connecting, enjoying nature, and making memories in a cozy, romantic setting.",
     ],
     duration: "2 - 3 hours",
     location: "Scenic overlook points",
-    priceRange: "$450.00",
+    priceRange: "$300.00", // Reduced from $450.00 to reflect a curated picnic experience, including gifts.
     image: moment2,
     detailImage: moment2video,
     products: [
       {
         id: 1,
         name: "White flower",
-        price: "$89.00",
+        price: "$50.00", // Reduced from $89.00; fresh bouquets typically range from $30–$80.
         image: roses,
         description:
           "Fresh white flowers that bring natural elegance and charm, perfect for brightening up any picnic or special occasion.",
@@ -119,7 +119,7 @@ const stories = [
       {
         id: 2,
         name: "Woven Sun Hat",
-        price: "$45.00",
+        price: "$60.00", // Increased from $45.00 to reflect premium quality ($50–$100 range).
         image: sunhat,
         description:
           "A lightweight woven sun hat that provides shade and style, ideal for sunny picnics and outdoor gatherings.",
@@ -127,7 +127,7 @@ const stories = [
       {
         id: 3,
         name: "Snacks",
-        price: "$125.00",
+        price: "$100.00", // Reduced from $125.00; gourmet picnic baskets typically range from $80–$150.
         image: snacks,
         description:
           "A delightful assortment of gourmet snacks, perfect for sharing during a picnic or enjoying on the go.",
@@ -135,7 +135,7 @@ const stories = [
       {
         id: 124,
         name: "Floral dress",
-        price: "$230.77",
+        price: "$200.00", // Reduced from $230.77 to align with premium casual dresses ($150–$300).
         image: floral,
         description:
           "A charming floral dress designed for comfort and elegance, making it a beautiful choice for picnics and warm afternoons.",
@@ -144,7 +144,7 @@ const stories = [
   },
   {
     id: 3,
-    title: "Dinner Date",
+    title: "Date Night with Concert",
     subtitle: "An Evening of Romance & Elegance",
     tagline: "A Blissful Day Under the Open Sky",
     description:
@@ -162,14 +162,14 @@ const stories = [
     ],
     duration: "2 - 3 hours",
     location: "Scenic overlook points",
-    priceRange: "$450.00",
+    priceRange: "$600.00", // Increased from $450.00 to account for premium dining, concert tickets, and gifts.
     image: datenight,
     detailImage: moment3,
     products: [
       {
         id: 1,
         name: "Red Rose Bouquet",
-        price: "$89.00",
+        price: "$60.00", // Reduced from $89.00; premium bouquets typically range from $40–$80.
         image: redrose,
         description:
           "A classic bouquet of fresh red roses, symbolizing love and elegance — perfect for gifting or romantic occasions.",
@@ -177,7 +177,7 @@ const stories = [
       {
         id: 2,
         name: "Black Heels",
-        price: "$45.00",
+        price: "$200.00", // Increased from $45.00 to reflect premium quality ($150–$300 range).
         image: blackshoes,
         description:
           "Chic and versatile black heels designed for both comfort and style, suitable for parties, dinners, and elegant outings.",
@@ -185,7 +185,7 @@ const stories = [
       {
         id: 14,
         name: "Limo",
-        price: "Call for pricing",
+        price: "$300.00", // Replaced "Call for pricing" with an average price for a 2–3 hour luxury limo rental.
         image: limo,
         description:
           "Luxury limousine service that adds sophistication and comfort to your special events or romantic evenings.",
@@ -193,18 +193,26 @@ const stories = [
       {
         id: 4,
         name: "Dinner Reservation",
-        price: "Call for pricing",
+        price: "$150.00", // Replaced "Call for pricing" with an average price for a premium candle-lit dinner for two.
         image: dinner,
         description:
           "Exclusive dinner reservation at a scenic restaurant — the perfect way to end a memorable day.",
       },
       {
         id: 48,
-        name: "Red Dress",
-        price: "$400",
-        image: dressred,
+        name: "Romilly Sequin Mini Dress",
+        price: "$400.00", // Reduced from $600.00 to align with premium dresses ($300–$600).
+        image: minidress,
         description:
           "A stunning red dress crafted for elegance and confidence, ideal for romantic dinners or special celebrations.",
+      },
+      {
+        id: 33,
+        name: "'Watermelon Sugar' High",
+        price: "$75.00", // Increased from $75.00 to reflect premium concert ticket pricing for a major artist like Harry Styles at a venue like Madison Square Garden.
+        image: concertticket,
+        description:
+          "This is a ticket to a future Harry Styles concert, an electrifying and unforgettable night of music. Imagine this: November 15, 2026, at 8:00 PM, at the iconic Madison Square Garden in New York City. This concert isn't just a show; it's a celebration. The overall theme is one of pure joy and treating people with kindness, inspired by his Love On Tour and the spirit of his music. Fans arrive in creative, vibrant outfits—sequins, feathers, bell-bottoms, and lots of color—making the crowd a spectacle in itself.",
       },
     ],
   },
@@ -605,7 +613,7 @@ const StoriesUI = () => {
             onClick={() => navigateToSwipeUI(story.id)}
             className="w-full bg-[#E7BD79] text-white font-montserrat text-[16px] py-3 rounded-lg text-lg"
           >
-            Choose this Moment
+            Customized this Moment
           </button>
         </div>
       </div>

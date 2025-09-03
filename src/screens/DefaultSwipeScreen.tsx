@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, ShoppingBag, X, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -306,8 +306,6 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
   const getAllGifts = (): Gift[] => {
     const allGifts: Gift[] = [];
 
-    // Iterate through all categories and combine all gifts
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     Object.entries(initialState.eventGifts).forEach(([, gifts]) => {
       allGifts.push(...gifts);
     });
@@ -585,11 +583,8 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
                   Start Over
                 </button>
 
-                <button
-                  onClick={() => navigate("/giftmoment")}
-                  className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat"
-                >
-                  Create my Moment
+                <button className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat">
+                  <Link to="/preview">Create my Moment</Link>
                 </button>
               </div>
             </div>
@@ -743,7 +738,10 @@ const DefaultSwipeGiftsScreen: React.FC = () => {
                   Continue Browsing
                 </button>
 
-                <button className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat">
+                <button
+                  onClick={() => navigate("/preview")}
+                  className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat"
+                >
                   Create my Moment
                 </button>
               </div>

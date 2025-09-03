@@ -298,7 +298,10 @@ export default function ShoppingCart() {
               </p>
 
               <button
-                onClick={() => setShowModal(false)}
+                onClick={() => {
+                  navigate("/preview");
+                  setShowModal(false);
+                }}
                 className="w-full bg-gray-200 text-black py-3 rounded-xl font-medium text-sm font-montserrat"
               >
                 Preview my Moment
