@@ -36,6 +36,7 @@ const ShoppingSwipeUI = () => {
       // Fallback to default products if no stored data
     }
   }, []);
+  console.log(products);
 
   // Update localStorage whenever likedProducts changes
   useEffect(() => {
@@ -201,8 +202,7 @@ const ShoppingSwipeUI = () => {
   };
 
   const getVisibleProducts = () => {
-    const filteredProducts = getFilteredProducts();
-    return filteredProducts.slice(currentIndex, currentIndex + 3);
+    return getFilteredProducts();
   };
 
   // Check if we're at the end (showing the gift selection screen)
@@ -329,7 +329,7 @@ const ShoppingSwipeUI = () => {
           <div className="relative w-[402px] h-[420px]">
             {/* Background stacked cards */}
             {getVisibleProducts()
-              .slice(1)
+              .slice(currentIndex + 1)
               .map((product, index) => (
                 <motion.div
                   key={`${product.id}-bg`}
