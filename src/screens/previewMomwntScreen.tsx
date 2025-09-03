@@ -14,6 +14,9 @@ const RomanticCafeUI = () => {
         loop
         muted
         playsInline
+        onLoadedMetadata={(e) => {
+          e.currentTarget.currentTime = 1; // skip first 2 seconds
+        }}
       />
 
       {/* Dark overlay */}

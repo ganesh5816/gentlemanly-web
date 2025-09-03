@@ -1,4 +1,3 @@
-// store/giftSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -16,7 +15,7 @@ const initialState = {
       {
         id: 2,
         name: "Chanel Black Heels",
-        price: "$1000.00",
+        price: "$1,200.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/f98abc388d6c2ba1b82b3cfbc3515a28.jpg",
         description:
@@ -25,7 +24,7 @@ const initialState = {
       {
         id: 3,
         name: "Tulip Bouquet",
-        price: "$2,200.00",
+        price: "$120.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/3522bd8b89cae736baefe8d6ba7ad121.jpg",
         description:
@@ -34,7 +33,7 @@ const initialState = {
       {
         id: 47,
         name: "Diamond Baguette Necklace",
-        price: "$2,200.00",
+        price: "$4,800.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/f7ed98f4aeec55b1c5d78ebaee58ae55.jpg",
         description:
@@ -43,7 +42,7 @@ const initialState = {
       {
         id: 14,
         name: "Pink Dress",
-        price: "$2,200.00",
+        price: "$350.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/pinkdress.jpg",
         description:
@@ -54,7 +53,7 @@ const initialState = {
       {
         id: 4,
         name: "White Roses",
-        price: "$8,500.00",
+        price: "$250.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/roses.jpg",
         description:
@@ -63,7 +62,7 @@ const initialState = {
       {
         id: 5,
         name: "Diamond Set",
-        price: "$450.00",
+        price: "$2,500.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/ee20f951c9f8c884e1ecb047970c2749.jpg",
         description:
@@ -81,7 +80,7 @@ const initialState = {
       {
         id: 70,
         name: "Pearl & Bow Heels",
-        price: "$1,200.00",
+        price: "$750.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/ca7c4a0a1a6049d66a27a3af7abe0d10.jpg",
         description:
@@ -92,7 +91,7 @@ const initialState = {
       {
         id: 7,
         name: "Rhode Skincare Kit",
-        price: "$320.00",
+        price: "$95.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/3ef124f6b3cf71f8488b4968c306e580.jpg",
         description:
@@ -101,7 +100,7 @@ const initialState = {
       {
         id: 8,
         name: "Daniel Wellington Watch",
-        price: "$680.00",
+        price: "$200.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/beb342a2cce2901895c98b70f297956b.jpg",
         description:
@@ -110,7 +109,7 @@ const initialState = {
       {
         id: 83,
         name: "VS Pajama Set",
-        price: "$680.00",
+        price: "$120.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/2817c3170be4a8f30a066c250b5b8fe2.jpg",
         description:
@@ -119,7 +118,7 @@ const initialState = {
       {
         id: 28,
         name: "Mini Flower Basket",
-        price: "$680.00",
+        price: "$75.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/f851e9acdcc005350360fe728690f485.jpg",
         description:
@@ -128,7 +127,7 @@ const initialState = {
       {
         id: 228,
         name: "Chance Chanel Perfume",
-        price: "$680.00",
+        price: "$150.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/2692d472227a48127205354de013ff62.jpg",
         description:
@@ -139,7 +138,7 @@ const initialState = {
       {
         id: 9,
         name: "Pearl Set",
-        price: "$150.00",
+        price: "$180.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/pearlset.jpg",
         description:
@@ -148,7 +147,7 @@ const initialState = {
       {
         id: 10,
         name: "Black Chanel Bag",
-        price: "$85.00",
+        price: "$4,800.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/91043a2d6f77b0f18a9b23c54257558a.jpg",
         description:
@@ -157,7 +156,7 @@ const initialState = {
       {
         id: 102,
         name: "White Coat",
-        price: "$85.00",
+        price: "$400.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/88a6c4cc5e01d7d520d926c780692a2e.jpg",
         description:
@@ -166,7 +165,7 @@ const initialState = {
       {
         id: 103,
         name: "LV Black Heels",
-        price: "$85.00",
+        price: "$1,000.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/dcf95caed2209c87620cfb348e2e0f5e.jpg",
         description:
@@ -175,7 +174,7 @@ const initialState = {
       {
         id: 104,
         name: "Pink Flowers",
-        price: "$85.00",
+        price: "$90.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/797dcb2cb823bc1d8ee40eea8b2b440d.jpg",
         description:
@@ -186,7 +185,7 @@ const initialState = {
       {
         id: 11,
         name: "LV Black Heels",
-        price: "$250.00",
+        price: "$950.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/blackshoe.jpg",
         description:
@@ -195,7 +194,7 @@ const initialState = {
       {
         id: 12,
         name: "Red Dress",
-        price: "$180.00",
+        price: "$300.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/dressred.jpg",
         description:
@@ -204,7 +203,7 @@ const initialState = {
       {
         id: 122,
         name: "Birkin Kelly",
-        price: "$180.00",
+        price: "$12,000.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/0e6b825617352f18b8dac2443142025d.jpg",
         description:
@@ -213,7 +212,7 @@ const initialState = {
       {
         id: 112,
         name: "Diamond Ring",
-        price: "$180.00",
+        price: "$6,500.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/anniring.jpg",
         description:
@@ -222,7 +221,7 @@ const initialState = {
       {
         id: 192,
         name: "Red Roses",
-        price: "$180.00",
+        price: "$120.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/redrose.jpg",
         description:
@@ -249,11 +248,11 @@ const initialState = {
       {
         id: 33,
         name: "Watermelon Sugar' High",
-        price: " $75 ",
+        price: "$250.00",
         image:
           "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/2fbec8458c1aa9aba6c900683b43ddb5.jpg",
         description:
-          "This is a ticket to a future Harry Styles concert, an electrifying and unforgettable night of music. Imagine this: November 15, 2026, at 8:00 PM, at the iconic Madison Square Garden in New York City.This concert isn't just a show; it's a celebration. The overall theme is one of pure joy and treating people with kindness, inspired by his Love On Tour and the spirit of his music. Fans arrive in creative, vibrant outfits—sequins, feathers, bell-bottoms, and lots of color—making the crowd a spectacle in itself.",
+          "This is a ticket to a future Harry Styles concert, an electrifying and unforgettable night of music. Imagine this: November 15, 2026, at 8:00 PM, at the iconic Madison Square Garden in New York City. This concert isn't just a show; it's a celebration. The overall theme is one of pure joy and treating people with kindness, inspired by his Love On Tour and the spirit of his music. Fans arrive in creative, vibrant outfits—sequins, feathers, bell-bottoms, and lots of color—making the crowd a spectacle in itself.",
       },
     ],
   },
