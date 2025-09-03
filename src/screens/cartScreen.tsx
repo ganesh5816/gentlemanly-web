@@ -299,7 +299,7 @@ export default function ShoppingCart() {
 
               <button
                 onClick={() => {
-                  navigate("/preview");
+                  navigate("/giftmoment");
                   setShowModal(false);
                 }}
                 className="w-full bg-gray-200 text-black py-3 rounded-xl font-medium text-sm font-montserrat"
