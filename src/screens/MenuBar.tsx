@@ -28,12 +28,17 @@ const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
   };
 
   const menuItems = [
-    { icon: Home, label: "Home", screen: "Home" },
-    { icon: ShoppingCart, label: "Cart", screen: "Cart" },
-    { icon: MessageCircle, label: "ChatBot", screen: "ChatBot" },
-    { icon: User, label: "Profile", screen: "Profile" },
-    { icon: HelpCircle, label: "Help", screen: "Help" },
-    { icon: Settings, label: "Setting", screen: "Setting" },
+    { icon: Home, label: "Home", screen: "Home", screens: "/home" },
+    { icon: ShoppingCart, label: "Cart", screen: "Cart", screens: "/cart" },
+    {
+      icon: MessageCircle,
+      label: "ChatBot",
+      screen: "ChatBot",
+      screens: "/chat",
+    },
+    { icon: User, label: "Profile", screen: "Profile", screens: "/home" },
+    { icon: HelpCircle, label: "Help", screen: "Help", screens: "/home" },
+    { icon: Settings, label: "Setting", screen: "Setting", screens: "/home" },
   ];
 
   return (
@@ -63,13 +68,14 @@ const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
         <ul className="space-y-1">
           {menuItems.map((item, index) => (
             <li key={index}>
-              <button
+              <Link
+                to={item.screens}
                 onClick={() => handleItemClick(item.screen)}
                 className="w-full flex items-center space-x-4 px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg transition-all duration-200"
               >
                 <item.icon size={20} />
                 <span className="text-base">{item.label}</span>
-              </button>
+              </Link>
             </li>
           ))}
         </ul>

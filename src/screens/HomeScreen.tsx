@@ -157,7 +157,7 @@ const HomeScreen: React.FC = () => {
                       }
                     >
                       <div
-                        className="relative w-[calc(100vw-30px)] max-w-[370px] h-[600px] bg-cover bg-center bg-no-repeat overflow-hidden flex items-center justify-center"
+                        className="relative w-[calc(100vw-30px)] max-w-[370px] h-[650px] bg-cover bg-center bg-no-repeat overflow-hidden flex items-center justify-center"
                         style={{
                           backgroundImage: `url('${item.image}')`,
                         }}
