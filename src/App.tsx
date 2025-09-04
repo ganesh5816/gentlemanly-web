@@ -19,11 +19,13 @@ import FeedbackForm from "./screens/FeedbackForm";
 import WaitlistSignup from "./screens/waitListScreen";
 import GiftMomentScreen from "./screens/GiftMomentScreen";
 import ConcertMomentScreen from "./screens/concertScreen";
+import SilentScreenTimeTracker from "./components/ScreenTimeDisplay";
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
+        <SilentScreenTimeTracker />
         <Routes>
           <Route path="/" element={<MvdWelcomeScreen />} />
           <Route path="/home" element={<HomeScreen />} />
