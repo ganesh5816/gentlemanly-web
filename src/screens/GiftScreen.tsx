@@ -168,7 +168,7 @@ const SwipeGiftsScreen: React.FC = () => {
   };
 
   const handleCreateMoment = () => {
-    navigate("/concert");
+    navigate("/preview");
   };
 
   const handleContinueBrowsing = () => {

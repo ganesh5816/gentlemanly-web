@@ -30,6 +30,7 @@ import redrose from "../assets/redrose.jpg";
 import concertticket from "../assets/2fbec8458c1aa9aba6c900683b43ddb5.jpg";
 import minidress from "../assets/4e251c207dd57fae797dfe84a7cd6251.jpg";
 import moment3 from "../assets/moment3.mp4";
+
 const stories = [
   {
     id: 23,
@@ -57,6 +58,8 @@ const stories = [
     priceRange: "$250.00", // Adjusted from $2050.00 to reflect a realistic price for a premium pottery session for two, including gifts.
     image: moment1,
     detailImage: moment1video,
+    previewVideo:
+      "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/mold.mp4",
     products: [
       {
         id: 1,
@@ -107,6 +110,8 @@ const stories = [
     priceRange: "$300.00", // Reduced from $450.00 to reflect a curated picnic experience, including gifts.
     image: moment2,
     detailImage: moment2video,
+    previewVideo:
+      "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/picnic.mp4",
     products: [
       {
         id: 1,
@@ -165,6 +170,8 @@ const stories = [
     priceRange: "$600.00", // Increased from $450.00 to account for premium dining, concert tickets, and gifts.
     image: datenight,
     detailImage: moment3,
+    previewVideo:
+      "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/20998315-1401-40a5-8484-58394ab58f15.mp4",
     products: [
       {
         id: 1,
@@ -304,6 +311,7 @@ const StoriesUI = () => {
         "selectedMomentProducts",
         JSON.stringify({
           momentId: selectedMoment.id,
+          momentvideo: selectedMoment.previewVideo,
           momentTitle: selectedMoment.title,
           products: selectedMoment.products,
           // Add flag to indicate this is for swiping, not for cart
@@ -326,6 +334,7 @@ const StoriesUI = () => {
       description: currentStory.description,
       duration: currentStory.duration,
       location: currentStory.location,
+      momentvideo: currentStory.previewVideo,
       priceRange: currentStory.priceRange,
       type: "moment", // Flag to distinguish from products
     };
@@ -343,6 +352,27 @@ const StoriesUI = () => {
       existingCart.push(momentData);
       localStorage.setItem("cartItems", JSON.stringify(existingCart));
     }
+
+    // ALSO store the moment data for the Make it Yours page to access
+    // This ensures the page can display the moment video and details
+    localStorage.setItem("currentMomentTitle", currentStory.title);
+    localStorage.setItem(
+      "selectedMomentProducts",
+      JSON.stringify({
+        momentId: currentStory.id,
+        momentvideo: currentStory.previewVideo,
+        momentTitle: currentStory.title,
+        momentSubtitle: currentStory.subtitle,
+        momentDescription: currentStory.description,
+        momentDuration: currentStory.duration,
+        momentLocation: currentStory.location,
+        momentPriceRange: currentStory.priceRange,
+        products: currentStory.products,
+        // Add flag to indicate this is for the Make it Yours page
+        isForMakeItYours: true,
+        timestamp: Date.now(),
+      })
+    );
 
     // Navigate to make it yours page
     navigate("/makeitYours");

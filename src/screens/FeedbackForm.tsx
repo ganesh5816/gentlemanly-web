@@ -41,7 +41,7 @@ export default function FeedbackForm() {
 
     try {
       const response = await fetch(
-        "https://1co29r6tuk.execute-api.us-east-1.amazonaws.com/develop/feedback",
+        "https://my3mdm7217.execute-api.us-east-1.amazonaws.com/develop/feedback",
         {
           method: "POST",
           headers: {

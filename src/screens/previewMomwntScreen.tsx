@@ -1,15 +1,31 @@
 import { useNavigate } from "react-router-dom";
-import backgroundVideo from "../assets/20998315-1401-40a5-8484-58394ab58f15.mp4"; // your video file
+import { useState, useEffect } from "react";
 
 const RomanticCafeUI = () => {
   const navigate = useNavigate();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [momentData, setMomentData] = useState<any>(null);
+
+  useEffect(() => {
+    // Get moment data from localStorage
+    const selectedMomentData = localStorage.getItem("selectedMomentProducts");
+    if (selectedMomentData) {
+      try {
+        const parsedData = JSON.parse(selectedMomentData);
+        setMomentData(parsedData);
+      } catch (error) {
+        console.error("Error parsing moment data:", error);
+      }
+    }
+  }, []);
+  console.log(momentData);
 
   return (
     <div className="relative min-h-screen">
-      {/* Background Video */}
+      {/* Background Video - Show moment video if available, otherwise default */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
-        src={backgroundVideo}
+        src={momentData?.momentvideo}
         autoPlay
         loop
         muted
@@ -32,7 +48,7 @@ const RomanticCafeUI = () => {
             onClick={() => navigate("/waitlist")}
             className="w-full bg-white/90 font-montserrat backdrop-blur-sm text-gray-700 py-3 rounded-2xl font-medium text-lg shadow-lg border border-white/20 hover:bg-white/95 transition-all duration-200"
           >
-            Join our waitlist{" "}
+            Join our waitlist
           </button>
         </div>
       </div>
