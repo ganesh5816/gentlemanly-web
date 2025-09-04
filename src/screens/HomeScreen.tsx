@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Bell } from "lucide-react";
 import birthday from "../assets/birthday.jpg";
 import aniversery from "../assets/anniversarytwo.jpg";
@@ -12,10 +12,10 @@ import datenight from "../assets/datenight.jpg";
 import vector from "../assets/Vector.png";
 import christmas from "../assets/b141dae5349fd85ef651f7a20dd78a0a.jpg";
 import valentine from "../assets/81894edc83ad89a1ae0ca6771c558555.jpg";
-
+import { setSelectedEvent } from "../store/giftSlice";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/GiftHer.png";
-import { setSelectedEvent } from "../store/giftSlice";
+import { selectEventGifts, useAppSelector } from "../store/store";
 
 // Mock theme object - replace with your actual theme
 const theme = {
@@ -99,22 +99,16 @@ const CustomButton: React.FC<CustomButtonProps> = ({
 const HomeScreen: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const eventGifts = useAppSelector(selectEventGifts);
 
   // Get gifts data from Redux store
-  const { eventGifts } = useSelector((state: any) => state.gifts);
 
   const handleEventClick = (eventKey: string, eventName: string) => {
     // Set the selected event in Redux store
     dispatch(setSelectedEvent({ key: eventKey, name: eventName }));
 
     // Navigate to moments/gifts screen with the selected event
-    navigate("/moment", {
-      state: {
-        eventKey,
-        eventName,
-        gifts: eventGifts[eventKey] || [],
-      },
-    });
+    navigate("/moment");
   };
 
   const handleNavigate = (screen: string) => {

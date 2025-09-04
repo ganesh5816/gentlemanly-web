@@ -171,7 +171,7 @@ const stories = [
     image: datenight,
     detailImage: moment3,
     previewVideo:
-      "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/20998315-1401-40a5-8484-58394ab58f15.mp4",
+      "https://gentemanly-web.s3.us-east-1.amazonaws.com/assets/550135dc-48ab-45c0-89d9-9137789cbb86.mp4",
     products: [
       {
         id: 1,

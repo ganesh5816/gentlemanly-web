@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
 import momentbg from "../assets/momentsbackground.jpg";
 import giftbg from "../assets/giftsbackground.jpg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setSelectedEvent } from "../store/giftSlice"; // Import the action
 
 // Custom Button Component
 interface CustomButtonProps {
@@ -44,15 +45,35 @@ const MomentsGiftsScreen: React.FC = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   // Get event data passed from HomeScreen
   const { eventKey, eventName, gifts } = location.state || {};
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { eventGifts } = useSelector((state: any) => state.gifts);
+  const { eventGifts, selectedEvent } = useSelector(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (state: any) => state.gifts
+  );
 
   // Use gifts from navigation state or fallback to Redux store
   const availableGifts = gifts || eventGifts[eventKey] || [];
+
+  // Dispatch event data to Redux when component mounts
+  useEffect(() => {
+    if (eventKey && eventName) {
+      dispatch(
+        setSelectedEvent({
+          key: eventKey,
+          name: eventName,
+        })
+      );
+
+      // Also store in localStorage for persistence
+      localStorage.setItem("currentEventKey", eventKey);
+      localStorage.setItem("currentEventName", eventName);
+    }
+  }, [eventKey, eventName, dispatch]);
 
   const handleMomentsPress = () => {
     if (isAnimating) return;
@@ -83,23 +104,42 @@ const MomentsGiftsScreen: React.FC = () => {
   };
 
   const handleBeginWithMoments = () => {
+    // Get current event from Redux store
+    const currentEventKey = selectedEvent?.key || eventKey;
+    const currentEventName = selectedEvent?.name || eventName;
+    const currentGifts = eventGifts[currentEventKey] || availableGifts;
+
     // Navigate to moments/moment details screen
     navigate("/momentDetails", {
       state: {
-        eventKey,
-        eventName,
-        gifts: availableGifts,
+        eventKey: currentEventKey,
+        eventName: currentEventName,
+        gifts: currentGifts,
+        preserveCart: true,
       },
     });
   };
 
   const handleBeginWithGifts = () => {
-    // Navigate to gifts screen with specific gifts for this event
+    // Get current event and gifts from Redux store
+    const currentEventKey = selectedEvent?.key || eventKey;
+    const currentEventName = selectedEvent?.name || eventName;
+    const currentGifts = eventGifts[currentEventKey] || availableGifts;
+
+    console.log("Navigating with Redux data:", {
+      eventKey: currentEventKey,
+      eventName: currentEventName,
+      gifts: currentGifts,
+      fromRedux: !!selectedEvent,
+    });
+
+    // Navigate to gifts screen with specific gifts for this event from Redux
     navigate("/gifts", {
       state: {
-        eventKey,
-        eventName,
-        gifts: availableGifts,
+        eventKey: currentEventKey,
+        eventName: currentEventName,
+        gifts: currentGifts,
+        preserveCart: true,
       },
     });
   };
@@ -200,7 +240,7 @@ const MomentsGiftsScreen: React.FC = () => {
                 </h1>
                 <p className="text-base text-white text-center mb-8 font-montserrat">
                   {expandedSection === "gifts" &&
-                    "Choose a gift  first we will help you to create meaningful moment around it."}
+                    "Choose a gift first we will help you to create meaningful moment around it."}
                 </p>
                 {expandedSection === "gifts" && (
                   <CustomButton

@@ -10,7 +10,6 @@ import OrderConfirmationScreen from "./screens/MakeItYoursScreen";
 import ShoppingSwipeUI from "./screens/Swipescreen";
 import ShoppingCart from "./screens/cartScreen";
 import { Provider } from "react-redux";
-import { store } from "./store/giftSlice";
 import GiftsScreen from "./screens/GiftScreen";
 import DefaultSwipeGiftsScreen from "./screens/DefaultSwipeScreen";
 import PreviewMomentView from "./screens/previewMomwntScreen";
@@ -19,6 +18,8 @@ import FeedbackForm from "./screens/FeedbackForm";
 import WaitlistSignup from "./screens/waitListScreen";
 import GiftMomentScreen from "./screens/GiftMomentScreen";
 import ConcertMomentScreen from "./screens/concertScreen";
+import { store } from "./store/store";
+import DefaultPreview from "./screens/DefaultPreviewscreen";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/gifts" element={<GiftsScreen />} />
           <Route path="/defaultgifts" element={<DefaultSwipeGiftsScreen />} />
           <Route path="/preview" element={<PreviewMomentView />} />
+          <Route path="/giftpreview" element={<DefaultPreview />} />
           <Route path="/feedback" element={<FeedbackUI />} />
           <Route path="/form" element={<FeedbackForm />} />
           <Route path="/waitlist" element={<WaitlistSignup />} />

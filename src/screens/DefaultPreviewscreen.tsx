@@ -1,32 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-
 import bgvideo from "../assets/20998315-1401-40a5-8484-58394ab58f15.mp4";
-const RomanticCafeUI = () => {
+const DefaultPreview = () => {
   const navigate = useNavigate();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [momentData, setMomentData] = useState<any>(null);
-
-  useEffect(() => {
-    // Get moment data from localStorage
-    const selectedMomentData = localStorage.getItem("selectedMomentProducts");
-    if (selectedMomentData) {
-      try {
-        const parsedData = JSON.parse(selectedMomentData);
-        setMomentData(parsedData);
-      } catch (error) {
-        console.error("Error parsing moment data:", error);
-      }
-    }
-  }, []);
-  console.log(momentData);
 
   return (
     <div className="relative min-h-screen">
       {/* Background Video - Show moment video if available, otherwise default */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
-        src={momentData?.momentvideo || bgvideo}
+        src={bgvideo}
         autoPlay
         loop
         muted
@@ -57,4 +40,4 @@ const RomanticCafeUI = () => {
   );
 };
 
-export default RomanticCafeUI;
+export default DefaultPreview;
