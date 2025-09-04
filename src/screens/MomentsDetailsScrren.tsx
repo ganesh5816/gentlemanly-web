@@ -34,7 +34,7 @@ import moment3 from "../assets/moment3.mp4";
 const stories = [
   {
     id: 23,
-    title: "POETTRY DATE GIFT",
+    title: "POTTERY DATE GIFT",
     subtitle: "Shape love with clay",
     tagline: "Get your hands messy and your hearts full",
     description:

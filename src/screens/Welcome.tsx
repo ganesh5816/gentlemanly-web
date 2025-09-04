@@ -69,9 +69,7 @@ const MvdWelcomeScreen: React.FC<Props> = () => {
           <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-normal leading-tight md:leading-[56px] mb-4 font-times">
             Be the man
             <br />
-            who always gets
-            <br />
-            it right
+            She Brags About.
           </h2>
 
           {/* Subtitle */}
