@@ -280,9 +280,9 @@ const ShoppingSwipeUI = () => {
                   Start Over
                 </button>
 
-                <Link to="/cart ">
+                <Link to="/concert ">
                   <button className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat">
-                    Proceed to checkout
+                    Create my moment
                   </button>
                 </Link>
               </div>
@@ -443,9 +443,9 @@ const ShoppingSwipeUI = () => {
                   Continue Shopping
                 </button>
 
-                <Link to="/cart">
+                <Link to="/concert">
                   <button className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-md text-sm transition-colors duration-200 font-montserrat">
-                    Proceed to Checkout
+                    Create my moment
                   </button>
                 </Link>
               </div>
