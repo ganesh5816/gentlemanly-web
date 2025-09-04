@@ -168,7 +168,7 @@ const SwipeGiftsScreen: React.FC = () => {
   };
 
   const handleCreateMoment = () => {
-    navigate("/giftmoment");
+    navigate("/cart");
   };
 
   const handleContinueBrowsing = () => {
@@ -302,7 +302,7 @@ const SwipeGiftsScreen: React.FC = () => {
                   onClick={handleCreateMoment}
                   className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat"
                 >
-                  Create my Moment
+                  Proceed to checkout
                 </button>
               </div>
             </div>
@@ -460,7 +460,7 @@ const SwipeGiftsScreen: React.FC = () => {
                   onClick={handleCreateMoment}
                   className="w-full border-2 border-white hover:bg-white hover:text-gray-900 text-white font-[14px] py-2 px-4 rounded-lg text-sm transition-colors duration-200 font-montserrat"
                 >
-                  Create my Moment
+                  Proceed to checkout
                 </button>
               </div>
             </div>
